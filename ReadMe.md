@@ -1,12 +1,15 @@
 # Overview
+* The coursework is a group exercise where you will collaborate with your fellow students in small groups to
+implement the model, write tests and write user and developer documentation.
 
 # Build
-Build project using ```make```
+* Build project using ```make```
 
 # Run
+* Run project using ```make run```
 
 ## References
-[Makefile](https://gist.github.com/mauriciopoppe/de8907f67923091982c8c8136a063ea6)
+* [Makefile](https://gist.github.com/mauriciopoppe/de8907f67923091982c8c8136a063ea6)
 
 # Project Guidelines
 ## Format code to make readability easier

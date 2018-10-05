@@ -28,6 +28,7 @@ public:
      k: Diffusion rates for Hares
      l: Diffusion rates for Pumas
      t_step: Time step size.
+     t_n: Number of time steps between outputs.
 
   */
     

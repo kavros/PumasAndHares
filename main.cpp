@@ -1,5 +1,6 @@
 #include <iostream>
 #include "GenerateLandscape.hpp"
+#include "ParameterParser.hpp"
 using namespace std;
 
 int main()
@@ -9,7 +10,6 @@ int main()
 	//and landDistribution+waterDistribution  ==100
 	
 	GenerateLandscape landscape(50,50,40,60);
-	
 	cout<<"Hello World"<<endl;
 }
 

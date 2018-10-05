@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/GenerateLandscape.hpp"
+#include "GenerateLandscape.hpp"
 using namespace std;
 
 int main()
@@ -9,7 +9,7 @@ int main()
 	//and landDistribution+waterDistribution  ==100
 	
 	GenerateLandscape landscape(50,50,40,60);
-	landscape.GenerateData();
+	
 	cout<<"Hello World"<<endl;
 }
 

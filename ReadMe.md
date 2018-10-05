@@ -6,13 +6,10 @@ implement the model, write tests and write user and developer documentation.
 * Build project using ```make```
 
 # Run
-* Run project using ```make run```
+* Run project using ```./dist/Debug/GNU-Linux/pumasandhares```
 
 # Documentation
 * Using the following link you can edit our documentation [link](https://www.overleaf.com/8949884345ypnhgyfsphmr)
-
-## References
-* [Makefile](https://gist.github.com/mauriciopoppe/de8907f67923091982c8c8136a063ea6)
 
 # Project Guidelines
 ## Format code to make readability easier
@@ -56,16 +53,10 @@ implement the model, write tests and write user and developer documentation.
 		Ray ray = new Ray(hit.transform.position, -Vector3.up);
       ```	
   
-  ### 1.3 Source File Organization
+ ## 1.3 Source File Organization
   * Source files should be given the name of the public class in the file
   
-  ### 1.4 Folders Organization
-  * bin: The output executables go here, both for the app and for any tests.
-  * build: This folder contains all object files, and is removed on a clean
-  * include: All project header files(*.h). All necessary third-party header files that do not exist under /usr/local/include are also placed here.
-  * src: The application and only the application’s source files.
-  * data: This folder contains input,configuration and output data of the application.
- 
+  
  ## Some Git rules
  <a name="git-workflow"></a>
 

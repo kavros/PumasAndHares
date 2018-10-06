@@ -32,7 +32,7 @@ public:
 
   */
     
-    std::map<std::string, double> Dict;
+    std::map<std::string, double> dict;
 
     
     

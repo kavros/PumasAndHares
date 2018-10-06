@@ -13,11 +13,11 @@
 #include <map>
 #include <vector>
 using namespace std;
-ParameterParser::ParameterParser(string config_file) {
+ParameterParser::ParameterParser(string configFile) {
   ifstream ifs;
   try
   {
-    ifs.open(config_file);
+    ifs.open(configFile);
     string tmpstring;
     while (getline(ifs, tmpstring))
     {
@@ -31,7 +31,7 @@ ParameterParser::ParameterParser(string config_file) {
           //cout << element << endl; //Verbose output for debugging.
           param_v.push_back(element);
         }
-        if (this->Dict.count(param_v[0]) != 0) //Avoid duplicates and overwriting.
+        if (this->dict.count(param_v[0]) != 0) //Avoid duplicates and overwriting.
         {
           cerr << "Duplicate configuration option: " << param_v[0] << endl;
           break;
@@ -43,7 +43,7 @@ ParameterParser::ParameterParser(string config_file) {
         }
         else
         {
-          Dict[param_v[0]] = stod(param_v[1]);
+          this->dict[param_v[0]] = stod(param_v[1]);
           //cout << "Successfully read parameter " << param_v[0] << " as : " << param_v[1] << endl; //Verbose output for debugging.
         }
       }

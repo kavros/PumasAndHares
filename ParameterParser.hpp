@@ -36,7 +36,7 @@ public:
 
     
     
-    ParameterParser(std::string config_file);
+    ParameterParser(std::string configFile);
     ParameterParser(const ParameterParser& orig);
     virtual ~ParameterParser();
 private:

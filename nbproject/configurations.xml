@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>GenerateLandscape.hpp</itemPath>
+      <itemPath>ParameterParser.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,6 +15,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>GenerateLandscape.cpp</itemPath>
+      <itemPath>ParameterParser.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -42,6 +44,10 @@
       </item>
       <item path="GenerateLandscape.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ParameterParser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ParameterParser.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -68,6 +74,10 @@
       <item path="GenerateLandscape.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GenerateLandscape.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ParameterParser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ParameterParser.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

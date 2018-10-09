@@ -1,5 +1,5 @@
 #include <string>
-class GenerateLandscape
+class LandscapeGenerator
 {
 	private:
 		int width;
@@ -9,6 +9,6 @@ class GenerateLandscape
 		std::string filePath = "./data/";
 
 	public:
-		GenerateLandscape(int width,int height,int landDistribution,int waterDistribution);
+		LandscapeGenerator(int width,int height,int landDistribution,int waterDistribution);
 		void GenerateData();	
 };

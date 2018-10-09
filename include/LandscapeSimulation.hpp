@@ -5,32 +5,23 @@
  */
 
 /* 
- * File:   LandScapeSimulation.hpp
+ * File:   LandscapeSimulation.hpp
  * Author: alex
  *
- * Created on October 7, 2018, 12:34 PM
+ * Created on October 9, 2018, 6:39 PM
  */
 
 #ifndef LANDSCAPESIMULATION_HPP
 #define LANDSCAPESIMULATION_HPP
 
-class LandscapeSimulation
-{
-    private:
-       // ParameterParser configuration;
-        //LandScapeParser landscape;
-        double r,a,b,m,k,l,tStep,tN;
-        
-         
-    public:
-        //LandScapeSimulation(ParameterParser configuration,LandScapeParser landscape );
-       
-    private:
-        //void InitConfiguration(ParameterParser configuration)
-        //void InitLandScape(LandScapeParser landscape)
-        
-};
+class LandscapeSimulation {
+public:
+    LandscapeSimulation();
+    LandscapeSimulation(const LandscapeSimulation& orig);
+    virtual ~LandscapeSimulation();
+private:
 
+};
 
 #endif /* LANDSCAPESIMULATION_HPP */
 

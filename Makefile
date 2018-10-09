@@ -6,7 +6,7 @@ BUILD_PATH=build
 BIN_PATH = $(BUILD_PATH)/bin
 
 # executables #
-BIN_NAME=generate_landscape
+BIN_NAME=pumasAndHares
 
 # extensions #
 SRC_EXT=cpp
@@ -44,15 +44,56 @@ release: dirs
 # Checks the executable and symlinks to the output
 .PHONY: all
 all:	$(BIN_PATH)/$(BIN_NAME) \
-	$(BIN_PATH)/landscapeGeneratorTest
-	#@echo "Making symlink: $(BIN_NAME) -> $<"
-	#@$(RM) $(BIN_NAME)
-	#@ln -s $(BIN_PATH)/$(BIN_NAME) $(BIN_NAME)
-
-$(BIN_PATH)/landscapeGeneratorTest: src/tests/LandscapeGeneratorTest.cpp \
-				    src/core/LandscapeGenerator.cpp
-	$(CXX) src/core/LandscapeGenerator.cpp $< -o $@
+	$(BIN_PATH)/landscapeGeneratorMain\
+	$(BIN_PATH)/configurationGeneratorMain\
+	$(BIN_PATH)/cmdParserTest\
+	$(BIN_PATH)/configurationGeneratorMain\
+	$(BIN_PATH)/configurationParserTest\
+	$(BIN_PATH)/landscapeSimulationTest\
+	$(BIN_PATH)/landscapeValidatorTest\
+	$(BIN_PATH)/outpoutGeneratorTest\
+	$(BIN_PATH)/landscapeParserTest
 	
+	
+
+$(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
+				    src/core/LandscapeGenerator.cpp
+	$(CXX) $< -o $@
+	
+$(BIN_PATH)/cmdParserTest: src/tests/CmdParserTest.cpp \
+			    src/core/CmdParser.cpp
+	$(CXX)  $< -o $@
+
+$(BIN_PATH)/configurationGeneratorMain: src/tests/ConfigurationGeneratorMain.cpp \
+			    src/core/ConfigurationGenerator.cpp
+	$(CXX)  $< -o $@
+
+$(BIN_PATH)/configurationParserTest: src/tests/ConfigurationParserTest.cpp \
+			    src/core/ConfigurationParser.cpp
+	$(CXX)  $< -o $@
+
+
+$(BIN_PATH)/landscapeParserTest: src/tests/LandscapeParserTest.cpp \
+			    src/core/LandscapeParser.cpp
+	$(CXX)  $< -o $@
+	
+	
+
+$(BIN_PATH)/landscapeSimulationTest: src/tests/LandscapeSimulationTest.cpp \
+			    src/core/LandscapeSimulation.cpp
+	$(CXX)  $< -o $@
+
+
+$(BIN_PATH)/landscapeValidatorTest: src/tests/LandscapeValidatorTest.cpp \
+			    src/core/LandscapeValidator.cpp
+	$(CXX)  $< -o $@
+
+
+$(BIN_PATH)/outpoutGeneratorTest: src/tests/OutputGeneratorTest.cpp \
+			    src/core/OutputGenerator.cpp
+	$(CXX)  $< -o $@
+
+
 
 # Creation of the executable
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS)

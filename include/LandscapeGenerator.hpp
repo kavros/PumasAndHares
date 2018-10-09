@@ -1,14 +1,27 @@
-#include <string>
-class LandscapeGenerator
-{
-	private:
-		int width;
-		int height;
-		int landDistribution;
-		int waterDistribution;
-		std::string filePath ;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-	public:
-		LandscapeGenerator(int width,int height,int landDistribution,int waterDistribution);
-		void GenerateData();	
+/* 
+ * File:   LandscapeGenerator.hpp
+ * Author: alex
+ *
+ * Created on October 9, 2018, 6:41 PM
+ */
+
+#ifndef LANDSCAPEGENERATOR_HPP
+#define LANDSCAPEGENERATOR_HPP
+
+class LandscapeGenerator {
+public:
+    LandscapeGenerator();
+    LandscapeGenerator(const LandscapeGenerator& orig);
+    virtual ~LandscapeGenerator();
+private:
+
 };
+
+#endif /* LANDSCAPEGENERATOR_HPP */
+

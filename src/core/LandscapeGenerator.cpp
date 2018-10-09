@@ -1,21 +1,24 @@
-#include <iostream>
-#include <fstream> 
-#include <ctime>
-#include "../../include/LandscapeGenerator.hpp" 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-using namespace std;
+/* 
+ * File:   LandscapeGenerator.cpp
+ * Author: alex
+ * 
+ * Created on October 9, 2018, 6:41 PM
+ */
 
-LandscapeGenerator::LandscapeGenerator(int width,int height,int landDistribution,int waterDistribution)
-{
-	this->width=width;
-	this->height=height;
-	this->landDistribution=landDistribution;
-	this->waterDistribution=waterDistribution;	
+#include "../../include/LandscapeGenerator.hpp"
+
+LandscapeGenerator::LandscapeGenerator() {
 }
 
-void LandscapeGenerator::GenerateData()
-{
-	
+LandscapeGenerator::LandscapeGenerator(const LandscapeGenerator& orig) {
 }
 
+LandscapeGenerator::~LandscapeGenerator() {
+}
 

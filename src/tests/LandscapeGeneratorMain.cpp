@@ -12,6 +12,7 @@
  */
 
 #include <cstdlib>
+#include <iostream>
 #include "../../include/LandscapeGenerator.hpp"
 
 using namespace std;
@@ -20,7 +21,7 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    LandscapeGenerator landscape(50,50,40,60);
-    landscape.GenerateData();
+    LandscapeGenerator landscape();
+    cout<<"Generate Landscape"<<endl;
     return 0;
 }

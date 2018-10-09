@@ -6,7 +6,7 @@ class LandscapeGenerator
 		int height;
 		int landDistribution;
 		int waterDistribution;
-		std::string filePath = "./data/";
+		std::string filePath ;
 
 	public:
 		LandscapeGenerator(int width,int height,int landDistribution,int waterDistribution);

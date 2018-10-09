@@ -1,7 +1,7 @@
 CXX ?=g++
 
 # paths #
-SRC_PATH=src
+SRC_PATH=src/core
 BUILD_PATH=build
 BIN_PATH = $(BUILD_PATH)/bin
 
@@ -43,15 +43,23 @@ release: dirs
 
 # Checks the executable and symlinks to the output
 .PHONY: all
-all: $(BIN_PATH)/$(BIN_NAME)
-	@echo "Making symlink: $(BIN_NAME) -> $<"
-	@$(RM) $(BIN_NAME)
+all:	$(BIN_PATH)/$(BIN_NAME) \
+	$(BIN_PATH)/landscapeGeneratorTest
+	#@echo "Making symlink: $(BIN_NAME) -> $<"
+	#@$(RM) $(BIN_NAME)
 	#@ln -s $(BIN_PATH)/$(BIN_NAME) $(BIN_NAME)
+
+$(BIN_PATH)/landscapeGeneratorTest: src/tests/LandscapeGeneratorTest.cpp \
+				    src/core/LandscapeGenerator.cpp
+	$(CXX) src/core/LandscapeGenerator.cpp $< -o $@
+	
 
 # Creation of the executable
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
 	@echo "Linking: $@"
 	$(CXX) $(OBJECTS) -o $@
+
+#land
 
 # Creation of the object files
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)

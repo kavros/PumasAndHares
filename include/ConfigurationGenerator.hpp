@@ -14,12 +14,17 @@
 #ifndef CONFIGURATIONGENERATOR_HPP
 #define CONFIGURATIONGENERATOR_HPP
 
+#include <string>
+#include <map>
+
 class ConfigurationGenerator {
 public:
-    ConfigurationGenerator();
+    ConfigurationGenerator(int ac, char *av[]);
+    bool WriteToFile(std::string fileName);
     ConfigurationGenerator(const ConfigurationGenerator& orig);
     virtual ~ConfigurationGenerator();
 private:
+    std::map Dict;
 
 };
 

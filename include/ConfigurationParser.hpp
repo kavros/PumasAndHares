@@ -13,10 +13,22 @@
 
 #ifndef CONFIGURATIONPARSER_HPP
 #define CONFIGURATIONPARSER_HPP
+#include "Json.hpp"
+#include <string>
+
+using json = nlohmann::json;
 
 class ConfigurationParser {
 public:
-    ConfigurationParser();
+    double r; // Hare birth rate.
+    double a; // Predation rate.
+    double b; // Puma birth rate per eaten hare.
+    double m; // Puma mortality rate.
+    double k; // Diffusion rate for hares.
+    double l; // Diffusion rate for pumas.
+    double d; // Time step size.
+    int n; // Number of time steps.
+    ConfigurationParser(std::string configurationFileName);
     ConfigurationParser(const ConfigurationParser& orig);
     virtual ~ConfigurationParser();
 private:

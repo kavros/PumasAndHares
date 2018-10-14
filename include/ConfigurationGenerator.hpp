@@ -14,8 +14,11 @@
 #ifndef CONFIGURATIONGENERATOR_HPP
 #define CONFIGURATIONGENERATOR_HPP
 
+#include "Json.hpp"
 #include <string>
 #include <map>
+
+using json = nlohmann::json;
 
 class ConfigurationGenerator {
 public:
@@ -23,8 +26,11 @@ public:
     bool WriteToFile(std::string fileName);
     ConfigurationGenerator(const ConfigurationGenerator& orig);
     virtual ~ConfigurationGenerator();
+    std::string fileName;
+    json options;
+    std::string jsonString;
 private:
-    std::map Dict;
+    
 
 };
 

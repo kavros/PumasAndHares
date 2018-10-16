@@ -128,12 +128,12 @@ void Landscape::SetRepetions(int rep)
 
 
 //getters
-unsigned int Landscape::GetHeight()
+int Landscape::GetHeight()
 {
     return height;
 }
 
-unsigned int Landscape::GetWidth()
+int Landscape::GetWidth()
 {
     return width;
 }

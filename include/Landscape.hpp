@@ -32,8 +32,8 @@ public:
     virtual ~Landscape();
     
     //LandscapeSquare[] GetLandscape();
-    unsigned int GetWidth();
-    unsigned int GetHeight();
+    int GetWidth();
+    int GetHeight();
     
     /**
      * Returns the number of "dry" neighbors out of
@@ -83,8 +83,8 @@ public:
     
 
 private:
-    unsigned int width;
-    unsigned int height;
+    int width;
+    int height;
     double r,a,b,m,k,l,dt; //variables that help us to calculate the square(i,j)
     double T;  //the number of steps between the outputs
     double rep;  //number of times that our simulation is going to run

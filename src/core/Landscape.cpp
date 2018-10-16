@@ -13,6 +13,8 @@
 
 #include "../../include/Landscape.hpp"
 #include <iostream>
+#include <stdexcept>
+#include <assert.h>  
 
 Landscape::Landscape(string configurationFileName,string landscapeFileName)
 {
@@ -33,68 +35,62 @@ Landscape::~Landscape()
 //setters
 void Landscape::SetR(double r)
 {
-    CheckInputValue(r);
+    CheckConfigurationInput(r);
     this->r=r;
 }
 
-
 void Landscape::SetWidth(int width)
 {
-    CheckInputValue(width);
+    CheckConfigurationInput(width);
     this->width = width;
 }
 
 void Landscape::SetHeight(int height)
 {
-    CheckInputValue(height);
+    CheckConfigurationInput(height);
     this->height = height;
 }
 
-
 void Landscape::SetM(double m)
 {
-    CheckInputValue(m);
+    CheckConfigurationInput(m);
     this->m=m;
-
-    
 }
 
 void Landscape::SetK(double k)
 {
-    CheckInputValue(k);
-    this->k=k;
-        
+    CheckConfigurationInput(k);
+    this->k=k;       
 }
 
 void Landscape::SetL(double l)
 {
-    CheckInputValue(l);
+    CheckConfigurationInput(l);
     this->l=l;
 }
 
 void Landscape::SetDt(double dt)
 {
-    CheckInputValue(dt);
+    CheckConfigurationInput(dt);
     this->dt=dt;
 }
 
-void Landscape::SetT(double t)
+void Landscape::SetT(double T)
 {
-    CheckInputValue(t);
-    this->t=t;
+    CheckConfigurationInput(T);
+    this->T=T;
 }
 
 void Landscape::SetA(double a)
 {
-    CheckInputValue(a);
+    CheckConfigurationInput(a);
     this->a=a;
 }
 
 void Landscape::SetB(double b)
 {
-    CheckInputValue(b);
-    this->b=b;
-    
+    CheckConfigurationInput(b);
+    this->b=b;    
 }
 
 void Landscape::SetGrid(LandscapeSquare** grid )
@@ -102,26 +98,34 @@ void Landscape::SetGrid(LandscapeSquare** grid )
     this->grid = grid;
 }
 
-void Landscape::SetIsWater(unsigned int i,unsigned int j,bool value)
+void Landscape::SetIsWater( int i, int j,bool value)
 {
-    //TODO::check input i,j,value and throw exception
+    CheckArrayIndexes(i,j);
     this->grid[i][j].SetIsWater(value);
+   
 }
 
 
-void Landscape::SetPumas(unsigned int i, unsigned int j, double value) 
+void Landscape::SetPumas( int i,  int j, double value) 
 {
-    //TODO::check input i,j,value and throw exception
+    CheckArrayIndexes(i,j);
+    CheckPumasAndHaresValue(value);
     this->grid[i][j].SetPumas(value);
     
 }
 
-void Landscape::SetHares(unsigned int i, unsigned int j, double value)
+void Landscape::SetHares( int i,  int j, double value)
 {
-    //TODO::check input i,j,value and throw exception    
-    this->grid[i][j].SetHares(value);
-    
+    CheckArrayIndexes(i,j); 
+    CheckPumasAndHaresValue(value);
+    this->grid[i][j].SetHares(value);   
 }
+
+void Landscape::SetRepetions(int rep)
+{
+    this->rep =rep;
+}
+
 
 //getters
 unsigned int Landscape::GetHeight()
@@ -167,34 +171,104 @@ double Landscape::GetB()
     return this->b;
 }
 
-double Landscape::GetPumas(unsigned int i, unsigned int j)
+double Landscape::GetPumas( int i,  int j)
 {
+    
+    if(IsHaloSquare(i,j))
+    {
+        return 0;
+    }
+    
+    CheckArrayIndexes(i,j);
     return this->grid[i][j].GetPumas();
 }
 
 
-unsigned int Landscape::GetN(unsigned int i, unsigned int j) 
+unsigned int Landscape::GetN( int i,  int j) 
 {
-    return 0;
+    CheckArrayIndexes(i,j);
+    return IsSquareLand(i-1,j)+
+           IsSquareLand(i,j-1)+
+           IsSquareLand(i+1,j)+
+           IsSquareLand(i,j+1);
 }
 
-double Landscape::GetHares(unsigned int i, unsigned int j)
+double Landscape::GetHares( int i,int j)
 {
+    
+    if(IsHaloSquare(i,j))
+    {
+        return 0;
+    }
+    CheckArrayIndexes(i,j);
     return this->grid[i][j].GetHares();
 }
 
+int Landscape::GetRepetitions()
+{
+    return this->rep;
+}
 
-void Landscape::CheckInputValue(double value)
+
+bool Landscape::IsSquareWater(int i,int j)
+{
+    
+    if(IsHaloSquare(i,j))
+    {
+        return true;
+    }
+    CheckArrayIndexes(i,j);
+    return grid[i][j].GetIsWater();
+}
+
+
+bool Landscape::IsSquareLand( int i, int j)
+{
+    
+    if(IsHaloSquare(i,j))
+    {
+        return false;
+    }
+    CheckArrayIndexes(i,j);
+    return !(grid[i][j].GetIsWater());
+}
+
+
+
+//exception
+void Landscape::CheckConfigurationInput(double value)
 {
     if(value <= 0 )
     {
-        PrintWrongInputMsgAndExit("Configuration values can not be negative or zero.");
+        throw invalid_argument("Configuration values can not be negative or zero.");
     }
 }
 
-void Landscape::PrintWrongInputMsgAndExit(string msg)
+void Landscape::CheckArrayIndexes(int i,int j)
 {
-    cout<<msg<<std::endl;
-    exit(-1);
+     bool validRange = (i >= 0  && i < width) && (j >= 0 && j< height);
+     assert(validRange==true);
+     assert(i<2000);
+     assert(j<2000);
 }
 
+void Landscape::CheckPumasAndHaresValue(double value)
+{
+    assert(value>=0);
+}
+
+bool Landscape::IsHaloSquare(int i,int j)
+{
+    bool isRowValid = (i>=0 && i < width);
+    bool isColumnValid = (j>=0 && j < height);
+    
+    if( (isColumnValid && i==-1)        ||
+        (isColumnValid && i==width)     ||
+        (isRowValid && j==-1)    ||
+        (isRowValid && j==height )
+        )
+    {
+        return true;
+    }
+    return false;
+}

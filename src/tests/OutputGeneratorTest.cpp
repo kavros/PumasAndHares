@@ -12,14 +12,16 @@
  */
 
 #include <cstdlib>
-
+#include "../../include/OutputGenerator.hpp"
 using namespace std;
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-
+    OutputGenerator output;
+    Landscape landscape;
+    output.CreatePPMFile(landscape);
     return 0;
 }
 

@@ -23,49 +23,69 @@ using namespace std;
  */
 int main(int argc, char** argv) 
 {
-    Landscape landscape;
-    landscape.SetR(0.08f);
-    landscape.SetA(0.04f);
-    landscape.SetB(0.02f);
-    landscape.SetM(0.06f);
-    landscape.SetK(0.2f);
-    landscape.SetL(0.2f);
-    landscape.SetDt(0.4f);
-    landscape.SetWidth(7);
-    landscape.SetHeight(7);
+    try
+    {
+        Landscape landscape;
+        landscape.SetR(0.08f);
+        landscape.SetA(0.04f);
+        landscape.SetB(0.02f);
+        landscape.SetM(0.06f);
+        landscape.SetK(0.2f);
+        landscape.SetL(0.2f);
+        landscape.SetDt(0.4f);
+        landscape.SetWidth(1000);
+        landscape.SetHeight(1000);
+        landscape.SetT(100);
 
-    
-    //allocate space for test landscape grid
-    LandscapeSquare** grid = new LandscapeSquare*[landscape.GetHeight()];
-    for(int i=0; i < landscape.GetHeight(); i++)
-    {
-        grid[i] = new LandscapeSquare[landscape.GetWidth()]();
-    }
-            
-    //initialize landscape grid
-    for(int i=0; i < landscape.GetHeight(); i++)
-    {
-        for(int j=i; j < landscape.GetWidth();  j++)
+        //allocate space for test landscape grid
+        LandscapeSquare** grid = new LandscapeSquare*[landscape.GetHeight()];
+        for(int i=0; i < landscape.GetHeight(); i++)
         {
-            grid[i][j].SetIsWater(true);
-            grid[i][j].SetHares(0);
-            grid[i][j].SetPumas(0);
+            grid[i] = new LandscapeSquare[landscape.GetWidth()]();
         }
+
+        //initialize landscape grid
+        for(int i=0; i < landscape.GetHeight(); i++)
+        {
+            for(int j=i; j < landscape.GetWidth();  j++)
+            {
+                grid[i][j].SetIsWater(true);
+                grid[i][j].SetHares(0);
+                grid[i][j].SetPumas(0);
+            }
+            
+        }
+        landscape.SetGrid(grid);
+        //print 
+        /*for(int i=0; i < landscape.GetHeight(); i++)
+        {
+            for(int j=0; j < landscape.GetWidth();  j++)
+            {
+                cout << !landscape.IsSquareWater(i,j)<<" ";
+            }
+            cout<<std::endl;
+        }*/
+        
+        
+        
+
+        LandscapeSimulation simulation(landscape);
+        simulation.Run();
+    
+        //deallocate array
+        for(int i=0; i < landscape.GetHeight(); i++)
+        {
+            delete[] grid[i];
+        }
+        delete grid;
+
     }
-    landscape.SetGrid(grid);
-    
-   
-    
-    LandscapeSimulation simulation(landscape);
-    simulation.Run();
-    
-    //deallocate array
-    for(int i=0; i < landscape.GetHeight(); i++)
+    catch(std::exception& e )
     {
-        delete[] grid[i];
+        
+        cout<<e.what()<<std::endl;
     }
-    delete grid;
-    
+
     return 0;
 }
 

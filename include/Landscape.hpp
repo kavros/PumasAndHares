@@ -44,9 +44,9 @@ public:
      * @param j
      * @return 
      */
-    unsigned int GetN(unsigned int i,unsigned int j);
-    double GetPumas(unsigned int i,unsigned int j);
-    double GetHares(unsigned int i,unsigned int j);
+    unsigned int GetN( int i, int j);
+    double GetPumas( int i, int j);
+    double GetHares( int i, int j);
     LandscapeSquare** GetLandscape();
     double GetR();
     double GetM(); 
@@ -56,19 +56,23 @@ public:
     double GetT();
     double GetA();
     double GetB();
+    int GetRepetitions();
+    bool IsSquareWater( int i, int j);
+    
     
     void SetR(double r);
     void SetM(double m); 
     void SetK(double k);
     void SetL(double l);
     void SetDt(double dt);
-    void SetT(double t);
+    void SetT(double T);
     void SetA(double a);
     void SetB(double b);
+    void SetRepetions(int rep);
     
-    void SetPumas(unsigned int i, unsigned int j,double value);
-    void SetHares(unsigned int i, unsigned int j,double value);
-    void SetIsWater(unsigned int i,unsigned int j,bool value);
+    void SetPumas( int i,  int j,double value);
+    void SetHares( int i,  int j,double value);
+    void SetIsWater( int i, int j,bool value);
     
     void SetWidth(int width);
     void SetHeight(int height);
@@ -83,12 +87,15 @@ private:
     unsigned int height;
     double r,a,b,m,k,l,dt; //variables that help us to calculate the square(i,j)
     double T;  //the number of steps between the outputs
-    double t;  //number of times that our simulation is going to run
+    double rep;  //number of times that our simulation is going to run
     LandscapeSquare** grid;//2d array
     
-    void SetLandscape(unsigned int** val);   
-    void CheckInputValue(double confValue);
-    void PrintWrongInputMsgAndExit(string msg);
+    void CheckConfigurationInput(double confValue);
+    void CheckArrayIndexes(int i,int j);
+    void CheckPumasAndHaresValue(double value);
+    bool IsHaloSquare(int i,int j);
+    bool IsSquareLand( int i,  int j);
+
 };
 
 #endif /* LANDSCAPE_HPP */

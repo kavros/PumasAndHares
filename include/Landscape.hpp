@@ -57,28 +57,38 @@ public:
     double GetA();
     double GetB();
     
-    double SetR(double r);
-    double SetM(double m); 
-    double SetK(double k);
-    double SetL(double l);
-    double SetDt(double dt);
-    double SetT(double t);
-    double SetA(double a);
-    double SetB(double b);
+    void SetR(double r);
+    void SetM(double m); 
+    void SetK(double k);
+    void SetL(double l);
+    void SetDt(double dt);
+    void SetT(double t);
+    void SetA(double a);
+    void SetB(double b);
     
     void SetPumas(unsigned int i, unsigned int j,double value);
     void SetHares(unsigned int i, unsigned int j,double value);
+    void SetIsWater(unsigned int i,unsigned int j,bool value);
+    
+    void SetWidth(int width);
+    void SetHeight(int height);
     
     
+    void SetGrid(LandscapeSquare** grid);    //remove this function after tests
+  
+    
+
 private:
     unsigned int width;
     unsigned int height;
     double r,a,b,m,k,l,dt; //variables that help us to calculate the square(i,j)
     double T;  //the number of steps between the outputs
     double t;  //number of times that our simulation is going to run
-    LandscapeSquare** landscape;//2d array
-    void SetLandscape(unsigned int** val);
+    LandscapeSquare** grid;//2d array
     
+    void SetLandscape(unsigned int** val);   
+    void CheckInputValue(double confValue);
+    void PrintWrongInputMsgAndExit(string msg);
 };
 
 #endif /* LANDSCAPE_HPP */

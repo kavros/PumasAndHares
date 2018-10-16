@@ -13,19 +13,77 @@
 
 #include "../../include/LandscapeSimulation.hpp"
 #include <iostream>
+#include <stdio.h>
+#include <assert.h>
+#include <cstddef>
 
 using namespace std;
-LandscapeSimulation::LandscapeSimulation(Landscape landscape){
+LandscapeSimulation::LandscapeSimulation(Landscape landscape)
+{
+    //assert(landscape!=NULL);
+    this->landscape = landscape;
+}
+
+LandscapeSimulation::LandscapeSimulation() 
+{
     
 }
-LandscapeSimulation::LandscapeSimulation() {
-}
 
 
-LandscapeSimulation::~LandscapeSimulation() {
+LandscapeSimulation::~LandscapeSimulation()
+{
+    
 }
 void LandscapeSimulation::Run()
 {
+    double haresNew,pumasNew;
+    
+    for(unsigned int i=0; i < landscape.GetWidth(); i++)
+    {
+        for(unsigned int j=0; j < landscape.GetHeight(); j++)
+        {
+            //what happens when we call GetPumas(-1,0),getN is unimplemented
+            pumasNew=
+                    landscape.GetPumas(i,j)+ 
+                    landscape.GetDt()*
+                    ( 
+                           
+                        landscape.GetB()*landscape.GetHares(i,j)*landscape.GetPumas(i,j)-
+                        landscape.GetM()*landscape.GetPumas(i,j)+
+                        landscape.GetL()*( 
+                                           (    
+                                                landscape.GetPumas(i-1,j) +
+                                                landscape.GetPumas(i+1,j) +
+                                                landscape.GetPumas(i,j-1) +
+                                                landscape.GetPumas(i,j+1)
+                                           )-
+                                            landscape.GetN(i,j)*landscape.GetPumas(i,j)
+                                        )
+                    
+                    );
+            
+            haresNew=
+                    landscape.GetHares(i,j)+
+                    landscape.GetDt()*
+                    (
+                        landscape.GetR()*landscape.GetHares(i,j)-
+                        (landscape.GetA()*landscape.GetHares(i,j)*landscape.GetPumas(i,j))+
+                        landscape.GetK()*(
+                                            ( 
+                                                landscape.GetHares(i-1,j) +
+                                                landscape.GetHares(i+1,j) +
+                                                landscape.GetHares(i,j-1) +
+                                                landscape.GetHares(i,j+1)
+                                            )-
+                                            landscape.GetN(i,j)*landscape.GetHares(i,j) 
+                                        )
+                    );
+                    
+            
+        }
+        
+    }       
+    
     cout<<"Run"<<endl;
 }
 

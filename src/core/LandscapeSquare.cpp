@@ -12,10 +12,61 @@
  */
 
 #include "LandscapeSquare.hpp"
-
-LandscapeSquare::LandscapeSquare() {
+#include <iostream>
+using namespace std;
+LandscapeSquare::LandscapeSquare() 
+{
 }
 
-LandscapeSquare::~LandscapeSquare() {
+LandscapeSquare::~LandscapeSquare() 
+{
 }
 
+
+
+void LandscapeSquare::CheckInput(bool value)
+{
+    if(value < 0)
+    {
+        PrintWrongInputMsgAndExit("pumas or hares variables cannot have negative value ");
+    }
+}
+
+void LandscapeSquare::PrintWrongInputMsgAndExit(std::string msg)
+{
+    std::cout<<msg<<std::endl;
+    exit(-1);
+}
+
+void LandscapeSquare::SetIsWater(bool value)
+{
+    this->isWater = value;
+}
+
+void LandscapeSquare::SetPumas(double pumas)
+{
+    CheckInput(pumas);
+    this->pumas=pumas;
+}
+
+void LandscapeSquare::SetHares(double hares)
+{
+    CheckInput(hares);
+    this->hares=hares;
+}
+
+double LandscapeSquare::GetPumas()
+{
+    return this->pumas;
+}
+
+double LandscapeSquare::GetHares()
+{
+    return this->hares;
+}
+
+bool LandscapeSquare::GetIsWater()
+{
+    return this->isWater;
+}
+    

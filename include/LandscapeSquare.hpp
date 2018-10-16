@@ -17,7 +17,6 @@
 class LandscapeSquare {
 public:
     LandscapeSquare();
-    LandscapeSquare(const LandscapeSquare& orig);
     virtual ~LandscapeSquare();
 private:
     bool   isWater;

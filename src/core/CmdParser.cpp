@@ -16,8 +16,6 @@
 CmdParser::CmdParser() {
 }
 
-CmdParser::CmdParser(const CmdParser& orig) {
-}
 
 CmdParser::~CmdParser() {
 }

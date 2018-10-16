@@ -29,7 +29,6 @@ public:
      */
     Landscape(string configurationFileName,string landscapeFileName);
     Landscape();
-    Landscape(const Landscape& orig);
     virtual ~Landscape();
     
     //LandscapeSquare[] GetLandscape();

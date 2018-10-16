@@ -20,7 +20,6 @@ class LandscapeSimulation {
 public:
     LandscapeSimulation(Landscape landscape);
     LandscapeSimulation();
-    LandscapeSimulation(const LandscapeSimulation& orig);
     virtual ~LandscapeSimulation();
     
     Landscape GetLandscape();

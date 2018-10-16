@@ -16,9 +16,6 @@
 OutputGenerator::OutputGenerator() {
 }
 
-OutputGenerator::OutputGenerator(const OutputGenerator& orig) {
-}
-
 OutputGenerator::~OutputGenerator() {
 }
 

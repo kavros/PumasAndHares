@@ -17,7 +17,6 @@
 class OutputGenerator {
 public:
     OutputGenerator();
-    OutputGenerator(const OutputGenerator& orig);
     virtual ~OutputGenerator();
     
     /**

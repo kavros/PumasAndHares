@@ -17,7 +17,7 @@
 class ConfigurationGenerator {
 public:
     ConfigurationGenerator();
-    ConfigurationGenerator(const ConfigurationGenerator& orig);
+    
     virtual ~ConfigurationGenerator();
 private:
 

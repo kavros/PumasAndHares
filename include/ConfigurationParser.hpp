@@ -17,7 +17,6 @@
 class ConfigurationParser {
 public:
     ConfigurationParser();
-    ConfigurationParser(const ConfigurationParser& orig);
     virtual ~ConfigurationParser();
 private:
 

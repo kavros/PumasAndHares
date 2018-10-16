@@ -16,8 +16,6 @@
 ConfigurationParser::ConfigurationParser() {
 }
 
-ConfigurationParser::ConfigurationParser(const ConfigurationParser& orig) {
-}
 
 ConfigurationParser::~ConfigurationParser() {
 }

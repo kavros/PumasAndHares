@@ -16,8 +16,6 @@
 ConfigurationGenerator::ConfigurationGenerator() {
 }
 
-ConfigurationGenerator::ConfigurationGenerator(const ConfigurationGenerator& orig) {
-}
 
 ConfigurationGenerator::~ConfigurationGenerator() {
 }

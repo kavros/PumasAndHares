@@ -17,7 +17,6 @@
 class LandscapeValidator {
 public:
     LandscapeValidator();
-    LandscapeValidator(const LandscapeValidator& orig);
     virtual ~LandscapeValidator();
 private:
 

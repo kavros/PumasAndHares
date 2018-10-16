@@ -21,8 +21,6 @@ LandscapeSimulation::LandscapeSimulation(Landscape landscape){
 LandscapeSimulation::LandscapeSimulation() {
 }
 
-LandscapeSimulation::LandscapeSimulation(const LandscapeSimulation& orig) {
-}
 
 LandscapeSimulation::~LandscapeSimulation() {
 }

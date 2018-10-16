@@ -16,8 +16,6 @@
 LandscapeGenerator::LandscapeGenerator() {
 }
 
-LandscapeGenerator::LandscapeGenerator(const LandscapeGenerator& orig) {
-}
 
 LandscapeGenerator::~LandscapeGenerator() {
 }

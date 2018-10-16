@@ -21,8 +21,6 @@ Landscape::Landscape(string configurationFileName,string landscapeFileName){
 Landscape::Landscape() {
 }
 
-Landscape::Landscape(const Landscape& orig) {
-}
 
 Landscape::~Landscape() {
 }

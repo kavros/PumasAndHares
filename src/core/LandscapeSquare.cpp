@@ -16,9 +16,6 @@
 LandscapeSquare::LandscapeSquare() {
 }
 
-LandscapeSquare::LandscapeSquare(const LandscapeSquare& orig) {
-}
-
 LandscapeSquare::~LandscapeSquare() {
 }
 

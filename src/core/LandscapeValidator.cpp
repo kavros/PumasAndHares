@@ -16,9 +16,6 @@
 LandscapeValidator::LandscapeValidator() {
 }
 
-LandscapeValidator::LandscapeValidator(const LandscapeValidator& orig) {
-}
-
 LandscapeValidator::~LandscapeValidator() {
 }
 

@@ -1,27 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+#include <string>
+class LandscapeGenerator
+{
+	private:
+		int width;
+		int height;
+                int up_limit;
+                int land_matrix[3000][3000];
+                int x_coord[2000*2000];
+                int y_coord[2000*2000];
+                float water_percentage;
 
-/* 
- * File:   LandscapeGenerator.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 6:41 PM
- */
+	public:
+            
+		LandscapeGenerator(int width,int height, float water_percentage);
+                
+                int Get_landscape_width() const;
+                
+                int Get_landscape_height() const;
+                
+                float Get_landscape_water_percentage() const;
+                
+                int Get_random_land_distribution();
+                
 
-#ifndef LANDSCAPEGENERATOR_HPP
-#define LANDSCAPEGENERATOR_HPP
-
-class LandscapeGenerator {
-public:
-    LandscapeGenerator();
-    LandscapeGenerator(const LandscapeGenerator& orig);
-    virtual ~LandscapeGenerator();
-private:
-
+                
+                int get_matrix();
 };
-
-#endif /* LANDSCAPEGENERATOR_HPP */
 

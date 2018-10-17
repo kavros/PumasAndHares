@@ -58,7 +58,7 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    src/core/LandscapeGenerator.cpp
-	$(CXX) $< -o $@
+	$(CXX)  src/core/LandscapeGenerator.cpp $< -o $@
 	
 $(BIN_PATH)/cmdParserTest: src/tests/CmdParserTest.cpp \
 			    src/core/CmdParser.cpp

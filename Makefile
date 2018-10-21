@@ -4,7 +4,8 @@ CXX ?=g++
 SRC_PATH=src/core
 BUILD_PATH=build
 BIN_PATH = $(BUILD_PATH)/bin
-
+SHELL:=/bin/bash
+	
 # executables #
 BIN_NAME=pumasAndHares
 
@@ -55,7 +56,6 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 	$(BIN_PATH)/landscapeParserTest
 	
 	
-
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)
 	$(CXX) $^ -o $@
@@ -65,7 +65,9 @@ $(BIN_PATH)/cmdParserTest: src/tests/CmdParserTest.cpp \
 	$(CXX)  $^ -o $@
 
 $(BIN_PATH)/configurationGeneratorMain: src/tests/ConfigurationGeneratorMain.cpp \
-			    $(OBJECTS)
+			    $(OBJECTS)\
+			    include/Args.hpp\
+			    include/Json.hpp
 	$(CXX)  $^ -o $@
 
 $(BIN_PATH)/configurationParserTest: src/tests/ConfigurationParserTest.cpp \

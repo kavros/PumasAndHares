@@ -3,6 +3,7 @@
 implement the model, write tests and write user and developer documentation.
 
 # Build
+* Run ```module load gcc```
 * Build project using ```make```
 
 # Run

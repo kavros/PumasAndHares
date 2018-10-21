@@ -16,6 +16,7 @@
 #include "../../include/LandscapeSimulation.hpp"
 #include "../../include/Landscape.hpp"
 #include "../../include/LandscapeSquare.hpp"
+#include <time.h>
 using namespace std;
 
 /*
@@ -33,9 +34,10 @@ int main(int argc, char** argv)
         landscape.SetK(0.2f);
         landscape.SetL(0.2f);
         landscape.SetDt(0.4f);
-        landscape.SetWidth(1000);
-        landscape.SetHeight(1000);
-        landscape.SetT(100);
+        landscape.SetWidth(100);
+        landscape.SetHeight(100);
+        landscape.SetT(10);
+        landscape.SetRepetions(500);
 
         //allocate space for test landscape grid
         LandscapeSquare** grid = new LandscapeSquare*[landscape.GetHeight()];
@@ -44,14 +46,35 @@ int main(int argc, char** argv)
             grid[i] = new LandscapeSquare[landscape.GetWidth()]();
         }
 
+        /* initialize random seed: */
+        srand (time(NULL));
+
+        
         //initialize landscape grid
         for(int i=0; i < landscape.GetHeight(); i++)
         {
-            for(int j=i; j < landscape.GetWidth();  j++)
+            for(int j=0; j < landscape.GetWidth();  j++)
             {
-                grid[i][j].SetIsWater(true);
-                grid[i][j].SetHares(0);
-                grid[i][j].SetPumas(0);
+                if(j > landscape.GetWidth()/2 )
+                {
+                    grid[i][j].SetIsWater(true);
+                    grid[i][j].SetHares(0);
+                    grid[i][j].SetPumas(0);
+                }
+                else
+                {
+                    
+                    double hares = rand() % 50;
+                    hares=hares/100;
+                    
+                    double pumas = rand() % 50;
+                    pumas=pumas/100;
+                    
+                    grid[i][j].SetIsWater(false);
+                    grid[i][j].SetHares(hares);
+                    grid[i][j].SetPumas(pumas);
+                }
+                
             }
             
         }
@@ -65,9 +88,6 @@ int main(int argc, char** argv)
             }
             cout<<std::endl;
         }*/
-        
-        
-        
 
         LandscapeSimulation simulation(landscape);
         simulation.Run();

@@ -37,8 +37,16 @@ LandscapeSimulation::~LandscapeSimulation()
 void LandscapeSimulation::Run()
 {
     double haresNew,pumasNew;
-    for(int k = 0; k < landscape.GetT(); k++)
+    int nextOutput=landscape.GetT();
+    for(int rep = 1; rep <= landscape.GetRepetitions(); rep++)
     {
+        if(rep == nextOutput)
+        {
+            nextOutput=nextOutput+landscape.GetT();
+            //cout<<"Hares: "<<GetAverageHares()<<endl;
+            //cout<<"Pumas:"<<GetAveragePumas()<<endl;
+            //print output
+        }
         for( int i=0; i < landscape.GetWidth(); i++)
         {
             for( int j=0; j < landscape.GetHeight(); j++)
@@ -89,7 +97,40 @@ void LandscapeSimulation::Run()
             }
 
         }  
-    }
-    
+    }    
 }
 
+double LandscapeSimulation::GetAverageHares()
+{
+    double averageHares=0.0f;
+    double totalHares =0.0f;
+    double totalSquares = landscape.GetHeight()*landscape.GetWidth();
+    
+    for(int i=0; i < landscape.GetHeight();i++)
+    {
+        for(int j=0; j < landscape.GetWidth();j++)
+        {
+            totalHares += landscape.GetHares(i,j);
+        }
+    }
+    averageHares = totalHares/totalSquares;
+    return averageHares;
+}
+
+double LandscapeSimulation::GetAveragePumas()
+{
+    double averagePumas=0.0f;
+    double totalPumas = 0.0f;
+    double totalSquares = landscape.GetHeight()*landscape.GetWidth();
+    
+    for(int i=0; i < landscape.GetHeight();i++)
+    {
+        for(int j=0; j < landscape.GetWidth();j++)
+        {
+            totalPumas += landscape.GetPumas(i,j); 
+        }
+    }
+    averagePumas = totalPumas/totalSquares;
+    return averagePumas;
+    
+}

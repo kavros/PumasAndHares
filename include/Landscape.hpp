@@ -53,7 +53,7 @@ public:
     double GetK();
     double GetL();
     double GetDt();
-    double GetT();
+    int GetT();
     double GetA();
     double GetB();
     int GetRepetitions();
@@ -65,7 +65,7 @@ public:
     void SetK(double k);
     void SetL(double l);
     void SetDt(double dt);
-    void SetT(double T);
+    void SetT(int T);
     void SetA(double a);
     void SetB(double b);
     void SetRepetions(int rep);
@@ -86,7 +86,7 @@ private:
     int width;
     int height;
     double r,a,b,m,k,l,dt; //variables that help us to calculate the square(i,j)
-    double T;  //the number of steps between the outputs
+    int T;  //the number of steps between the outputs
     double rep;  //number of times that our simulation is going to run
     LandscapeSquare** grid;//2d array
     

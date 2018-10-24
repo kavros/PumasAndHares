@@ -75,7 +75,7 @@ void Landscape::SetDt(double dt)
     this->dt=dt;
 }
 
-void Landscape::SetT(double T)
+void Landscape::SetT(int T)
 {
     CheckConfigurationInput(T);
     this->T=T;
@@ -158,7 +158,7 @@ double Landscape::GetDt()
 {
     return this->dt;
 }
-double Landscape::GetT()
+int Landscape::GetT()
 {
     return this->T;
 }

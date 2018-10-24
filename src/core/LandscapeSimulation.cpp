@@ -12,6 +12,7 @@
  */
 
 #include "../../include/LandscapeSimulation.hpp"
+#include "../../include/OutputGenerator.hpp"
 #include <iostream>
 #include <stdio.h>
 #include <assert.h>
@@ -36,16 +37,28 @@ LandscapeSimulation::~LandscapeSimulation()
 }
 void LandscapeSimulation::Run()
 {
+    OutputGenerator output = OutputGenerator();
     double haresNew,pumasNew;
     int nextOutput=landscape.GetT();
+    
+    double averageNumbersForPuma[landscape.GetT()];
+    double averageNumbersForHares[landscape.GetT()];
+    int cnt=0;
+    
     for(int rep = 1; rep <= landscape.GetRepetitions(); rep++)
     {
         if(rep == nextOutput)
         {
+            
             nextOutput=nextOutput+landscape.GetT();
-            //cout<<"Hares: "<<GetAverageHares()<<endl;
-            //cout<<"Pumas:"<<GetAveragePumas()<<endl;
-            //print output
+            
+            //save average numbers in order to write them
+            //in file once at the of the simulation
+            averageNumbersForHares[cnt] = GetAverageHares();
+            averageNumbersForPuma[cnt] = GetAveragePumas();
+            
+            output.CreatePPMFile(landscape);
+            cnt++;
         }
         for( int i=0; i < landscape.GetWidth(); i++)
         {
@@ -97,7 +110,8 @@ void LandscapeSimulation::Run()
             }
 
         }  
-    }    
+    }
+    output.PrintAverageHaresAndPumas(averageNumbersForPuma,averageNumbersForHares,cnt);
 }
 
 double LandscapeSimulation::GetAverageHares()

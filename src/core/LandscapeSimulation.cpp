@@ -40,17 +40,20 @@ void LandscapeSimulation::Run()
     OutputGenerator output = OutputGenerator();
     double haresNew,pumasNew;
     int nextOutput=landscape.GetT();
+    int totalAvgs= landscape.GetRepetitions()/landscape.GetT();
     
-    double averageNumbersForPuma[landscape.GetT()];
-    double averageNumbersForHares[landscape.GetT()];
+    double averageNumbersForPuma[totalAvgs];
+    double averageNumbersForHares[totalAvgs];
+    
     int cnt=0;
     
     for(int rep = 1; rep <= landscape.GetRepetitions(); rep++)
     {
+        
         if(rep == nextOutput)
         {
             
-            nextOutput=nextOutput+landscape.GetT();
+           nextOutput=nextOutput+landscape.GetT();
             
             //save average numbers in order to write them
             //in file once at the of the simulation
@@ -60,69 +63,72 @@ void LandscapeSimulation::Run()
             output.CreatePPMFile(landscape);
             cnt++;
         }
-        for( int i=0; i < landscape.GetWidth(); i++)
+        
+        for( int row=0; row < landscape.GetTotalRows(); row++)
         {
-            for( int j=0; j < landscape.GetHeight(); j++)
+            for( int col=0; col < landscape.GetTotalColumns(); col++)
             {
-                if(landscape.IsSquareWater(i,j) == true)
+                if(landscape.IsSquareWater(row,col) == true)
                 {
                     continue;
                 }
                 //what happens when we call GetPumas(-1,0),getN is unimplemented
                 pumasNew=
-                        landscape.GetPumas(i,j)+ 
+                        landscape.GetPumas(row,col)+ 
                         landscape.GetDt()*
                         ( 
 
-                            landscape.GetB()*landscape.GetHares(i,j)*landscape.GetPumas(i,j)-
-                            landscape.GetM()*landscape.GetPumas(i,j)+
+                            landscape.GetB()*landscape.GetHares(row,col)*landscape.GetPumas(row,col)-
+                            landscape.GetM()*landscape.GetPumas(row,col)+
                             landscape.GetL()*( 
                                                (    
-                                                    landscape.GetPumas(i-1,j) +
-                                                    landscape.GetPumas(i+1,j) +
-                                                    landscape.GetPumas(i,j-1) +
-                                                    landscape.GetPumas(i,j+1)
+                                                    landscape.GetPumas(row-1,col) +
+                                                    landscape.GetPumas(row+1,col) +
+                                                    landscape.GetPumas(row,col-1) +
+                                                    landscape.GetPumas(row,col+1)
                                                )-
-                                                landscape.GetN(i,j)*landscape.GetPumas(i,j)
+                                                landscape.GetN(row,col)*landscape.GetPumas(row,col)
                                             )
 
                         );
 
                 haresNew=
-                        landscape.GetHares(i,j)+
+                        landscape.GetHares(row,col)+
                         landscape.GetDt()*
                         (
-                            landscape.GetR()*landscape.GetHares(i,j)-
-                            (landscape.GetA()*landscape.GetHares(i,j)*landscape.GetPumas(i,j))+
+                            landscape.GetR()*landscape.GetHares(row,col)-
+                            (landscape.GetA()*landscape.GetHares(row,col)*landscape.GetPumas(row,col))+
                             landscape.GetK()*(
                                                 ( 
-                                                    landscape.GetHares(i-1,j) +
-                                                    landscape.GetHares(i+1,j) +
-                                                    landscape.GetHares(i,j-1) +
-                                                    landscape.GetHares(i,j+1)
+                                                    landscape.GetHares(row-1,col) +
+                                                    landscape.GetHares(row+1,col) +
+                                                    landscape.GetHares(row,col-1) +
+                                                    landscape.GetHares(row,col+1)
                                                 )-
-                                                landscape.GetN(i,j)*landscape.GetHares(i,j) 
+                                                landscape.GetN(row,col)*landscape.GetHares(row,col) 
                                             )
                         );
 
-                landscape.SetPumas(i,j,pumasNew);
-                landscape.SetHares(i,j,haresNew);
+                landscape.SetPumas(row,col,pumasNew);
+                landscape.SetHares(row,col,haresNew);
             }
 
         }  
+        
     }
     output.PrintAverageHaresAndPumas(averageNumbersForPuma,averageNumbersForHares,cnt);
+    
 }
 
 double LandscapeSimulation::GetAverageHares()
 {
     double averageHares=0.0f;
     double totalHares =0.0f;
-    double totalSquares = landscape.GetHeight()*landscape.GetWidth();
+    double totalSquares = landscape.GetTotalRows()*landscape.GetTotalColumns();
     
-    for(int i=0; i < landscape.GetHeight();i++)
+    for(int i=0; i < landscape.GetTotalRows();i++)
     {
-        for(int j=0; j < landscape.GetWidth();j++)
+        for(int j=0; j < landscape.GetTotalColumns();j++)
         {
             totalHares += landscape.GetHares(i,j);
         }
@@ -135,11 +141,11 @@ double LandscapeSimulation::GetAveragePumas()
 {
     double averagePumas=0.0f;
     double totalPumas = 0.0f;
-    double totalSquares = landscape.GetHeight()*landscape.GetWidth();
+    double totalSquares = landscape.GetTotalRows()*landscape.GetTotalColumns();
     
-    for(int i=0; i < landscape.GetHeight();i++)
+    for(int i=0; i < landscape.GetTotalRows();i++)
     {
-        for(int j=0; j < landscape.GetWidth();j++)
+        for(int j=0; j < landscape.GetTotalColumns();j++)
         {
             totalPumas += landscape.GetPumas(i,j); 
         }

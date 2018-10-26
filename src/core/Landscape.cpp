@@ -15,7 +15,9 @@
 #include <iostream>
 #include <stdexcept>
 #include <assert.h>  
-
+#include <time.h>
+#include <iostream>
+#include <random>
 Landscape::Landscape(string configurationFileName,string landscapeFileName)
 {
     
@@ -39,16 +41,16 @@ void Landscape::SetR(double r)
     this->r=r;
 }
 
-void Landscape::SetWidth(int width)
+void Landscape::SetTotalColumns(int width)
 {
     CheckConfigurationInput(width);
-    this->width = width;
+    this->totalColumns = width;
 }
 
-void Landscape::SetHeight(int height)
+void Landscape::SetTotalRows(int height)
 {
     CheckConfigurationInput(height);
-    this->height = height;
+    this->totalRows = height;
 }
 
 void Landscape::SetM(double m)
@@ -128,14 +130,14 @@ void Landscape::SetRepetions(int rep)
 
 
 //getters
-int Landscape::GetHeight()
+int Landscape::GetTotalRows()
 {
-    return height;
+    return totalRows;
 }
 
-int Landscape::GetWidth()
+int Landscape::GetTotalColumns()
 {
-    return width;
+    return totalColumns;
 }
 
 double Landscape::GetR()
@@ -210,15 +212,15 @@ int Landscape::GetRepetitions()
 }
 
 
-bool Landscape::IsSquareWater(int i,int j)
+bool Landscape::IsSquareWater(int row,int col)
 {
     
-    if(IsHaloSquare(i,j))
+    if(IsHaloSquare(row,col))
     {
         return true;
     }
-    CheckArrayIndexes(i,j);
-    return grid[i][j].GetIsWater();
+    CheckArrayIndexes(row,col);
+    return grid[row][col].GetIsWater();
 }
 
 
@@ -244,12 +246,12 @@ void Landscape::CheckConfigurationInput(double value)
     }
 }
 
-void Landscape::CheckArrayIndexes(int i,int j)
+void Landscape::CheckArrayIndexes(int row,int col)
 {
-     bool validRange = (i >= 0  && i < width) && (j >= 0 && j< height);
+     bool validRange = (row >= 0  && row < totalRows) && (col >= 0 && col< totalColumns);
      assert(validRange==true);
-     assert(i<2000);
-     assert(j<2000);
+     assert(row<=2000);
+     assert(col<=2000);
 }
 
 void Landscape::CheckPumasAndHaresValue(double value)
@@ -257,18 +259,50 @@ void Landscape::CheckPumasAndHaresValue(double value)
     assert(value>=0);
 }
 
-bool Landscape::IsHaloSquare(int i,int j)
+bool Landscape::IsHaloSquare(int row,int col)
 {
-    bool isRowValid = (i>=0 && i < width);
-    bool isColumnValid = (j>=0 && j < height);
+    bool isRowValid = (row>=0 && row < totalRows);
+    bool isColumnValid = (col>=0 && col < totalColumns);
     
-    if( (isColumnValid && i==-1)        ||
-        (isColumnValid && i==width)     ||
-        (isRowValid && j==-1)    ||
-        (isRowValid && j==height )
+    if( (isColumnValid && row==-1)          ||
+        (isColumnValid && row==totalRows)      ||
+        (isRowValid && col==-1)             ||
+        (isRowValid && col==totalColumns )
         )
     {
         return true;
     }
     return false;
+}
+
+
+void Landscape::AssignRandomPumasAndHares()
+{
+    assert(grid!=NULL);
+    
+
+    
+    for(int row=0; row < GetTotalRows(); row++)
+        {
+            for(int col=0; col < GetTotalColumns();  col++)
+            {
+                grid[row][col].SetHares(GetRandomInRange(0,5));
+                grid[row][col].SetPumas( GetRandomInRange(0,5));
+                
+            }
+            
+        }
+    
+}
+
+double Landscape::GetRandomInRange(double lowerBound,double upperBound)
+{
+    std::random_device rd;  
+    std::mt19937 gen(rd()); 
+    std::uniform_real_distribution<> dis(lowerBound, upperBound);   
+    
+    //cout<<dis(gen)<<std::endl;
+    
+    return dis(gen);
+    
 }

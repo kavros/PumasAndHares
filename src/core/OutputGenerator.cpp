@@ -27,8 +27,8 @@ OutputGenerator::~OutputGenerator() {
 
 void OutputGenerator::CreatePPMFile(Landscape landscape)
 {
-    int width = landscape.GetWidth();
-    int height = landscape.GetHeight();
+    int width = landscape.GetTotalColumns();
+    int height = landscape.GetTotalRows();
     
     string filename="output"+std::to_string(nextOutputNumber)+".ppm";
     string folder="./data/outputs/";
@@ -88,14 +88,16 @@ string OutputGenerator::GetSquarePixel(Landscape landscape,int i,int j)
         double hares = landscape.GetHares(i,j);
         double pumas = landscape.GetPumas(i,j);
         
-        double percentage =0; 
-        if(hares !=0 && pumas!=0)
+        double pumaPercentage =0; 
+        //puma and hares need to be positive numbers 
+        //in order to calculate puma percentage
+        if( hares > 0 && pumas > 0)
         {
-            percentage =(pumas/(hares+pumas));
+            pumaPercentage =(pumas/(hares+pumas));
         }
                 
-        assert(percentage<=1);        
-        int colorHue =percentage *255;
+        assert(pumaPercentage<=1 && pumaPercentage >=0);        
+        int colorHue =pumaPercentage *255;
         assert(colorHue>=0 && colorHue<=255);
         
         

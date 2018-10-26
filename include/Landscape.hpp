@@ -32,8 +32,8 @@ public:
     virtual ~Landscape();
     
     //LandscapeSquare[] GetLandscape();
-    int GetWidth();
-    int GetHeight();
+    int GetTotalColumns();
+    int GetTotalRows();
     
     /**
      * Returns the number of "dry" neighbors out of
@@ -74,17 +74,17 @@ public:
     void SetHares( int i,  int j,double value);
     void SetIsWater( int i, int j,bool value);
     
-    void SetWidth(int width);
-    void SetHeight(int height);
+    void SetTotalColumns(int width);
+    void SetTotalRows(int height);
     
-    
+    void AssignRandomPumasAndHares();
     void SetGrid(LandscapeSquare** grid);    //remove this function after tests
   
     
 
 private:
-    int width;
-    int height;
+    int totalColumns;
+    int totalRows;
     double r,a,b,m,k,l,dt; //variables that help us to calculate the square(i,j)
     int T;  //the number of steps between the outputs
     double rep;  //number of times that our simulation is going to run
@@ -95,6 +95,7 @@ private:
     void CheckPumasAndHaresValue(double value);
     bool IsHaloSquare(int i,int j);
     bool IsSquareLand( int i,  int j);
+    double GetRandomInRange(double lowerBound,double upperBound);
 
 };
 

@@ -21,7 +21,21 @@
 #include "../../include/Landscape.hpp"
 #include "../../include/LandscapeSquare.hpp"
 #include <time.h>
+#include <vector>
+#include <sstream>
+#include <stdexcept>
+
 using namespace std;
+void InitGrid(LandscapeSquare** grid,Landscape landscape);
+void PrintPumasAndHares(Landscape landscape);
+void PrintLandscape(Landscape landscape);
+LandscapeSquare**  GetLandscapeFromFile(string filePath);
+int GetGridValue(char& c);
+void IsGridValid(char& c);
+LandscapeSquare** AllocateSpaceForGrid(int totalRows,int totalColumns);
+void ParseRow(LandscapeSquare**  grid,string line,int currRow);
+vector<int> GetDimensions(string firstLine);
+
 
 /*
  * 
@@ -38,119 +52,33 @@ int main(int argc, char** argv) {
         landscape.SetK(0.2f);
         landscape.SetL(0.2f);
         landscape.SetDt(0.4f);
-        landscape.SetWidth(100);
-        landscape.SetHeight(100);
-        landscape.SetT(100);
+        landscape.SetTotalColumns(50);
+        landscape.SetTotalRows(50);
+        landscape.SetT(10);
         landscape.SetRepetions(500);
 
-        //allocate space for test landscape grid
-        LandscapeSquare** grid = new LandscapeSquare*[landscape.GetHeight()];
-        for(int i=0; i < landscape.GetHeight(); i++)
-        {
-            grid[i] = new LandscapeSquare[landscape.GetWidth()]();
-        }
 
-        /* initialize random seed: */
-        srand (time(NULL));
-
+       
         
-        //initialize landscape grid
-        for(int i=0; i < landscape.GetHeight(); i++)
-        {
-            for(int j=0; j < landscape.GetWidth();  j++)
-            {
-                if(j > landscape.GetWidth()/2 )
-                {
-                    grid[i][j].SetIsWater(true);
-                    grid[i][j].SetHares(0);
-                    grid[i][j].SetPumas(0);
-                }
-                else
-                {
-                    
-                    double hares = rand() % 50;
-                    hares=hares/100;
-                    
-                    double pumas = rand() % 50;
-                    pumas=pumas/100;
-                    
-                    grid[i][j].SetIsWater(false);
-                    grid[i][j].SetHares(hares);
-                    grid[i][j].SetPumas(pumas);
-                }
-                
-            }
-            
-        }
+        //InitGrid(grid,landscape);
+        LandscapeSquare** grid = GetLandscapeFromFile("./data/landscapes/crete3.dat");
         landscape.SetGrid(grid);
+        landscape.AssignRandomPumasAndHares();
         
+        //PrintLandscape(landscape);
+        //PrintPumasAndHares(landscape);
         
-       /* 
-        //print landscape
-        for(int i=0; i < landscape.GetHeight(); i++)
-        {
-            for(int j=0; j < landscape.GetWidth();  j++)
-            {
-                cout << !landscape.IsSquareWater(i,j)<<" ";
-            }
-            cout<<std::endl;
-        }
-        
-        //print  puma and hares
-        for(int i=0; i < landscape.GetHeight(); i++)
-        {
-            for(int j=0; j < landscape.GetWidth();  j++)
-            {
-                if(landscape.IsSquareWater(i,j) == true)
-                {
-                    cout << "0,"<<" ";
-                }
-                else
-                {
-                    cout<<"("+std::to_string((double)landscape.GetPumas(i,j))+","+std::to_string( (double)landscape.GetHares(i,j)) +"), ";
-                }
-                
-                
-            }
-            cout<<std::endl;
-        }
-        printf("\n\n");
-        
-*/
         
         LandscapeSimulation simulation(landscape);
         simulation.Run();
         
-        //OutputGenerator output = OutputGenerator();
-        //output.CreatePPMFile(landscape);
-        /*
-        //print puma and hares
-        for(int i=0; i < landscape.GetHeight(); i++)
-        {
-            for(int j=0; j < landscape.GetWidth();  j++)
-            {
-                if(landscape.IsSquareWater(i,j) == true)
-                {
-                    cout << "0,"<<" ";
-                }
-                else
-                {
-                    cout<<"("+std::to_string((double)landscape.GetPumas(i,j))+","+std::to_string( (double)landscape.GetHares(i,j)) +"), ";
-                }
-                
-                
-            }
-            cout<<std::endl;
-        }
-        
-          */  
         //deallocate array
-        for(int i=0; i < landscape.GetHeight(); i++)
+        for(int i=0; i < landscape.GetTotalRows(); i++)
         {
             delete[] grid[i];
         }
         delete grid;
-
+         
     }
     catch(std::exception& e )
     {
@@ -158,5 +86,187 @@ int main(int argc, char** argv) {
         cout<<e.what()<<std::endl;
     }
     return 0;
+    
+}
+
+vector<int> GetDimensions(string firstLine)
+{
+
+        std::istringstream is( firstLine );
+        vector<int> dimensions;
+        int n;
+        while( is >> n ) {
+            // do something with n
+            dimensions.push_back(n);
+        }
+        
+        if(dimensions.size() !=2 )
+        {
+            throw invalid_argument("First line in landscape file is wrong.");
+        }
+        return dimensions;
+}
+
+
+LandscapeSquare** AllocateSpaceForGrid(int totalRows,int totalColumns)
+{
+    
+    LandscapeSquare** grid= new LandscapeSquare*[totalRows];
+    
+    for(int i=0; i < totalRows; i++)
+    {
+        grid[i] = new LandscapeSquare[totalColumns]();
+    }
+    return grid;
+        
+}
+
+LandscapeSquare** GetLandscapeFromFile(string filePath)
+{
+    string line;
+    ifstream landscapeFile (filePath);
+    int currRow = -1;
+    
+    LandscapeSquare**  grid = NULL;
+    if (landscapeFile.is_open())
+    {
+        while ( getline (landscapeFile,line) )
+        {            
+            if(currRow == -1)
+            {
+                int totalRows,totalColumns;
+                vector<int> dimensions=GetDimensions(line);
+                totalRows=dimensions.at(0);
+                totalColumns=dimensions.at(1);
+                
+                grid = AllocateSpaceForGrid(totalRows,totalColumns);
+                
+            }
+            else
+            {
+                ParseRow(grid, line,currRow);   
+            }
+            
+            currRow++;
+            
+        }
+        landscapeFile.close();
+    }
+    else
+    {
+        cout << "Unable to open file";
+    }
+    return grid;
+}
+
+
+void ParseRow(LandscapeSquare**  grid,string line,int currRow)
+{
+    int currCol=0;
+    for(char& c : line) 
+    {
+        if(c !=' ')
+        {
+            if(GetGridValue(c)==1 )
+            {
+                grid[currRow][currCol].SetIsWater(false);
+            }
+            else
+            {
+                grid[currRow][currCol].SetIsWater(true);
+            }
+
+            currCol++;
+
+        }
+
+    }
+    
+    
+}
+int GetGridValue(char& c)
+{    
+    IsGridValid(c);
+    return atoi(&c);    
+}
+
+
+void IsGridValid(char& c)
+{
+        
+    if (isdigit(c))
+    {
+        int num =atoi(&c);
+        
+        if(num ==0 || num == 1)
+        {
+            
+        }
+        else
+        {
+            //throw std::invalid_argument("Landscape file is not valid.");
+        }
+    }
+}
+
+void InitGrid(LandscapeSquare** grid,Landscape landscape)
+{
+     //initialize landscape grid
+        for(int row=0; row < landscape.GetTotalRows(); row++)
+        {
+            for(int col=0; col < landscape.GetTotalColumns();  col++)
+            {
+                if(col > landscape.GetTotalColumns()/2 )
+                {
+                    grid[row][col].SetIsWater(true);
+                }
+                else
+                {
+                   grid[row][col].SetIsWater(false);
+                }
+                
+                
+            }
+            
+        }
+}
+
+
+void PrintLandscape(Landscape landscape)
+{
+    
+        //print landscape
+        for(int i=0; i < landscape.GetTotalRows(); i++)
+        {
+            for(int j=0; j < landscape.GetTotalColumns();  j++)
+            {
+                cout << !landscape.IsSquareWater(i,j)<<" ";
+            }
+            cout<<std::endl;
+        }
+       
+}
+
+void PrintPumasAndHares(Landscape landscape)
+{
+        //print  puma and hares
+        for(int i=0; i < landscape.GetTotalRows(); i++)
+        {
+            for(int j=0; j < landscape.GetTotalColumns();  j++)
+            {
+                if(landscape.IsSquareWater(i,j) == true)
+                {
+                    cout << "0 ";
+                }
+                else
+                {
+                    cout<<"("+std::to_string((double)landscape.GetPumas(i,j))+","+std::to_string( (double)landscape.GetHares(i,j)) +") ";
+                }
+                
+                
+            }
+            cout<<std::endl;
+        }
+        printf("\n\n");
     
 }

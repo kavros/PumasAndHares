@@ -34,16 +34,16 @@ int main(int argc, char** argv)
         landscape.SetK(0.2f);
         landscape.SetL(0.2f);
         landscape.SetDt(0.4f);
-        landscape.SetWidth(100);
-        landscape.SetHeight(100);
+        landscape.SetTotalColumns(100);
+        landscape.SetTotalRows(100);
         landscape.SetT(10);
         landscape.SetRepetions(500);
 
         //allocate space for test landscape grid
-        LandscapeSquare** grid = new LandscapeSquare*[landscape.GetHeight()];
-        for(int i=0; i < landscape.GetHeight(); i++)
+        LandscapeSquare** grid = new LandscapeSquare*[landscape.GetTotalRows()];
+        for(int i=0; i < landscape.GetTotalRows(); i++)
         {
-            grid[i] = new LandscapeSquare[landscape.GetWidth()]();
+            grid[i] = new LandscapeSquare[landscape.GetTotalColumns()]();
         }
 
         /* initialize random seed: */
@@ -51,11 +51,11 @@ int main(int argc, char** argv)
 
         
         //initialize landscape grid
-        for(int i=0; i < landscape.GetHeight(); i++)
+        for(int i=0; i < landscape.GetTotalRows(); i++)
         {
-            for(int j=0; j < landscape.GetWidth();  j++)
+            for(int j=0; j < landscape.GetTotalColumns();  j++)
             {
-                if(j > landscape.GetWidth()/2 )
+                if(j > landscape.GetTotalColumns()/2 )
                 {
                     grid[i][j].SetIsWater(true);
                     grid[i][j].SetHares(0);
@@ -93,7 +93,7 @@ int main(int argc, char** argv)
         simulation.Run();
     
         //deallocate array
-        for(int i=0; i < landscape.GetHeight(); i++)
+        for(int i=0; i < landscape.GetTotalRows(); i++)
         {
             delete[] grid[i];
         }

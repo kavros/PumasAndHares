@@ -79,7 +79,7 @@ endloop:
    /* were we don't affect the boundaries.                                                                   
    /**********************************************************************************************************/              
     int count_neighbours; 
-    int count_add = 0;
+    int extra_land = 0;
     for (i = 1; i <= height; i++){
         for (j=1; j <= width; j++){
             
@@ -110,31 +110,74 @@ endloop:
                         {
                             land_matrix[i+1][j] = 1; 
                         }
-                        count_add += 1; /* I want to know how much new land I created because that will change my concentration */
+                        extra_land += 1; /* I want to know how much new land I created because that will change my concentration */
                     }                        
             }
         }
     }
-    cout << "count_add = " << count_add << endl; 
+    cout << " extra_land = " << extra_land << endl; 
     
     int neighbours_coord_x[4];
     int neighbours_coord_y[4];
-    
-subtrace_more:
+    int rand_neighbour;
 
-    if (count_add == 0) goto write_file;
+subtrace_more:   
+    for (i=1; i<=4; i++){
+        neighbours_coord_x[i] = 0;
+        neighbours_coord_y[i] = 0;
+    }
+    
+    /* 
+     * In case we equalized the added land with adding water somewhere else goto to write the final matrix else try to find
+     * more land and do it water, if it has more than one nearest neighbours. 
+     */
+    if (extra_land == 0) goto write_file;
 
     x = 1 + (rand() % ((height) - 1 + 1)); 
     y = 1 + (rand() % ((width) - 1 + 1));
-    
-    if (land_matrix[x][y] == 1){
-        land_matrix[x][y] = 0;
-        count_add -= 1;
+    cout << x << " " << y << " " <<land_matrix[x][y] << endl;
+    count_neighbours = 0;
+    if (land_matrix[x][y] == 1){  /* We are searching for a land with more than two neighbours to make it water. */
+        
+        /* Count how many nearest neighbours exist and record their x and y coordinates */
+            if (land_matrix[x+1][y] == 1){
+            count_neighbours += 1;
+            neighbours_coord_x[count_neighbours] = x+1;
+            neighbours_coord_y[count_neighbours] = y;
+            }
+            if (land_matrix[x-1][y] == 1){
+            count_neighbours += 1;
+            neighbours_coord_x[count_neighbours] = x-1;
+            neighbours_coord_y[count_neighbours] = y;
+            }
+            if (land_matrix[x][y+1] == 1){
+            count_neighbours += 1;
+            neighbours_coord_x[count_neighbours] = x;
+            neighbours_coord_y[count_neighbours] = y+1;
+            }
+            if (land_matrix[x][y-1] == 1){
+            count_neighbours += 1;
+            neighbours_coord_x[count_neighbours] = x;
+            neighbours_coord_y[count_neighbours] = y-1;
+            }
+            
+            cout << "neighbours " << count_neighbours << endl;
+            
+            if (count_neighbours >= 2){    /* If it is land with more than two neighbours then take one of them and make it water */
+                rand_neighbour = 1 + (rand() % ((count_neighbours) - 1 + 1));  
+                
+                /* Take one of the neighbours and do it water */
+                
+                land_matrix[neighbours_coord_x[rand_neighbour]][neighbours_coord_y[rand_neighbour]] == 0; 
+             
+                extra_land -= 1; /* Water was added in the position of land. Subtrace one from the sum */
+                
+            }        
     }
-    goto subtrace_more;
+    goto subtrace_more; 
 
 write_file:    
-    cout << "count_add = " << count_add << endl;
+    cout << " extra_land = " << extra_land << endl;
             
     /* 
      * Write data into the file "Data.dat" 

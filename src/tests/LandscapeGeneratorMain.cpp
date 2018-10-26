@@ -7,16 +7,10 @@ using namespace std;
 int main()
 {
     int srand(time(NULL));
-    
-	//TODO: verify that numbers are OK
-	// 0 < width,height<=2000  
-	//and landDistribution+waterDistribution  ==100
 	
-	LandscapeGenerator landscape(2000, 2000, 0.4);
+	LandscapeGenerator landscape(2000, 2000, 0.001);
              
-	cout<<"Hello World"<<endl<< endl;
         cout << "The wanted water percentage is " << landscape.Get_landscape_water_percentage() << endl;
-        
         
         cout << "Landscape width is: " << landscape.Get_landscape_width() <<
         

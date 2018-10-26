@@ -4,15 +4,12 @@ class LandscapeGenerator
 	private:
 		int width;
 		int height;
-                int up_limit;
-                int land_matrix[3000][3000];
-                int x_coord[2000*2000];
-                int y_coord[2000*2000];
-                float water_percentage;
+                int land_matrix[2002][2002];
+                float land_percentage;
 
 	public:
             
-		LandscapeGenerator(int width,int height, float water_percentage);
+		LandscapeGenerator(int width,int height, float land_percentage);
                 
                 int Get_landscape_width() const;
                 

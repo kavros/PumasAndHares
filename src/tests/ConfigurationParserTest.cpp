@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   ConfiurationParserTest.cpp
  * Author: alex
  *
@@ -16,7 +16,7 @@
 #include "../../include/Args.hpp"
 
 /*
- * 
+ *
  */
 int main(int argc, char** argv) {
     args::ArgumentParser parser("Pumas And Hares Configuration File Parser Test.","");
@@ -25,12 +25,12 @@ int main(int argc, char** argv) {
     try
     {
         parser.ParseCLI(argc, argv);
+        std::string configFile = args::get(filename);
     }
-    
     catch(args::Help){
         std::cout << parser;
     }
-    
+
     catch(args::ParseError e){
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
@@ -40,21 +40,20 @@ int main(int argc, char** argv) {
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
     }
-    
-    
+
+
     std::string configFile = args::get(filename);
     ConfigurationParser cp(configFile);
     std::cout << "Reading configuration file: " << configFile << std::endl;
     std::cout.precision(2);
-    std::cout << 
-            "a is: " << cp.a << std::endl <<
-            "b is: " << cp.b << std::endl <<
-            "d is: " << cp.d << std::endl <<
-            "k is: " << cp.k << std::endl <<
-            "l is: " << cp.l << std::endl <<
-            "m is: " << cp.m << std::endl <<
-            "n is: " << cp.n << std::endl <<
-            "r is: " << cp.r << std::endl;
+    std::cout <<
+            "a is: " << cp.GetA() << std::endl <<
+            "b is: " << cp.GetB() << std::endl <<
+            "d is: " << cp.GetD() << std::endl <<
+            "k is: " << cp.GetK() << std::endl <<
+            "l is: " << cp.GetL() << std::endl <<
+            "m is: " << cp.GetM() << std::endl <<
+            "n is: " << cp.GetN() << std::endl <<
+            "r is: " << cp.GetR() << std::endl;
     return 0;
 }
-

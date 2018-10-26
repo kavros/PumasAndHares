@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   ConfigurationParser.hpp
  * Author: alex
  *
@@ -20,20 +20,44 @@ using json = nlohmann::json;
 
 class ConfigurationParser {
 public:
-    double r; // Hare birth rate.
-    double a; // Predation rate.
-    double b; // Puma birth rate per eaten hare.
-    double m; // Puma mortality rate.
-    double k; // Diffusion rate for hares.
-    double l; // Diffusion rate for pumas.
-    double d; // Time step size.
-    int n; // Number of time steps.
+    double GetR();
+    int SetR(double r);
+
+    double GetA();
+    int SetA(double a);
+
+    double GetB();
+    int SetB(double b);
+
+    double GetM();
+    int SetM(double m);
+
+    double GetK();
+    int SetK(double k);
+
+    double GetL();
+    int SetL(double l);
+
+    double GetD();
+    int SetD(double d);
+
+    int GetN();
+    int SetN(int n);
+
     ConfigurationParser(std::string configurationFileName);
     ConfigurationParser(const ConfigurationParser& orig);
     virtual ~ConfigurationParser();
-private:
 
+private:
+  json j;
+  double r; // Hare birth rate.
+  double a; // Predation rate.
+  double b; // Puma birth rate per eaten hare.
+  double m; // Puma mortality rate.
+  double k; // Diffusion rate for hares.
+  double l; // Diffusion rate for pumas.
+  double d; // Time step size.
+  int n; // Number of time steps.
 };
 
 #endif /* CONFIGURATIONPARSER_HPP */
-

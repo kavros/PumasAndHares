@@ -29,7 +29,8 @@ using namespace std;
 void InitGrid(LandscapeSquare** grid,Landscape landscape);
 void PrintPumasAndHares(Landscape landscape);
 void PrintLandscape(Landscape landscape);
-LandscapeSquare**  GetLandscapeFromFile(string filePath);
+
+LandscapeSquare** GetLandscapeFromFile(string filePath,Landscape& landscape);
 int GetGridValue(char& c);
 void IsGridValid(char& c);
 LandscapeSquare** AllocateSpaceForGrid(int totalRows,int totalColumns);
@@ -52,16 +53,18 @@ int main(int argc, char** argv) {
         landscape.SetK(0.2f);
         landscape.SetL(0.2f);
         landscape.SetDt(0.4f);
-        landscape.SetTotalColumns(50);
-        landscape.SetTotalRows(50);
-        landscape.SetT(10);
+        
+        landscape.SetT(200);
         landscape.SetRepetions(500);
 
 
        
         
         //InitGrid(grid,landscape);
-        LandscapeSquare** grid = GetLandscapeFromFile("./data/landscapes/crete3.dat");
+        //LandscapeSquare** grid = GetLandscapeFromFile("./data/landscapes/crete3.dat");
+        LandscapeSquare** grid = GetLandscapeFromFile("./data/landscapes/qq.dat",landscape);
+        
+       
         landscape.SetGrid(grid);
         landscape.AssignRandomPumasAndHares();
         
@@ -121,7 +124,7 @@ LandscapeSquare** AllocateSpaceForGrid(int totalRows,int totalColumns)
         
 }
 
-LandscapeSquare** GetLandscapeFromFile(string filePath)
+LandscapeSquare** GetLandscapeFromFile(string filePath,Landscape& landscape)
 {
     string line;
     ifstream landscapeFile (filePath);
@@ -138,7 +141,8 @@ LandscapeSquare** GetLandscapeFromFile(string filePath)
                 vector<int> dimensions=GetDimensions(line);
                 totalRows=dimensions.at(0);
                 totalColumns=dimensions.at(1);
-                
+                landscape.SetTotalRows(totalRows);
+                landscape.SetTotalColumns(totalColumns);
                 grid = AllocateSpaceForGrid(totalRows,totalColumns);
                 
             }

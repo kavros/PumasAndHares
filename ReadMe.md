@@ -3,6 +3,7 @@
 implement the model, write tests and write user and developer documentation.
 
 # Build
+* Run ```. set-paths.sh```
 * Build project using ```make```
 
 # Run

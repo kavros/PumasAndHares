@@ -1,10 +1,12 @@
 CXX ?=g++
 
 # paths #
+CPPUNITLDFLAGS=-lcppunit
 SRC_PATH=src/core
 BUILD_PATH=build
 BIN_PATH = $(BUILD_PATH)/bin
 OUTPUTS =./data/outputs/*
+CPPUNITDRIVER=./cppunit-1.13.2/cppunit_test_driver.o
 # executables #
 BIN_NAME=pumasAndHares
 
@@ -12,11 +14,11 @@ BIN_NAME=pumasAndHares
 SRC_EXT=cpp
 SOURCES=$(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' -not -name main.cpp | sort -k 1nr| cut -f2-)
 OBJECTS=$(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
-
+	
 # flags #
 COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g
 
-INCLUDES= -I include/ -I /usr/local/include
+INCLUDES= -I include/ -I /usr/local/include -I./cppunit-1.13.2/home/include
 
 .PHONY: default_target
 default_target: release
@@ -53,9 +55,16 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 	$(BIN_PATH)/landscapeSimulationTest\
 	$(BIN_PATH)/landscapeValidatorTest\
 	$(BIN_PATH)/outpoutGeneratorTest\
-	$(BIN_PATH)/landscapeParserTest
+	$(BIN_PATH)/landscapeParserTest\
+	tests
 	
-	
+.PHONY: tests
+tests:	$(BIN_PATH)/outputGenerator-cppunitest
+
+$(BIN_PATH)/outputGenerator-cppunitest: src/cppunit_tests/OutputGeneratorUnitTest.cpp\
+					$(OBJECTS)\
+					$(CPPUNITDRIVER)
+	$(CXX) $(COMPILE_FLAGS) $(INCLUDES) $(CPPUNITLDFLAGS) $^ -o $@
 
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)

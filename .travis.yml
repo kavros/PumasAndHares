@@ -4,7 +4,7 @@ before_install:
   - wget http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz
   - tar -xvzf cppunit-1.13.2.tar.gz 
   - cd cppunit-1.13.2
-  - mkdir home
+  - mkdir -p home
   - ./configure --prefix=./home/ --with-pthreads=no
   - make
   - make install

@@ -5,7 +5,7 @@ before_install:
   - tar -xvzf cppunit-1.13.2.tar.gz 
   - cd cppunit-1.13.2
   - mkdir home
-  - ./configure --prefix=./cppunit-1.13.2/home/ --with-pthreads=no
+  - ./configure --prefix=./home/ --with-pthreads=no
   - make
   - make install
   - export CPLUS_INCLUDE_PATH=cppunit-1.13.2/home/include:$CPLUS_INCLUDE_PATH

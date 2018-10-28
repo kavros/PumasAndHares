@@ -1,7 +1,7 @@
 CXX ?=g++
 
 # paths #
-CPPUNITLDFLAGS=-lcppunit
+CPPUNITLDFLAGS=-lcppunit -Isrc -Itest
 SRC_PATH=src/core
 BUILD_PATH=build
 BIN_PATH = $(BUILD_PATH)/bin
@@ -17,7 +17,7 @@ OBJECTS=$(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 # flags #
 COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g
 
-INCLUDES= -I include/ -I /usr/local/include -I./cppunit-1.13.2/home/include
+INCLUDES= -I include/ -I /usr/local/include
 
 .PHONY: default_target
 default_target: release
@@ -60,9 +60,17 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 .PHONY: tests
 tests:$(BIN_PATH)/outputGenerator-cppunitest
 
-$(BIN_PATH)/outputGenerator-cppunitest: src/cppunit_tests/OutputGeneratorUnitTest.cpp\
-					src/cppunit_tests/cppunit_test_driver.cc
-	$(CXX) $(COMPILE_FLAGS) $(INCLUDES) $(CPPUNITLDFLAGS) $^ -o $@
+$(BUILD_PATH)/OutputGeneratorUnitTest.o: src/cppunit_tests/OutputGeneratorUnitTest.cpp
+	$(CXX) $(COMPILE_FLAGS) -c src/cppunit_tests/OutputGeneratorUnitTest.cpp $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
+
+$(BUILD_PATH)/cppunit_test_driver.o:src/cppunit_tests/cppunit_test_driver.cc
+	$(CXX) $(COMPILE_FLAGS) -c src/cppunit_tests/cppunit_test_driver.cc $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
+
+$(BIN_PATH)/outputGenerator-cppunitest:$(BUILD_PATH)/cppunit_test_driver.o\
+				$(BUILD_PATH)/OutputGeneratorUnitTest.o
+	$(CXX) $(COMPILE_FLAGS) $^ $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
+
+
 
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)

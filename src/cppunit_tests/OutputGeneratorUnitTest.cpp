@@ -1,5 +1,4 @@
 #include <cppunit/extensions/HelperMacros.h>
-#include "../../include/OutputGenerator.hpp"
 
 /**
  * Test class for OutputGenerator

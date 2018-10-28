@@ -1,14 +1,12 @@
 #include <cppunit/extensions/HelperMacros.h>
-#include "../../include/OutputGenerator.hpp"
+#include "../../include/ConfigurationGenerator.hpp"
 #include <cstddef>
 #include <iostream>
 using namespace std;
-/**
- * Test class for OutputGenerator
- */
-class OutputGeneratorUnitTest:public CppUnit::TestFixture 
+
+class ConfigurationGeneratorUnitTest:public CppUnit::TestFixture 
 {
-    CPPUNIT_TEST_SUITE(OutputGeneratorUnitTest);
+    CPPUNIT_TEST_SUITE(ConfigurationGeneratorUnitTest);
     CPPUNIT_TEST(testOutput);
     CPPUNIT_TEST_SUITE_END();
 
@@ -27,12 +25,9 @@ public:
     /* Test output. */
     void testOutput() 
     {
-
       
       
     }
 
 };
-
-CPPUNIT_TEST_SUITE_REGISTRATION(OutputGeneratorUnitTest);
-
+CPPUNIT_TEST_SUITE_REGISTRATION(ConfigurationGeneratorUnitTest);

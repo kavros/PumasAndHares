@@ -56,23 +56,44 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 	$(BIN_PATH)/outpoutGeneratorTest\
 	$(BIN_PATH)/landscapeParserTest\
 	
-.PHONY: tests
-tests:$(BIN_PATH)/outputGenerator-cppunitest
-	./$<
 
-$(BUILD_PATH)/OutputGeneratorUnitTest.o: src/cppunit_tests/OutputGeneratorUnitTest.cpp\
+
+$(BUILD_PATH)/%.o: src/cppunit_tests/%.cpp\
 					$(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS) -c src/cppunit_tests/OutputGeneratorUnitTest.cpp $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
+	$(CXX) $(COMPILE_FLAGS) -c $< $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
 
+	
 $(BUILD_PATH)/cppunit_test_driver.o:src/cppunit_tests/cppunit_test_driver.cc
 	$(CXX) $(COMPILE_FLAGS) -c src/cppunit_tests/cppunit_test_driver.cc $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
 
-$(BIN_PATH)/outputGenerator-cppunitest:$(BUILD_PATH)/cppunit_test_driver.o\
+$(BIN_PATH)/%: $(BUILD_PATH)/cppunit_test_driver.o\
 				$(OBJECTS)\
-				$(BUILD_PATH)/OutputGeneratorUnitTest.o
+				$(BUILD_PATH)/%.o
 	$(CXX) $(COMPILE_FLAGS) $^ $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
 
+.PHONY: tests
+tests:	$(BIN_PATH)/CmdParserUnitTest \
+	$(BIN_PATH)/ConfigurationGeneratorUnitTest \
+	$(BIN_PATH)/ConfigurationParserUnitTest\
+	$(BIN_PATH)/LandscapeGeneratorUnitTest\
+	$(BIN_PATH)/LandscapeParserUnitTest\
+	$(BIN_PATH)/LandscapeSimulationUnitTest\
+	$(BIN_PATH)/LandscapeSquareUnitTest\
+	$(BIN_PATH)/LandscapeUnitTest\
+	$(BIN_PATH)/LandscapeValidatorUnitTest\
+	$(BIN_PATH)/OutputGeneratorUnitTest
 
+run_unit_tests:
+	./$(BIN_PATH)/CmdParserUnitTest 
+	./$(BIN_PATH)/ConfigurationGeneratorUnitTest 
+	./$(BIN_PATH)/ConfigurationParserUnitTest
+	./$(BIN_PATH)/LandscapeGeneratorUnitTest
+	./$(BIN_PATH)/LandscapeParserUnitTest
+	./$(BIN_PATH)/LandscapeSimulationUnitTest
+	./$(BIN_PATH)/LandscapeSquareUnitTest
+	./$(BIN_PATH)/LandscapeUnitTest
+	./$(BIN_PATH)/LandscapeValidatorUnitTest
+	./$(BIN_PATH)/OutputGeneratorUnitTest
 
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)

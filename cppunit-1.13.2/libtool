@@ -275,7 +275,7 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/usr/lib/gcc/x86_64-redhat-linux/4.8.5 /usr/lib64 /lib64 /opt/hpe/hpc/mpt/mpt-2.16/lib "
+sys_lib_search_path_spec="/usr/lib/gcc/x86_64-redhat-linux/4.8.5 /usr/lib64 /lib64 /lustre/home/d167/s1891388/lib /opt/hpe/hpc/mpt/mpt-2.16/lib "
 
 # Run-time system search path for libraries.
 sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/dyninst /usr/lib64/iscsi /usr/lib64/mysql /usr/lib64/qt-3.3/lib "
@@ -10227,7 +10227,7 @@ file_list_spec=""
 hardcode_action=immediate
 
 # The directories searched by this compiler when creating a shared library.
-compiler_lib_search_dirs="/usr/lib/gcc/x86_64-redhat-linux/4.8.5 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 /lib/../lib64 /usr/lib/../lib64 /opt/hpe/hpc/mpt/mpt-2.16/lib /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.."
+compiler_lib_search_dirs="/usr/lib/gcc/x86_64-redhat-linux/4.8.5 /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 /lib/../lib64 /usr/lib/../lib64 /lustre/home/d167/s1891388/lib /opt/hpe/hpc/mpt/mpt-2.16/lib /usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.."
 
 # Dependencies to place before and after the objects being linked to
 # create a shared library.
@@ -10238,6 +10238,6 @@ postdeps="-lstdc++ -lm -lgcc_s -lc -lgcc_s"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
-compiler_lib_search_path="-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/hpe/hpc/mpt/mpt-2.16/lib -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.."
+compiler_lib_search_path="-L/usr/lib/gcc/x86_64-redhat-linux/4.8.5 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lustre/home/d167/s1891388/lib -L/opt/hpe/hpc/mpt/mpt-2.16/lib -L/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../.."
 
 # ### END LIBTOOL TAG CONFIG: CXX

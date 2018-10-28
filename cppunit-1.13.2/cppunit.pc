@@ -1,4 +1,4 @@
-prefix=/lustre/home/d167/s1891388/PS/exercises/build_and_test_examples/cpp/cppunit-1.13.2/home
+prefix=/lustre/home/d167/s1891388
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

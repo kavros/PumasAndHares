@@ -77,7 +77,7 @@ public:
     void SetTotalColumns(int width);
     void SetTotalRows(int height);
     
-    void AssignRandomPumasAndHares();
+    void AssignRandomPumaAndHares();
     void SetGrid(LandscapeSquare** grid);    //remove this function after tests
   
     

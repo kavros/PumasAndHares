@@ -276,7 +276,7 @@ bool Landscape::IsHaloSquare(int row,int col)
 }
 
 
-void Landscape::AssignRandomPumasAndHares()
+void Landscape::AssignRandomPumaAndHares()
 {
     assert(grid!=NULL);
     

@@ -8,7 +8,7 @@ int main()
 {
     int srand(time(NULL));
 	
-	LandscapeGenerator landscape(2000, 2000, 0.001);
+	LandscapeGenerator landscape(10, 10, 0.1);
              
         cout << "The wanted water percentage is " << landscape.Get_landscape_water_percentage() << endl;
         

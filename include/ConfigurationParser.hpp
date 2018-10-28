@@ -18,7 +18,8 @@
 
 using json = nlohmann::json;
 
-class ConfigurationParser {
+class ConfigurationParser
+{
 public:
     double GetR();
     int SetR(double r);

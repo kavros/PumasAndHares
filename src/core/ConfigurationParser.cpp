@@ -16,7 +16,8 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-ConfigurationParser::ConfigurationParser(std::string configurationFileName) {
+ConfigurationParser::ConfigurationParser(std::string configurationFileName)
+{
     std::ifstream i(configurationFileName);
     i >> this->j;
     this->SetR(j["r"].get<double>());
@@ -29,10 +30,12 @@ ConfigurationParser::ConfigurationParser(std::string configurationFileName) {
     this->SetN(j["n"].get<int>());
 }
 
-double ConfigurationParser::GetR(){
+double ConfigurationParser::GetR()
+{
   return this->r;
 };
-int ConfigurationParser::SetR(double r){
+int ConfigurationParser::SetR(double r)
+{
   this->r = r;
   if(this->r == r){
     return 0;
@@ -44,10 +47,12 @@ int ConfigurationParser::SetR(double r){
 
 
 
-double ConfigurationParser::GetA(){
+double ConfigurationParser::GetA()
+{
   return this->a;
 };
-int ConfigurationParser::SetA(double a){
+int ConfigurationParser::SetA(double a)
+{
   this->a = a;
   if(this->a == a){
     return 0;
@@ -59,10 +64,12 @@ int ConfigurationParser::SetA(double a){
 
 
 
-double ConfigurationParser::GetB(){
+double ConfigurationParser::GetB()
+{
   return this->b;
 };
-int ConfigurationParser::SetB(double b){
+int ConfigurationParser::SetB(double b)
+{
   this->b = b;
   if(this->b == b){
     return 0;
@@ -74,10 +81,12 @@ int ConfigurationParser::SetB(double b){
 
 
 
-double ConfigurationParser::GetM(){
+double ConfigurationParser::GetM()
+{
   return this->m;
 };
-int ConfigurationParser::SetM(double m){
+int ConfigurationParser::SetM(double m)
+{
   this->m = m;
   if(this->m == m){
     return 0;
@@ -90,10 +99,12 @@ int ConfigurationParser::SetM(double m){
 
 
 
-double ConfigurationParser::GetK(){
+double ConfigurationParser::GetK()
+{
   return this->k;
 };
-int ConfigurationParser::SetK(double k){
+int ConfigurationParser::SetK(double k)
+{
   this->k = k;
   if(this->k == k){
     return 0;
@@ -106,10 +117,12 @@ int ConfigurationParser::SetK(double k){
 
 
 
-double ConfigurationParser::GetL(){
+double ConfigurationParser::GetL()
+{
   return this->l;
 };
-int ConfigurationParser::SetL(double l){
+int ConfigurationParser::SetL(double l)
+{
   this->l = l;
   if(this->l == l){
     return 0;
@@ -122,10 +135,12 @@ int ConfigurationParser::SetL(double l){
 
 
 
-double ConfigurationParser::GetD(){
+double ConfigurationParser::GetD()
+{
   return this->d;
 };
-int ConfigurationParser::SetD(double d){
+int ConfigurationParser::SetD(double d)
+{
   this->d = d;
   if(this->d == d){
     return 0;
@@ -137,10 +152,12 @@ int ConfigurationParser::SetD(double d){
 
 
 
-int ConfigurationParser::GetN(){
+int ConfigurationParser::GetN()
+{
   return this->n;
 };
-int ConfigurationParser::SetN(int n){
+int ConfigurationParser::SetN(int n)
+{
   this->n = n;
   if(this->n == n){
     return 0;

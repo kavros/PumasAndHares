@@ -50,6 +50,8 @@ public:
     virtual ~ConfigurationParser();
 
 private:
+  int CheckSign(double var, std::string varname);
+  int CheckSign(int var, std::string varname);
   json j;
   double r; // Hare birth rate.
   double a; // Predation rate.

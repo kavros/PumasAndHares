@@ -16,6 +16,8 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+
+
 ConfigurationParser::ConfigurationParser(std::string configurationFileName)
 {
     std::ifstream i(configurationFileName);
@@ -37,11 +39,7 @@ double ConfigurationParser::GetR()
 int ConfigurationParser::SetR(double r)
 {
   this->r = r;
-  if(this->r == r){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->r, "r");
 };
 
 
@@ -54,11 +52,7 @@ double ConfigurationParser::GetA()
 int ConfigurationParser::SetA(double a)
 {
   this->a = a;
-  if(this->a == a){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->a, "a");
 };
 
 
@@ -71,11 +65,7 @@ double ConfigurationParser::GetB()
 int ConfigurationParser::SetB(double b)
 {
   this->b = b;
-  if(this->b == b){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->b,"b");
 };
 
 
@@ -88,11 +78,7 @@ double ConfigurationParser::GetM()
 int ConfigurationParser::SetM(double m)
 {
   this->m = m;
-  if(this->m == m){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->m,"m");
 };
 
 
@@ -106,11 +92,7 @@ double ConfigurationParser::GetK()
 int ConfigurationParser::SetK(double k)
 {
   this->k = k;
-  if(this->k == k){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->k, "k");
 };
 
 
@@ -124,11 +106,7 @@ double ConfigurationParser::GetL()
 int ConfigurationParser::SetL(double l)
 {
   this->l = l;
-  if(this->l == l){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->l,"l");
 };
 
 
@@ -142,11 +120,7 @@ double ConfigurationParser::GetD()
 int ConfigurationParser::SetD(double d)
 {
   this->d = d;
-  if(this->d == d){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->d, "d");
 };
 
 
@@ -159,11 +133,7 @@ int ConfigurationParser::GetN()
 int ConfigurationParser::SetN(int n)
 {
   this->n = n;
-  if(this->n == n){
-    return 0;
-  } else {
-    return 1;
-  }
+  return CheckSign(this->n, "n");
 };
 
 
@@ -174,3 +144,30 @@ ConfigurationParser::ConfigurationParser(const ConfigurationParser& orig) {
 
 ConfigurationParser::~ConfigurationParser() {
 }
+
+
+int ConfigurationParser::CheckSign(double var, std::string varname)
+{
+  if(var > 0.0)
+  {
+    return 0;
+  }
+  else
+  {
+    std::cout << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
+    return -1;
+  }
+};
+
+int ConfigurationParser::CheckSign(int var, std::string varname)
+{
+  if(var > 0)
+  {
+    return 0;
+  }
+  else
+  {
+    std::cout << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
+    return -1;
+  }
+};

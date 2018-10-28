@@ -15,7 +15,7 @@ SOURCES=$(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' -not -name main.cpp | sort
 OBJECTS=$(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 	
 # flags #
-COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g
+COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g -std=c++0x
 
 INCLUDES= -I include/ -I /usr/local/include
 
@@ -55,18 +55,20 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 	$(BIN_PATH)/landscapeValidatorTest\
 	$(BIN_PATH)/outpoutGeneratorTest\
 	$(BIN_PATH)/landscapeParserTest\
-	tests
 	
 .PHONY: tests
 tests:$(BIN_PATH)/outputGenerator-cppunitest
+	./$<
 
-$(BUILD_PATH)/OutputGeneratorUnitTest.o: src/cppunit_tests/OutputGeneratorUnitTest.cpp
+$(BUILD_PATH)/OutputGeneratorUnitTest.o: src/cppunit_tests/OutputGeneratorUnitTest.cpp\
+					$(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) -c src/cppunit_tests/OutputGeneratorUnitTest.cpp $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
 
 $(BUILD_PATH)/cppunit_test_driver.o:src/cppunit_tests/cppunit_test_driver.cc
 	$(CXX) $(COMPILE_FLAGS) -c src/cppunit_tests/cppunit_test_driver.cc $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
 
 $(BIN_PATH)/outputGenerator-cppunitest:$(BUILD_PATH)/cppunit_test_driver.o\
+				$(OBJECTS)\
 				$(BUILD_PATH)/OutputGeneratorUnitTest.o
 	$(CXX) $(COMPILE_FLAGS) $^ $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
 
@@ -123,6 +125,6 @@ $(BIN_PATH)/$(BIN_NAME): $(OBJECTS) src/core/main.cpp
 # Creation of the object files
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 	@echo "Compiling: $< -> $@"
-	$(CXX) $(CXXFLAGS) $(INCLUDES)   -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(COMPILE_FLAGS)  -c $< -o $@
 
 

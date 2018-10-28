@@ -16,3 +16,4 @@ before_install:
 
 script:
   - make
+  - make tests

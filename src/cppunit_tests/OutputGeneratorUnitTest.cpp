@@ -1,5 +1,8 @@
 #include <cppunit/extensions/HelperMacros.h>
-
+#include "../../include/OutputGenerator.hpp"
+#include <cstddef>
+#include <iostream>
+using namespace std;
 /**
  * Test class for OutputGenerator
  */
@@ -22,9 +25,15 @@ public:
     }
 
     /* Test output. */
-    void testOutput() {
-      int result = 1;
-      CPPUNIT_ASSERT_EQUAL(1, result);
+    void testOutput() 
+    {
+      double avgPumas[3]= {1,2,3};
+      double avgHares[3]= {1,2,3};
+      
+      OutputGenerator output;
+      CPPUNIT_ASSERT_EQUAL(output.SaveAverages(avgPumas,avgHares,-10),-1);
+      
+      
     }
 
 };

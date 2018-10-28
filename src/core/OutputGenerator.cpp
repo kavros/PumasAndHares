@@ -115,8 +115,12 @@ string OutputGenerator::GetSquarePixel(Landscape landscape,int i,int j)
     return pixel;
 }
 
-void OutputGenerator::PrintAverageHaresAndPumas(double avgsPuma[],double avgsHares[],int totalElements)
+int OutputGenerator::SaveAverages(double avgsPuma[],double avgsHares[],int totalElements)
 {
+    if(avgsPuma  == NULL ||avgsHares == NULL || totalElements < 0 )
+    {
+        return -1;
+    }
     string filename="averages.txt";
     string folder="./data/outputs/";
     ofstream txtFile;
@@ -129,4 +133,5 @@ void OutputGenerator::PrintAverageHaresAndPumas(double avgsPuma[],double avgsHar
         txtFile<<std::endl;
     }
     txtFile.close();
+    return 0;
 }

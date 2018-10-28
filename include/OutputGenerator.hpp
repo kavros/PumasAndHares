@@ -32,7 +32,7 @@ public:
      * with name averages.txt.
      * @param landscape
      */
-    void PrintAverageHaresAndPumas(double avgsPuma[],double avgsHares[],int totalElements);
+    int SaveAverages(double avgsPuma[],double avgsHares[],int totalElements);
     
     
 private:

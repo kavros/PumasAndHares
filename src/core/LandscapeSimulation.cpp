@@ -116,7 +116,7 @@ void LandscapeSimulation::Run()
         }  
         
     }
-    output.PrintAverageHaresAndPumas(averageNumbersForPuma,averageNumbersForHares,cnt);
+    output.SaveAverages(averageNumbersForPuma,averageNumbersForHares,cnt);
     
 }
 

@@ -6,7 +6,6 @@ SRC_PATH=src/core
 BUILD_PATH=build
 BIN_PATH = $(BUILD_PATH)/bin
 OUTPUTS =./data/outputs/*
-CPPUNITDRIVER=./cppunit-1.13.2/cppunit_test_driver.o
 # executables #
 BIN_NAME=pumasAndHares
 
@@ -59,11 +58,10 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 	tests
 	
 .PHONY: tests
-tests:	$(BIN_PATH)/outputGenerator-cppunitest
+tests:$(BIN_PATH)/outputGenerator-cppunitest
 
 $(BIN_PATH)/outputGenerator-cppunitest: src/cppunit_tests/OutputGeneratorUnitTest.cpp\
-					$(OBJECTS)\
-					$(CPPUNITDRIVER)
+					src/cppunit_tests/cppunit_test_driver.cc
 	$(CXX) $(COMPILE_FLAGS) $(INCLUDES) $(CPPUNITLDFLAGS) $^ -o $@
 
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \

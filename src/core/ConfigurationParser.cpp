@@ -6,7 +6,7 @@
 
 /*
  * File:   ConfigurationParser.cpp
- * Author: alex
+ * Author: B049401
  *
  * Created on October 9, 2018, 6:42 PM
  */

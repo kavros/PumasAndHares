@@ -3,7 +3,7 @@
 implement the model, write tests and write user and developer documentation.
 
 # Build
-* Follow the instruction below to install cppunit
+* Follow the instructions below to install cppunit
 * Build project using ```make```
 
 # Run

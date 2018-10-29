@@ -9,6 +9,9 @@ implement the model, write tests and write user and developer documentation.
 # Run
 * Run project using ```make run```
 
+# Run Unit tests
+* Run ```make run_unit_tests```
+
 # Build and install cppunit 
 ```
  cd cppunit-1.13.2

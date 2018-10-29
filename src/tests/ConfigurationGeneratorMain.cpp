@@ -11,15 +11,13 @@
  * Created on October 9, 2018, 6:13 PM
  */
 
-#include <cstdlib>
-
+#include <iostream>
+#include "../../include/ConfigurationGenerator.hpp"
 using namespace std;
 
-/*
- * 
- */
-int main(int argc, char** argv) {
-
+int main(int argc, char *argv[]) {
+    ConfigurationGenerator generator(argc, argv);
+    generator.WriteToFile(generator.fileName);
     return 0;
 }
 

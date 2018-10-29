@@ -83,6 +83,7 @@ tests:	$(BIN_PATH)/CmdParserUnitTest \
 	$(BIN_PATH)/LandscapeValidatorUnitTest\
 	$(BIN_PATH)/OutputGeneratorUnitTest
 
+.PHONY: run_unit_tests
 run_unit_tests:
 	./$(BIN_PATH)/CmdParserUnitTest 
 	./$(BIN_PATH)/ConfigurationGeneratorUnitTest 
@@ -95,6 +96,10 @@ run_unit_tests:
 	./$(BIN_PATH)/LandscapeValidatorUnitTest
 	./$(BIN_PATH)/OutputGeneratorUnitTest
 
+.PHONY: run
+run:
+	./$(BIN_PATH)/pumasAndHares
+	
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@

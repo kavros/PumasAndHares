@@ -1,21 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   OutputGenerator.cpp
- * Author: alex
- * 
- * Created on October 9, 2018, 6:50 PM
- */
-
 #include "../../include/OutputGenerator.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <assert.h>
+#include "../../include/ErrorValues.hpp"
 
 OutputGenerator::OutputGenerator() 
 {
@@ -25,8 +13,12 @@ OutputGenerator::OutputGenerator()
 OutputGenerator::~OutputGenerator() {
 }
 
-void OutputGenerator::CreatePPMFile(Landscape landscape)
+int OutputGenerator::CreatePPMFile(Landscape landscape)
 {
+    if(landscape.GetGrid() == NULL)
+    {
+        return FAILED;
+    }
     int width = landscape.GetTotalColumns();
     int height = landscape.GetTotalRows();
     
@@ -66,6 +58,7 @@ void OutputGenerator::CreatePPMFile(Landscape landscape)
     imgFile << imageValues;
     imgFile.close();
     nextOutputNumber++;
+    return SUCCEED;
 }
 
 
@@ -119,12 +112,13 @@ int OutputGenerator::SaveAverages(double avgsPuma[],double avgsHares[],int total
 {
     if(avgsPuma  == NULL ||avgsHares == NULL || totalElements < 0 )
     {
-        return -1;
+        return FAILED;
     }
     string filename="averages.txt";
     string folder="./data/outputs/";
     ofstream txtFile;
     txtFile.open (folder+filename);
+    
     txtFile<<"-Average numbers-"<<std::endl;
     for(int i=0; i < totalElements; i++)
     {
@@ -133,5 +127,5 @@ int OutputGenerator::SaveAverages(double avgsPuma[],double avgsHares[],int total
         txtFile<<std::endl;
     }
     txtFile.close();
-    return 0;
+    return SUCCEED;
 }

@@ -141,6 +141,10 @@ int Landscape::GetTotalColumns()
 {
     return totalColumns;
 }
+LandscapeSquare** Landscape::GetGrid()
+{
+    return grid;
+}
 
 double Landscape::GetR()
 {

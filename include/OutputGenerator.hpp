@@ -12,7 +12,7 @@ public:
      * is a counter which starts from 0
      * @param landscape
      */
-    void CreatePPMFile(Landscape landscape);
+    int CreatePPMFile(Landscape landscape);
     
     /**
      * Print average number of hares and puma every T steps in a file

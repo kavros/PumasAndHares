@@ -29,7 +29,8 @@ public:
 private:
     Landscape landscape;
     OutputGenerator outputGenerator;
-    
+    double GetAverageHares();
+    double GetAveragePumas();
     
 };
 

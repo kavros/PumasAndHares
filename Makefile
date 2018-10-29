@@ -1,11 +1,11 @@
 CXX ?=g++
 
 # paths #
+CPPUNITLDFLAGS=-lcppunit -Isrc -Itest
 SRC_PATH=src/core
 BUILD_PATH=build
 BIN_PATH = $(BUILD_PATH)/bin
-SHELL:=/bin/bash
-	
+OUTPUTS =./data/outputs/*
 # executables #
 BIN_NAME=pumasAndHares
 
@@ -13,9 +13,10 @@ BIN_NAME=pumasAndHares
 SRC_EXT=cpp
 SOURCES=$(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' -not -name main.cpp | sort -k 1nr| cut -f2-)
 OBJECTS=$(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
-
+	
 # flags #
-COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g
+COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g -std=c++0x
+
 INCLUDES= -I include/ -I /usr/local/include
 
 .PHONY: default_target
@@ -27,8 +28,8 @@ clean:
 	@echo "Deleting build directories"
 	@$(RM) -r $(BUILD_PATH)
 	@$(RM) -r $(BIN_PATH)
-	@echo "Deleting $(BIN_NAME) symlink"
-	@$(RM) $(BIN_NAME)
+	@echo "Deleting outputs"
+	@$(RM) $(OUTPUTS)
 
 .PHONY: dirs
 dirs:
@@ -53,51 +54,92 @@ all:	$(BIN_PATH)/$(BIN_NAME) \
 	$(BIN_PATH)/landscapeSimulationTest\
 	$(BIN_PATH)/landscapeValidatorTest\
 	$(BIN_PATH)/outpoutGeneratorTest\
-	$(BIN_PATH)/landscapeParserTest
+	$(BIN_PATH)/landscapeParserTest\
 	
+
+
+$(BUILD_PATH)/%.o: src/cppunit_tests/%.cpp\
+					$(OBJECTS)
+	$(CXX) $(COMPILE_FLAGS) -c $< $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
+
+	
+$(BUILD_PATH)/cppunit_test_driver.o:src/cppunit_tests/cppunit_test_driver.cc
+	$(CXX) $(COMPILE_FLAGS) -c src/cppunit_tests/cppunit_test_driver.cc $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
+
+$(BIN_PATH)/%: $(BUILD_PATH)/cppunit_test_driver.o\
+				$(OBJECTS)\
+				$(BUILD_PATH)/%.o
+	$(CXX) $(COMPILE_FLAGS) $^ $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
+
+.PHONY: tests
+tests:	$(BIN_PATH)/CmdParserUnitTest \
+	$(BIN_PATH)/ConfigurationGeneratorUnitTest \
+	$(BIN_PATH)/ConfigurationParserUnitTest\
+	$(BIN_PATH)/LandscapeGeneratorUnitTest\
+	$(BIN_PATH)/LandscapeParserUnitTest\
+	$(BIN_PATH)/LandscapeSimulationUnitTest\
+	$(BIN_PATH)/LandscapeSquareUnitTest\
+	$(BIN_PATH)/LandscapeUnitTest\
+	$(BIN_PATH)/LandscapeValidatorUnitTest\
+	$(BIN_PATH)/OutputGeneratorUnitTest
+
+.PHONY: run_unit_tests
+run_unit_tests:
+	./$(BIN_PATH)/CmdParserUnitTest 
+	./$(BIN_PATH)/ConfigurationGeneratorUnitTest 
+	./$(BIN_PATH)/ConfigurationParserUnitTest
+	./$(BIN_PATH)/LandscapeGeneratorUnitTest
+	./$(BIN_PATH)/LandscapeParserUnitTest
+	./$(BIN_PATH)/LandscapeSimulationUnitTest
+	./$(BIN_PATH)/LandscapeSquareUnitTest
+	./$(BIN_PATH)/LandscapeUnitTest
+	./$(BIN_PATH)/LandscapeValidatorUnitTest
+	./$(BIN_PATH)/OutputGeneratorUnitTest
+
+.PHONY: run
+run:
+	./$(BIN_PATH)/pumasAndHares
 	
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)
-	$(CXX) $^ -o $@
+	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
 $(BIN_PATH)/cmdParserTest: src/tests/CmdParserTest.cpp \
 			    $(OBJECTS)
-	$(CXX)  $^ -o $@
+	$(CXX) $(COMPILE_FLAGS)  $^ -o $@
 
 $(BIN_PATH)/configurationGeneratorMain: src/tests/ConfigurationGeneratorMain.cpp \
-			    $(OBJECTS)\
-			    include/Args.hpp\
-			    include/Json.hpp
-	$(CXX)  $^ -o $@
+			    $(OBJECTS)
+	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 
 $(BIN_PATH)/configurationParserTest: src/tests/ConfigurationParserTest.cpp \
 			    $(OBJECTS)
-	$(CXX)  $^ -o $@
+	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 
 
 $(BIN_PATH)/landscapeParserTest: src/tests/LandscapeParserTest.cpp \
 			    $(OBJECTS)
-	$(CXX)  $^ -o $@
+	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
 	
 
 $(BIN_PATH)/landscapeSimulationTest: src/tests/LandscapeSimulationTest.cpp \
 			    $(OBJECTS)
-	$(CXX)  $^  -o $@
+	$(CXX) $(COMPILE_FLAGS) $^  -o $@
 
 
 $(BIN_PATH)/landscapeValidatorTest: src/tests/LandscapeValidatorTest.cpp \
 			    $(OBJECTS)
-	$(CXX)  $^ -o $@
+	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 
 
 $(BIN_PATH)/outpoutGeneratorTest: src/tests/OutputGeneratorTest.cpp \
 			    $(OBJECTS)
-	$(CXX)  $^ -o $@
+	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 
 
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS) src/core/main.cpp
-	$(CXX) $^  -o $@
+	$(CXX) $(COMPILE_FLAGS) $^  -o $@
 
 # Creation of the executable
 #$(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
@@ -109,6 +151,6 @@ $(BIN_PATH)/$(BIN_NAME): $(OBJECTS) src/core/main.cpp
 # Creation of the object files
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 	@echo "Compiling: $< -> $@"
-	$(CXX) $(CXXFLAGS) $(INCLUDES)   -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(COMPILE_FLAGS)  -c $< -o $@
 
 

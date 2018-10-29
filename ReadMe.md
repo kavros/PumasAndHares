@@ -3,11 +3,22 @@
 implement the model, write tests and write user and developer documentation.
 
 # Build
-* Run ```module load gcc```
+* Follow the instructions below to install cppunit
 * Build project using ```make```
 
 # Run
 * Run project using ```make run```
+
+# Build and install cppunit 
+```
+ cd cppunit-1.13.2
+ ./configure --prefix=$HOME
+ make
+ make install 
+ export CPLUS_INCLUDE_PATH=$HOME/include:$CPLUS_INCLUDE_PATH
+ export LIBRARY_PATH=$HOME/lib:$LIBRARY_PATH
+ export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+```
 
 # Documentation
 * Using the following link you can edit our documentation [link](https://www.overleaf.com/8949884345ypnhgyfsphmr)

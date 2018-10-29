@@ -14,14 +14,26 @@
 #ifndef LANDSCAPESQUARE_HPP
 #define LANDSCAPESQUARE_HPP
 
+#include <string>
 class LandscapeSquare {
 public:
     LandscapeSquare();
+    void SetIsWater(bool value);
+    void SetPumas(double pumas);
+    void SetHares(double hares);
+    
+    double GetPumas();
+    double GetHares();
+    bool GetIsWater();
+    
     virtual ~LandscapeSquare();
 private:
     bool   isWater;
     double pumas;
     double hares;
+    
+    void CheckInput(bool value);
+    void PrintWrongInputMsgAndExit(std::string msg);
 };
 
 #endif /* LANDSCAPESQUARE_HPP */

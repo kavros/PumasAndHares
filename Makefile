@@ -15,7 +15,7 @@ SOURCES=$(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' -not -name main.cpp | sort
 OBJECTS=$(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 	
 # flags #
-COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g -std=c++0x
+COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g -std=c++0x -O3
 
 INCLUDES= -I include/ -I /usr/local/include
 

@@ -3,16 +3,86 @@
 #include <ctime>
 #include <cstdlib>
 #include "../../include/LandscapeGenerator.hpp"
-using namespace std;
+#include "../../include/Args.hpp"
 
+using namespace std;
+/*
 LandscapeGenerator::LandscapeGenerator(int width,int height, float landPercentage)
 {
-	this->totalColumns=width;    /* Width of the landscape */
-	this->totalRows=height;  /* Height of the landscape */
+
+	this->totalRows=height;  
     
-        this->landPercentage=landPercentage; /* Total percentage of water in the whole landscape */
+        this->landPercentage=landPercentage; 
+}
+*/
+LandscapeGenerator::LandscapeGenerator()
+{
+
 }
 
+
+int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
+{
+    args::ArgumentParser parser("Landscape File Generator.");
+    
+    args::HelpFlag help(parser, "help", "Display this help message", {'h',"help"});
+    
+    args::ValueFlag<double> landPerc(parser, "l", "The percentage of land.", {'l'});
+    args::ValueFlag<int> tRows(parser, "r", "The total rows of the landscape.", {'r'});
+    args::ValueFlag<int> tColumns(parser, "c", "The total columns of the landscape.", {'c'});
+    args::Positional<std::string> filename(parser,"filename","Output filename for the landscape.");
+     try
+    {
+        parser.ParseCLI(ac, av);
+        /*cout<<landPercentage.Get()<<std::endl;
+        cout<<totalRows.Get()<<std::endl;
+        cout<<totalColumns.Get()<<std::endl;
+        cout<<filename.Get()<<std::endl;*/
+        SetTotalColumns( tColumns.Get());
+        SetTotalRows(tRows.Get());
+        SetLandPercentage(landPerc.Get());
+        SetOutputFileName(filename.Get());
+        
+    }
+    
+    catch(args::Help){
+        std::cout << parser;
+    }
+    
+    catch(args::ParseError e){
+        std::cerr << e.what() << std::endl;
+        std::cerr << parser;
+    }
+    catch (args::ValidationError e)
+    {
+        std::cerr << e.what() << std::endl;
+        std::cerr << parser;
+    }
+    
+}
+
+int LandscapeGenerator::SetOutputFileName(string fileName)
+{
+    this->outputFileName = fileName;
+}
+
+int LandscapeGenerator::SetTotalRows(int totalRows)
+{
+    this->totalRows = totalRows;
+    return 0;
+}
+
+int LandscapeGenerator::SetTotalColumns(int totalColumns)
+{
+    this->totalColumns = totalColumns;
+    return 0;
+}
+
+int LandscapeGenerator::SetLandPercentage(float landPercentage)
+{
+    this->landPercentage = landPercentage;
+    return 0;
+}
 
 int LandscapeGenerator::GetRandomLandDistribution()
 {
@@ -26,7 +96,7 @@ int LandscapeGenerator::GetRandomLandDistribution()
      * The landscape data will be saved in the file "Data.dat"
      */
     ofstream myfile;
-    myfile.open ("Data.dat");
+    myfile.open (outputFileName);
     
     int count = 0;     /* this variable will hold the number of land points that exist inside the landscape */
     int totalSpace = totalRows*totalColumns; /* Total landscape points */

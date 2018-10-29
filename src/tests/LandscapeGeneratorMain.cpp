@@ -2,16 +2,17 @@
 #include <cstdlib>
 #include <ctime>
 #include "../../include/LandscapeGenerator.hpp"
+#include "include/Landscape.hpp"
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
 {
     int srand(time(NULL));
-    int totalColumns = 1300;
-    int totalRows =100;
-    double landPercentage = 0.8;
-    LandscapeGenerator landscape(totalColumns, totalRows, landPercentage);
     
-    landscape.GetRandomLandDistribution();   
+    //LandscapeGenerator landscape(totalColumns, totalRows, landPercentage);
+    LandscapeGenerator landscapeGenerator;
+    landscapeGenerator.ParseCmdLine(argc,argv);
+    
+    landscapeGenerator.GetRandomLandDistribution();   
 }
 

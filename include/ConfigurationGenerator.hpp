@@ -14,12 +14,23 @@
 #ifndef CONFIGURATIONGENERATOR_HPP
 #define CONFIGURATIONGENERATOR_HPP
 
+#include "Json.hpp"
+#include <string>
+#include <map>
+
+using json = nlohmann::json;
+
 class ConfigurationGenerator {
 public:
-    ConfigurationGenerator();
-    ConfigurationGenerator(const ConfigurationGenerator& orig);
-    virtual ~ConfigurationGenerator();
+
+    ConfigurationGenerator(int ac, char *av[]);
+    bool WriteToFile(std::string fileName);
+
+    std::string fileName;
+    json options;
+    std::string jsonString;
 private:
+    
 
 };
 

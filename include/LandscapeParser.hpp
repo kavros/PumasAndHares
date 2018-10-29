@@ -1,26 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   LandscapeParser.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 6:40 PM
- */
 
 #ifndef LANDSCAPEPARSER_HPP
 #define LANDSCAPEPARSER_HPP
-
-class LandscapeParser {
+#include<string>
+#include <iostream>
+#include <vector>
+#include "../include/LandscapeSquare.hpp"
+#include "../include/Landscape.hpp"
+class LandscapeParser 
+{
 public:
-    LandscapeParser();
-    LandscapeParser(const LandscapeParser& orig);
+    LandscapeParser(Landscape* landscape,string filePath);
     virtual ~LandscapeParser();
+    
+    LandscapeSquare** ReadLandscapeFromFile();
+    
+    LandscapeSquare** GetGrid();
+    string GetFilePath();
+    int SetFilePath(string filePath);
+    int SetLandscape(Landscape* landscape);
+    
+    
 private:
-
+    int GetGridValue(char& c);
+    void IsValid(char& c);
+    std::vector<int> GetDimensions(std::string firstLine);
+    LandscapeSquare** AllocateSpaceForGrid(int totalRows,int totalColumns);
+    void DealocateGrid();
+    void ParseRow(LandscapeSquare**  grid,string line,int currRow);
+    
+    Landscape* landscape;
+    string filePath;
+    LandscapeSquare** grid;
 };
 
 #endif /* LANDSCAPEPARSER_HPP */

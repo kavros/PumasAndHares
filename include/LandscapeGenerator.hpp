@@ -13,9 +13,9 @@ class LandscapeGenerator
                 string outputFileName;
                 
 	public:           
-		LandscapeGenerator(int width,int height, float land_percentage);
-                
-                int GetRandomLandDistribution();
+            LandscapeGenerator(int width,int height, float land_percentage); 
+            int GetRandomLandDistribution();
+
 };
 
 #endif

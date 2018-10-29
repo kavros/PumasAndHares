@@ -13,6 +13,7 @@ LandscapeGenerator::LandscapeGenerator(int width,int height, float landPercentag
         this->landPercentage=landPercentage; /* Total percentage of water in the whole landscape */
 }
 
+
 int LandscapeGenerator::GetRandomLandDistribution()
 {
 //    if ((width <= 0) || (height <= 0)){
@@ -137,6 +138,7 @@ subtrace_more:
      *  ELSE try to find more land and do it water. 
      */
     if (extraLand == 0) goto write_file;
+
 
     x = 1 + (rand() % ((totalRows) - 1 + 1)); 
     y = 1 + (rand() % ((totalColumns) - 1 + 1));

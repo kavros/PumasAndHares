@@ -38,8 +38,8 @@ int main(int argc, char * argv[])
     int column = 0;
     int row = 0;
     FILE* fp;
-    char inFile[20] = "\0";
-    char outFile[20] = "\0";
+    char inFile[100] = "\0";
+    char outFile[100] = "\0";
     // Ideally, expect maximum length of Grayscale value to be < 5.
     int length = 80;
     char line[length];
@@ -86,6 +86,7 @@ int main(int argc, char * argv[])
     {
         fgets(line, (length - 1), fp);
         num = strtol(line, 0, 0);
+
         // Land is black is 0, water is white is 255.
         if (num < 128)
         {

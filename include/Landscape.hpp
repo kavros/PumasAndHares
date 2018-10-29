@@ -78,7 +78,7 @@ public:
     void SetTotalRows(int height);
     
     void AssignRandomPumaAndHares();
-    void SetGrid(LandscapeSquare** grid);    //remove this function after tests
+    void SetGrid(LandscapeSquare** grid);    
   
     
 
@@ -91,7 +91,7 @@ private:
     LandscapeSquare** grid;//2d array
     
     void CheckConfigurationInput(double confValue);
-    void CheckArrayIndexes(int i,int j);
+    void AreArrayIndexesValid(int i,int j);
     void CheckPumasAndHaresValue(double value);
     bool IsHaloSquare(int i,int j);
     bool IsSquareLand( int i,  int j);

@@ -18,6 +18,8 @@
 #include <time.h>
 #include <iostream>
 #include <random>
+#include "../../include/ErrorValues.hpp"
+
 Landscape::Landscape(string configurationFileName,string landscapeFileName)
 {
     
@@ -102,7 +104,7 @@ void Landscape::SetGrid(LandscapeSquare** grid )
 
 void Landscape::SetIsWater( int i, int j,bool value)
 {
-    CheckArrayIndexes(i,j);
+    AreArrayIndexesValid(i,j);
     this->grid[i][j].SetIsWater(value);
    
 }
@@ -110,7 +112,7 @@ void Landscape::SetIsWater( int i, int j,bool value)
 
 void Landscape::SetPumas( int i,  int j, double value) 
 {
-    CheckArrayIndexes(i,j);
+    AreArrayIndexesValid(i,j);
     CheckPumasAndHaresValue(value);
     this->grid[i][j].SetPumas(value);
     
@@ -118,7 +120,7 @@ void Landscape::SetPumas( int i,  int j, double value)
 
 void Landscape::SetHares( int i,  int j, double value)
 {
-    CheckArrayIndexes(i,j); 
+    AreArrayIndexesValid(i,j); 
     CheckPumasAndHaresValue(value);
     this->grid[i][j].SetHares(value);   
 }
@@ -181,14 +183,14 @@ double Landscape::GetPumas( int i,  int j)
         return 0;
     }
     
-    CheckArrayIndexes(i,j);
+    AreArrayIndexesValid(i,j);
     return this->grid[i][j].GetPumas();
 }
 
 
 unsigned int Landscape::GetN( int i,  int j) 
 {
-    CheckArrayIndexes(i,j);
+    AreArrayIndexesValid(i,j);
     return IsSquareLand(i-1,j)+
            IsSquareLand(i,j-1)+
            IsSquareLand(i+1,j)+
@@ -202,7 +204,7 @@ double Landscape::GetHares( int i,int j)
     {
         return 0;
     }
-    CheckArrayIndexes(i,j);
+    AreArrayIndexesValid(i,j);
     return this->grid[i][j].GetHares();
 }
 
@@ -219,7 +221,7 @@ bool Landscape::IsSquareWater(int row,int col)
     {
         return true;
     }
-    CheckArrayIndexes(row,col);
+    AreArrayIndexesValid(row,col);
     return grid[row][col].GetIsWater();
 }
 
@@ -231,7 +233,7 @@ bool Landscape::IsSquareLand( int i, int j)
     {
         return false;
     }
-    CheckArrayIndexes(i,j);
+    AreArrayIndexesValid(i,j);
     return !(grid[i][j].GetIsWater());
 }
 
@@ -246,12 +248,13 @@ void Landscape::CheckConfigurationInput(double value)
     }
 }
 
-void Landscape::CheckArrayIndexes(int row,int col)
+void Landscape::AreArrayIndexesValid(int row,int col)
 {
      bool validRange = (row >= 0  && row < totalRows) && (col >= 0 && col< totalColumns);
-     assert(validRange==true);
-     assert(row<=2000);
-     assert(col<=2000);
+     if( !validRange )
+     {
+         throw out_of_range("program try to access i,j that are out of range");
+     }
 }
 
 void Landscape::CheckPumasAndHaresValue(double value)

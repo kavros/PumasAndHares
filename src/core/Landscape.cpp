@@ -256,7 +256,7 @@ void Landscape::CheckArrayIndexes(int row,int col)
 
 void Landscape::CheckPumasAndHaresValue(double value)
 {
-    assert(value>=0);
+    //assert(value>=0);
 }
 
 bool Landscape::IsHaloSquare(int row,int col)

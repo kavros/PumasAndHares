@@ -15,7 +15,8 @@
 #define LANDSCAPESQUARE_HPP
 
 #include <string>
-class LandscapeSquare {
+class LandscapeSquare 
+{
 public:
     LandscapeSquare();
     void SetIsWater(bool value);
@@ -32,8 +33,7 @@ private:
     double pumas;
     double hares;
     
-    void CheckInput(bool value);
-    void PrintWrongInputMsgAndExit(std::string msg);
+    void CheckInput(double value);
 };
 
 #endif /* LANDSCAPESQUARE_HPP */

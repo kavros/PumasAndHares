@@ -24,19 +24,12 @@ LandscapeSquare::~LandscapeSquare()
 
 
 
-void LandscapeSquare::CheckInput(bool value)
+void LandscapeSquare::CheckInput(double value)
 {
-    if(value < 0)
-    {
-        PrintWrongInputMsgAndExit("pumas or hares variables cannot have negative value ");
-    }
+    // densities could be negative or zero so no check
 }
 
-void LandscapeSquare::PrintWrongInputMsgAndExit(std::string msg)
-{
-    std::cout<<msg<<std::endl;
-    exit(-1);
-}
+
 
 void LandscapeSquare::SetIsWater(bool value)
 {

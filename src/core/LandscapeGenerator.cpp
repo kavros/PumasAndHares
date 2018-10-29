@@ -7,9 +7,9 @@ using namespace std;
 
 LandscapeGenerator::LandscapeGenerator(int width,int height, float landPercentage)
 {
-	this->width=width;    /* Width of the landscape */
-	this->height=height;  /* Height of the landscape */
-        int LandMatrix[2002][2002]; /* This is the matrix that will represent our landscape */
+	this->totalColumns=width;    /* Width of the landscape */
+	this->totalRows=height;  /* Height of the landscape */
+    
         this->landPercentage=landPercentage; /* Total percentage of water in the whole landscape */
 }
 
@@ -28,7 +28,7 @@ int LandscapeGenerator::GetRandomLandDistribution()
     myfile.open ("Data.dat");
     
     int count = 0;     /* this variable will hold the number of land points that exist inside the landscape */
-    int totalSpace = height*width; /* Total landscape points */
+    int totalSpace = totalRows*totalColumns; /* Total landscape points */
     int i, j;
     int x, y; /* integers we use for creating random coordinates */
     
@@ -40,8 +40,8 @@ int LandscapeGenerator::GetRandomLandDistribution()
     /*
      * Make sure nothing was written before in the matrix-landscape
      */
-    for(i=0; i<height+2; i++){
-        for(j=0;j<width+2; j++){
+    for(i=0; i<totalRows+2; i++){
+        for(j=0;j<totalColumns+2; j++){
             landMatrix[i][j] = 0;
         }
     }    
@@ -54,8 +54,8 @@ int LandscapeGenerator::GetRandomLandDistribution()
   /* The numbers are created randomly in a range [a,b] using the formula randomNumber = a + (rand()%((b-1)-a + 1));
   /******************************************************************************************************************/    
 more_land:
-        x = 2 + (rand() % ((height-1) - 2 + 1)); 
-        y = 2 + (rand() % ((width-1) - 2 + 1));
+        x = 2 + (rand() % ((totalRows-1) - 2 + 1)); 
+        y = 2 + (rand() % ((totalColumns-1) - 2 + 1));
           
         for (i = x-1; i<=x+1; i++){
             for (j = y-1; j<= y+1; j++){
@@ -80,8 +80,8 @@ endloop:
    /***************************************************************************************************************/              
     int countNeighbours; 
     int extraLand = 0; /* In this value is recorded the number of extra land that was added  */
-    for (i = 1; i <= height; i++){
-        for (j=1; j <= width; j++){
+    for (i = 1; i <= totalRows; i++){
+        for (j=1; j <= totalColumns; j++){
             
             countNeighbours = 0;
                 
@@ -103,7 +103,7 @@ endloop:
                     
                     if (countNeighbours == 0){
                        
-                        if (i == height) {
+                        if (i == totalRows) {
                             landMatrix[i-1][j] = 1;  /* In the case my point is in the down limit of my landscape I don't want to
                                                        * create more land out of the borders */
                         }
@@ -138,36 +138,41 @@ subtrace_more:
      */
     if (extraLand == 0) goto write_file;
 
-    x = 1 + (rand() % ((height) - 1 + 1)); 
-    y = 1 + (rand() % ((width) - 1 + 1));
+    x = 1 + (rand() % ((totalRows) - 1 + 1)); 
+    y = 1 + (rand() % ((totalColumns) - 1 + 1));
     
     if (landMatrix[x][y] == 1){  /* We are searching for a land with more than two neighbours to make it water. */
         
         /* Count how many nearest neighbours exist and record their x and y coordinates in the two vectors
          * neighboursCoordX & Y.
          */
-            if (landMatrix[x+1][y] == 1){
-            countNeighbours += 1;
-            neighboursCoordX[countNeighbours] = x+1;
-            neighboursCoordY[countNeighbours] = y;
+            if (landMatrix[x+1][y] == 1)
+            {
+                countNeighbours += 1;
+                neighboursCoordX[countNeighbours] = x+1;
+                neighboursCoordY[countNeighbours] = y;
             }
-            if (landMatrix[x-1][y] == 1){
-            countNeighbours += 1;
-            neighboursCoordX[countNeighbours] = x-1;
-            neighboursCoordY[countNeighbours] = y;
+            if (landMatrix[x-1][y] == 1)
+            {
+                countNeighbours += 1;
+                neighboursCoordX[countNeighbours] = x-1;
+                neighboursCoordY[countNeighbours] = y;
             }
-            if (landMatrix[x][y+1] == 1){
-            countNeighbours += 1;
-            neighboursCoordX[countNeighbours] = x;
-            neighboursCoordY[countNeighbours] = y+1;
+            if (landMatrix[x][y+1] == 1)
+            {
+                countNeighbours += 1;
+                neighboursCoordX[countNeighbours] = x;
+                neighboursCoordY[countNeighbours] = y+1;
             }
-            if (landMatrix[x][y-1] == 1){
-            countNeighbours += 1;
-            neighboursCoordX[countNeighbours] = x;
-            neighboursCoordY[countNeighbours] = y-1;
+            if (landMatrix[x][y-1] == 1)
+            {
+                countNeighbours += 1;
+                neighboursCoordX[countNeighbours] = x;
+                neighboursCoordY[countNeighbours] = y-1;
             }
             
-            if (countNeighbours >= 2){    /* If it has more than two neighbours then take one of them "randomly" and make it water */
+            if (countNeighbours >= 2)
+            {    /* If it has more than two neighbours then take one of them "randomly" and make it water */
                 
                 randNeighbour = 1 + (rand() % ((countNeighbours) - 1 + 1));  
                 
@@ -184,9 +189,9 @@ subtrace_more:
 write_file:        
  
     /* Landscape has been created. Write data into the file "Data.dat" */ 
-    myfile << height << " " << width << endl; 
-    for (i = 1; i <= height; i++){
-        for (j=1; j <= width; j++){
+    myfile << totalRows << " " << totalColumns << endl; 
+    for (i = 1; i <= totalRows; i++){
+        for (j=1; j <= totalColumns; j++){
             myfile << landMatrix[i][j] << " ";
         }
         myfile << endl;
@@ -199,4 +204,5 @@ write_file:
     cout << "--------------------------------------------------------------------------------------------------" << endl;
 
 end_the_program:
+    return 0;
 }

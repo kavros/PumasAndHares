@@ -4,8 +4,10 @@
 #include <stdexcept>
 #include <fstream>      
 #include <sstream>      // std::istringstream
+#include "../../include/ErrorValues.hpp"
 LandscapeParser::LandscapeParser(Landscape* landscape,std::string filePath)
 {
+    grid=NULL;
     SetLandscape(landscape);
     SetFilePath(filePath);
 }
@@ -53,7 +55,7 @@ LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
     }
     else
     {
-        throw std::invalid_argument("Unable to open the file.");
+        throw std::invalid_argument("Unable to open landscape input file.");
     }
     return grid;
 }
@@ -135,6 +137,10 @@ void LandscapeParser::ParseRow(LandscapeSquare** grid, string line, int currRow)
 
 void LandscapeParser::DealocateGrid()
 {
+    if(grid == NULL)
+    {
+        return;
+    }
     //deallocate array
     for(int i=0; i < landscape->GetTotalRows(); i++)
     {
@@ -156,6 +162,10 @@ string LandscapeParser::GetFilePath()
 
 int LandscapeParser::SetFilePath(string filePath)
 {
+    if(filePath.empty())
+    {
+        return FAILED;
+    }
     this->filePath = filePath;
     return 0;
 
@@ -163,6 +173,10 @@ int LandscapeParser::SetFilePath(string filePath)
 
 int LandscapeParser::SetLandscape(Landscape* landscape)
 {
+    if(landscape == NULL)
+    {
+        return FAILED;
+    }
     this->landscape = landscape;
     return 0;
 

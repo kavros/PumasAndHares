@@ -21,6 +21,7 @@ using json = nlohmann::json;
 class ConfigurationParser
 {
 public:
+
     double GetR();
     int SetR(double r);
 
@@ -46,8 +47,7 @@ public:
     int SetN(int n);
 
     ConfigurationParser(std::string configurationFileName);
-    ConfigurationParser(const ConfigurationParser& orig);
-    virtual ~ConfigurationParser();
+
 
 private:
   int CheckSign(double var, std::string varname);

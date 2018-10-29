@@ -11,14 +11,14 @@
  * Created on October 9, 2018, 6:50 PM
  */
 
-#include "OutputGenerator.hpp"
+#include "../../include/OutputGenerator.hpp"
 
 OutputGenerator::OutputGenerator() {
-}
-
-OutputGenerator::OutputGenerator(const OutputGenerator& orig) {
 }
 
 OutputGenerator::~OutputGenerator() {
 }
 
+void OutputGenerator::CreatePPMFile(Landscape landscape){
+    
+}

@@ -17,7 +17,6 @@
 class LandscapeGenerator {
 public:
     LandscapeGenerator();
-    LandscapeGenerator(const LandscapeGenerator& orig);
     virtual ~LandscapeGenerator();
 private:
 

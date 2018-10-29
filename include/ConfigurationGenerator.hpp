@@ -22,10 +22,10 @@ using json = nlohmann::json;
 
 class ConfigurationGenerator {
 public:
+
     ConfigurationGenerator(int ac, char *av[]);
     bool WriteToFile(std::string fileName);
-    ConfigurationGenerator(const ConfigurationGenerator& orig);
-    virtual ~ConfigurationGenerator();
+
     std::string fileName;
     json options;
     std::string jsonString;

@@ -16,9 +16,6 @@
 LandscapeParser::LandscapeParser() {
 }
 
-LandscapeParser::LandscapeParser(const LandscapeParser& orig) {
-}
-
 LandscapeParser::~LandscapeParser() {
 }
 

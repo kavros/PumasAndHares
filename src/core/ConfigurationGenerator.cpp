@@ -77,11 +77,3 @@ bool ConfigurationGenerator::WriteToFile(std::string fileName){
     
 };
 
-ConfigurationGenerator::ConfigurationGenerator(const ConfigurationGenerator& orig) {
-
-
-}
-
-ConfigurationGenerator::~ConfigurationGenerator() {
-}
-

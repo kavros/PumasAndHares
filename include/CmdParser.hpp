@@ -17,7 +17,7 @@
 class CmdParser {
 public:
     CmdParser();
-    CmdParser(const CmdParser& orig);
+
     virtual ~CmdParser();
 private:
 

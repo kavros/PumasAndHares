@@ -5,18 +5,17 @@
  */
 
 /* 
- * File:   LandscapeGenerator.cpp
+ * File:   LandscapeSquare.cpp
  * Author: alex
  * 
- * Created on October 9, 2018, 6:41 PM
+ * Created on October 9, 2018, 8:54 PM
  */
 
-#include "../../include/LandscapeGenerator.hpp"
+#include "LandscapeSquare.hpp"
 
-LandscapeGenerator::LandscapeGenerator() {
+LandscapeSquare::LandscapeSquare() {
 }
 
-
-LandscapeGenerator::~LandscapeGenerator() {
+LandscapeSquare::~LandscapeSquare() {
 }
 

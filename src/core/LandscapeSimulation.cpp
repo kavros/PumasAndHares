@@ -11,14 +11,21 @@
  * Created on October 9, 2018, 6:40 PM
  */
 
-#include "LandscapeSimulation.hpp"
+#include "../../include/LandscapeSimulation.hpp"
+#include <iostream>
 
+using namespace std;
+LandscapeSimulation::LandscapeSimulation(Landscape landscape){
+    
+}
 LandscapeSimulation::LandscapeSimulation() {
 }
 
-LandscapeSimulation::LandscapeSimulation(const LandscapeSimulation& orig) {
-}
 
 LandscapeSimulation::~LandscapeSimulation() {
+}
+void LandscapeSimulation::Run()
+{
+    cout<<"Run"<<endl;
 }
 

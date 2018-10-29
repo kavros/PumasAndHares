@@ -17,7 +17,6 @@
 class LandscapeParser {
 public:
     LandscapeParser();
-    LandscapeParser(const LandscapeParser& orig);
     virtual ~LandscapeParser();
 private:
 

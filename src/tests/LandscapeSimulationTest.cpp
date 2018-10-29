@@ -12,14 +12,20 @@
  */
 
 #include <cstdlib>
-
+#include <iostream>
+#include "../../include/LandscapeSimulation.hpp"
+#include "../../include/Landscape.hpp"
 using namespace std;
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-
+    LandscapeSimulation simulation;
+    simulation.Run();
+    
+    Landscape landscape;
+    cout<< landscape.GetHeight()<<endl;
     return 0;
 }
 

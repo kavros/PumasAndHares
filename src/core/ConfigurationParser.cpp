@@ -36,6 +36,7 @@ double ConfigurationParser::GetR()
 {
   return this->r;
 };
+
 int ConfigurationParser::SetR(double r)
 {
   this->r = r;
@@ -135,15 +136,6 @@ int ConfigurationParser::SetN(int n)
   this->n = n;
   return CheckSign(this->n, "n");
 };
-
-
-
-
-ConfigurationParser::ConfigurationParser(const ConfigurationParser& orig) {
-}
-
-ConfigurationParser::~ConfigurationParser() {
-}
 
 
 int ConfigurationParser::CheckSign(double var, std::string varname)

@@ -25,12 +25,6 @@ LandscapeSimulation::LandscapeSimulation(Landscape landscape)
     this->landscape = landscape;
 }
 
-LandscapeSimulation::LandscapeSimulation() 
-{
-    
-}
-
-
 LandscapeSimulation::~LandscapeSimulation()
 {
     

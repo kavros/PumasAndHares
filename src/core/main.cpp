@@ -10,7 +10,7 @@
 #include "../../include/LandscapeParser.hpp"
 #include "../../include/LandscapeSimulation.hpp"
 #include "../../include/Landscape.hpp"
-#include "include/ConfigurationParser.hpp"
+#include "../../include/ConfigurationParser.hpp"
 using namespace std;
 
 void PrintPumasAndHares(Landscape landscape);
@@ -34,9 +34,9 @@ int main(int argc, char** argv) {
         landscape.SetT(100);
         landscape.SetRepetions(500);
         
-        string landscapeInputFile = "./data/landscapes/crete3.dat";
-        Landscape* landscapeRef = &landscape;
-        LandscapeParser landscapeParser(landscapeRef,landscapeInputFile); 
+        string landscapeInputFile = "./data/landscapes/qq.dat";
+
+        LandscapeParser landscapeParser(&landscape,landscapeInputFile); 
         
         landscapeParser.ReadLandscapeFromFile();
         landscape.AssignRandomPumaAndHares();

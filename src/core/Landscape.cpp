@@ -33,6 +33,15 @@ Landscape::~Landscape()
 {
 
 }
+void Landscape::SetOutputPrefix(string outputPrefix)
+{
+    this->outputPrefix =outputPrefix;
+}
+
+string Landscape::GetOutputPrefix()
+{
+    return outputPrefix;
+}
 
 //setters
 void Landscape::SetR(double r)

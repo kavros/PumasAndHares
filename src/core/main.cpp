@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
 
         landscapeParser.ReadLandscapeFromFile();
         landscape.AssignRandomPumaAndHares();
-
+        landscape.SetOutputPrefix(cmdLineParser.GetOutputFilePrefix());
         //PrintLandscape(landscape);
         //PrintPumasAndHares(landscape);
 

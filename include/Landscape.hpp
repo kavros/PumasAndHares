@@ -79,7 +79,8 @@ public:
     
     void AssignRandomPumaAndHares();
     void SetGrid(LandscapeSquare** grid);    //remove this function after tests
-  
+    void SetOutputPrefix(string outputPrefix);
+    string GetOutputPrefix();
     
 
 private:
@@ -89,6 +90,7 @@ private:
     int T;  //the number of steps between the outputs
     double rep;  //number of times that our simulation is going to run
     LandscapeSquare** grid;//2d array
+    string outputPrefix;
     
     void CheckConfigurationInput(double confValue);
     void CheckArrayIndexes(int i,int j);

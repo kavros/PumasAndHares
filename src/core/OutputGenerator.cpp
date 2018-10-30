@@ -30,7 +30,7 @@ void OutputGenerator::CreatePPMFile(Landscape landscape)
     int width = landscape.GetTotalColumns();
     int height = landscape.GetTotalRows();
     
-    string filename="output"+std::to_string(nextOutputNumber)+".ppm";
+    string filename=landscape.GetOutputPrefix()+std::to_string(nextOutputNumber)+".ppm";
     string folder="./data/outputs/";
     ofstream imgFile;
     
@@ -115,13 +115,13 @@ string OutputGenerator::GetSquarePixel(Landscape landscape,int i,int j)
     return pixel;
 }
 
-int OutputGenerator::SaveAverages(double avgsPuma[],double avgsHares[],int totalElements)
+int OutputGenerator::SaveAverages(double avgsPuma[],double avgsHares[],int totalElements,string outputPrefix)
 {
     if(avgsPuma  == NULL ||avgsHares == NULL || totalElements < 0 )
     {
         return -1;
     }
-    string filename="averages.txt";
+    string filename=outputPrefix+"_averages.txt";
     string folder="./data/outputs/";
     ofstream txtFile;
     txtFile.open (folder+filename);

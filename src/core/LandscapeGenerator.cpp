@@ -2,6 +2,7 @@
 #include <fstream> 
 #include <ctime>
 #include <cstdlib>
+#include <exception>
 #include "../../include/LandscapeGenerator.hpp"
 #include "../../include/Args.hpp"
 
@@ -34,15 +35,17 @@ int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
      try
     {
         parser.ParseCLI(ac, av);
-        /*cout<<landPercentage.Get()<<std::endl;
-        cout<<totalRows.Get()<<std::endl;
-        cout<<totalColumns.Get()<<std::endl;
-        cout<<filename.Get()<<std::endl;*/
+        
+        if(tColumns.Get() > 2000 || tRows.Get() > 2000)
+        {
+            throw invalid_argument("total columns and rows must be under 2000");
+        }
+        
         SetTotalColumns( tColumns.Get());
         SetTotalRows(tRows.Get());
         SetLandPercentage(landPerc.Get());
         SetOutputFileName(filename.Get());
-        
+        return 0;
     }
     
     catch(args::Help){
@@ -82,6 +85,78 @@ int LandscapeGenerator::SetLandPercentage(float landPercentage)
 {
     this->landPercentage = landPercentage;
     return 0;
+}
+
+
+int LandscapeGenerator::GetRandomLandDistribution2()
+{
+    int totalLandPoints = landPercentage*totalColumns*totalRows;
+    
+    //initialize landscape with water
+    for(int i =0; i<totalRows; i++)
+    {
+        for(int j =0; j<totalColumns; j++)
+        {
+            landMatrix[i][j]=0;
+        }  
+    }
+    
+    int randomColumnNumber =0;
+    int randomRowNumber=0;
+    int currLandPoint = 0;
+    
+    //assign land points randomly
+    while( currLandPoint != totalLandPoints)
+    {
+        randomColumnNumber = GetRandomInRange(0,totalColumns-1);
+        randomRowNumber= GetRandomInRange(0,totalRows-1);
+        
+        if( landMatrix[randomRowNumber][randomColumnNumber]==0 )
+        {
+            landMatrix[randomRowNumber][randomColumnNumber] = 1;
+            currLandPoint++;
+        }
+    }
+    
+    WriteLandscapeToFile();
+ 
+}
+
+
+int LandscapeGenerator::GetRandomInRange(int lowerBound,int upperBound)
+{
+    std::random_device rd;  
+    std::mt19937 gen(rd()); 
+    std::uniform_int_distribution<>dis(lowerBound, upperBound);   
+    //cout<<dis(gen)<<std::endl;
+    
+    return dis(gen);   
+}
+
+void LandscapeGenerator::WriteLandscapeToFile()
+{
+    ofstream landscapeFile;
+    try
+    {
+        landscapeFile.open (outputFileName);
+        
+        landscapeFile << totalRows << " " << totalColumns << endl; 
+        for (int i = 0; i < totalRows; i++)
+        {
+            for (int j=0; j < totalColumns; j++)
+            {
+                landscapeFile << landMatrix[i][j] << " ";
+            }
+            landscapeFile << endl;
+        }
+    
+        landscapeFile.close();
+        
+    }
+    catch (exception& e)
+    {
+        cout << e.what() << '\n';
+    }
 }
 
 int LandscapeGenerator::GetRandomLandDistribution()
@@ -124,16 +199,20 @@ int LandscapeGenerator::GetRandomLandDistribution()
   /* HOW RANDOM NUMBERS ARE CREATED:
   /* The numbers are created randomly in a range [a,b] using the formula randomNumber = a + (rand()%((b-1)-a + 1));
   /******************************************************************************************************************/    
-more_land:
+    while(count < landPoints)
+    {
         x = 2 + (rand() % ((totalRows-1) - 2 + 1)); 
         y = 2 + (rand() % ((totalColumns-1) - 2 + 1));
           
         for (i = x-1; i<=x+1; i++){
-            for (j = y-1; j<= y+1; j++){
+            for (j = y-1; j<= y+1; j++)
+            {
                    
-                if (count == landPoints){
-                    goto endloop; /* The land creation as soon as the count reaches the wanted value. */
-                }                   
+                if (count == landPoints)
+                {
+                    //goto endloop; 
+                    break;
+                }                  
                 if (landMatrix[i][j] == 0)
                 {
                     landMatrix[i][j] = 1;
@@ -141,8 +220,8 @@ more_land:
                 }
             }
         }
-        goto more_land;
-endloop:            
+    }
+
    /***************************************************************************************************************/
    /* SECTION 2:
    /* Here the loops go through all the points that have been created and finds the points of land
@@ -159,22 +238,28 @@ endloop:
             if (landMatrix[i][j] == 1)
             {
                     /*At first count how many neighbours exist*/
-                    if (landMatrix[i+1][j] == 1){
-                    countNeighbours += 1;
+                    if (landMatrix[i+1][j] == 1)
+                    {
+                        countNeighbours += 1;
                     }
-                    if (landMatrix[i-1][j] == 1){
-                    countNeighbours += 1;
+                    if (landMatrix[i-1][j] == 1)
+                    {
+                        countNeighbours += 1;
                     }
-                    if (landMatrix[i][j+1] == 1){
-                    countNeighbours += 1;
+                    if (landMatrix[i][j+1] == 1)
+                    {
+                        countNeighbours += 1;
                     }
-                    if (landMatrix[i][j-1] == 1){
-                    countNeighbours += 1;
+                    if (landMatrix[i][j-1] == 1)
+                    {
+                        countNeighbours += 1;
                     }
                     
-                    if (countNeighbours == 0){
+                    if (countNeighbours == 0)
+                    {
                        
-                        if (i == totalRows) {
+                        if (i == totalRows) 
+                        {
                             landMatrix[i-1][j] = 1;  /* In the case my point is in the down limit of my landscape I don't want to
                                                        * create more land out of the borders */
                         }

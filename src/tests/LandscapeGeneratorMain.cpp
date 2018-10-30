@@ -7,12 +7,12 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    int srand(time(NULL));
+    //int srand(time(NULL));
     
     //LandscapeGenerator landscape(totalColumns, totalRows, landPercentage);
     LandscapeGenerator landscapeGenerator;
     landscapeGenerator.ParseCmdLine(argc,argv);
     
-    landscapeGenerator.GetRandomLandDistribution();   
+    landscapeGenerator.GetRandomLandDistribution2();   
 }
 

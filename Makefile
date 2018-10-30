@@ -98,7 +98,7 @@ run_unit_tests:
 
 .PHONY: run
 run:
-	./$(BIN_PATH)/pumasAndHares
+	./$(BIN_PATH)/pumasAndHares -i data/landscapes/crete3.dat -c data/configs/config.json -p output
 	
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)

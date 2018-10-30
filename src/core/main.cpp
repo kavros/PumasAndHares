@@ -10,19 +10,21 @@
 #include "../../include/LandscapeParser.hpp"
 #include "../../include/LandscapeSimulation.hpp"
 #include "../../include/Landscape.hpp"
-#include "include/ConfigurationParser.hpp"
-using namespace std;
+#include "../../include/ConfigurationParser.hpp"
+#include "include/CmdParser.hpp"
 
+using namespace std;
 void PrintPumasAndHares(Landscape landscape);
 void PrintLandscape(Landscape landscape);
 
 int main(int argc, char** argv) {
-  
+    
     try
     {
-        ConfigurationParser parser("./config.json");
+        CmdParser cmdLineParser(argc,argv);
+        ConfigurationParser parser(cmdLineParser.GetConfigFilePath());
         Landscape landscape;
-        
+
         landscape.SetR(parser.GetR());
         landscape.SetA(parser.GetA());
         landscape.SetB(parser.GetB());
@@ -30,36 +32,35 @@ int main(int argc, char** argv) {
         landscape.SetK(parser.GetK());
         landscape.SetL(parser.GetL());
         landscape.SetDt(parser.GetN());
-        
+
         landscape.SetT(100);
         landscape.SetRepetions(500);
-        
-        string landscapeInputFile = "./data/landscapes/crete3.dat";
-        Landscape* landscapeRef = &landscape;
-        LandscapeParser landscapeParser(landscapeRef,landscapeInputFile); 
-        
+
+        string landscapeInputFile = cmdLineParser.GetInputFilePath();
+        LandscapeParser landscapeParser(&landscape,landscapeInputFile);
+
         landscapeParser.ReadLandscapeFromFile();
         landscape.AssignRandomPumaAndHares();
-        
+        landscape.SetOutputPrefix(cmdLineParser.GetOutputFilePrefix());
         //PrintLandscape(landscape);
         //PrintPumasAndHares(landscape);
-        
+
         LandscapeSimulation simulation(landscape);
         simulation.Run();
-         
+
     }
     catch(std::exception& e )
     {
-        
+
         cout<<e.what()<<std::endl;
     }
     return 0;
-    
+
 }
 
 void PrintLandscape(Landscape landscape)
 {
-    
+
         //print landscape
         for(int i=0; i < landscape.GetTotalRows(); i++)
         {
@@ -69,7 +70,7 @@ void PrintLandscape(Landscape landscape)
             }
             cout<<std::endl;
         }
-       
+
 }
 
 void PrintPumasAndHares(Landscape landscape)
@@ -87,11 +88,11 @@ void PrintPumasAndHares(Landscape landscape)
                 {
                     cout<<"("+std::to_string((double)landscape.GetPumas(i,j))+","+std::to_string( (double)landscape.GetHares(i,j)) +") ";
                 }
-                
-                
+
+
             }
             cout<<std::endl;
         }
         printf("\n\n");
-    
+
 }

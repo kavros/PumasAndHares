@@ -37,7 +37,7 @@ LandscapeSimulation::~LandscapeSimulation()
 }
 void LandscapeSimulation::Run()
 {
-    OutputGenerator output = OutputGenerator();
+    OutputGenerator output;
     double haresNew,pumasNew;
     int nextOutput=landscape.GetT();
     int totalAvgs= landscape.GetRepetitions()/landscape.GetT();
@@ -116,7 +116,7 @@ void LandscapeSimulation::Run()
         }  
         
     }
-    output.SaveAverages(averageNumbersForPuma,averageNumbersForHares,cnt);
+    output.SaveAverages(averageNumbersForPuma,averageNumbersForHares,cnt,landscape.GetOutputPrefix());
     
 }
 

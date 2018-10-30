@@ -18,10 +18,7 @@
 #include <time.h>
 #include <iostream>
 #include <random>
-Landscape::Landscape(string configurationFileName,string landscapeFileName)
-{
-    
-}
+
 
 Landscape::Landscape() 
 {

@@ -20,14 +20,7 @@ using namespace std;
 class Landscape {
 public:
     
-    /**
-     * Landscape constructor will use classes LadscapeParser and 
-     * ConfigurationParse in order to initialize landscape array 
-     * and configuration variables
-     * @param configurationFileName
-     * @param landscapeFileName
-     */
-    Landscape(string configurationFileName,string landscapeFileName);
+    
     Landscape();
     virtual ~Landscape();
     

@@ -64,6 +64,7 @@ int LandscapeParser::GetGridValue(char& c)
     return atoi(&c);   
 }
 
+
 void LandscapeParser::IsValid(char& c)
 {
     if (isdigit(c))
@@ -79,6 +80,7 @@ void LandscapeParser::IsValid(char& c)
             throw std::invalid_argument("Landscape file is not valid.");
         }
     }
+
 }
 
 std::vector<int> LandscapeParser::GetDimensions(std::string firstLine)

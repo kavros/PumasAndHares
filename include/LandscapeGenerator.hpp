@@ -1,26 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   LandscapeGenerator.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 6:41 PM
- */
-
 #ifndef LANDSCAPEGENERATOR_HPP
 #define LANDSCAPEGENERATOR_HPP
+#include <string>
+using namespace std;
 
-class LandscapeGenerator {
-public:
-    LandscapeGenerator();
-    virtual ~LandscapeGenerator();
+class LandscapeGenerator
+{
+        
+public:           
+        //LandscapeGenerator(int width,int height, float land_percentage); 
+        LandscapeGenerator(); 
+        int GetRandomLandDistribution();
+        int GetRandomLandDistribution2();
+        int ParseCmdLine(int ac, char *av[]);
+        int SetTotalRows(int totalRows);
+        int SetTotalColumns(int totalColumns);
+        int SetLandPercentage(float landPercentage);
+        int SetOutputFileName(string fileName);
+        void WriteLandscapeToFile();
+        
+
 private:
+        int totalColumns;
+        int totalRows;
+        int landMatrix[2000][2000];
+        float landPercentage;
+        string outputFileName;
+        int GetRandomInRange(int lowerBound,int upperBound);
 
-};
+        
+};  
 
-#endif /* LANDSCAPEGENERATOR_HPP */
-
+#endif

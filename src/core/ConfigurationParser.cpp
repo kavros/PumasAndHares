@@ -28,7 +28,7 @@ ConfigurationParser::ConfigurationParser(std::string configurationFileName)
     this->SetM(j["m"].get<double>());
     this->SetK(j["k"].get<double>());
     this->SetL(j["l"].get<double>());
-    this->SetD(j["d"].get<double>());
+    this->SetDt(j["d"].get<double>());
     this->SetN(j["n"].get<int>());
 }
 
@@ -114,11 +114,11 @@ int ConfigurationParser::SetL(double l)
 
 
 
-double ConfigurationParser::GetD()
+double ConfigurationParser::GetDt()
 {
   return this->d;
 };
-int ConfigurationParser::SetD(double d)
+int ConfigurationParser::SetDt(double d)
 {
   this->d = d;
   return CheckSign(this->d, "d");

@@ -2,17 +2,23 @@
 * The coursework is a group exercise where you will collaborate with your fellow students in small groups to
 implement the model, write tests and write user and developer documentation.
 
-# Build
+## Build
 * Follow the instructions below to install cppunit
 * Build project using ```make```
 
-# Run
+## Run
 * Run project using ```make run```
 
-# Run Unit tests
+## Run Unit tests
 * Run ```make run_unit_tests```
 
-# Build and install cppunit 
+## Run landscape generator
+* ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
+
+## Run configuration generator
+*  ```./build/bin/configurationGeneratorMain "fileName.json" -r "decimal" -a "decimal" -b "decimal" -m "decimal" -k "decimal" -l "decimal" -d "decimal"  -n "integer"```
+
+## Build and install cppunit 
 ```
  cd cppunit-1.13.2
  ./configure --prefix=$HOME
@@ -23,7 +29,7 @@ implement the model, write tests and write user and developer documentation.
  export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
 ```
 
-# Documentation
+## Documentation
 * Using the following link you can edit our documentation [link](https://www.overleaf.com/8949884345ypnhgyfsphmr)
 
 ## References

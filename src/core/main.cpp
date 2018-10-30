@@ -11,55 +11,18 @@
 #include "../../include/LandscapeSimulation.hpp"
 #include "../../include/Landscape.hpp"
 #include "../../include/ConfigurationParser.hpp"
-#include "../../include/Args.hpp"
-
-
-
-#define VERSION "1.0-b"
-#define PROG_NAME "PumasAndHares"
-#define PROG_TITLE PROG_NAME " " VERSION
-
+#include "include/CmdParser.hpp"
 
 using namespace std;
-
-
 void PrintPumasAndHares(Landscape landscape);
 void PrintLandscape(Landscape landscape);
 
-
 int main(int argc, char** argv) {
-  if(argc <= 1){
-    cerr << "No arguments passed, use -h for help." << endl;
-    return 0;
-  }
-  args::ArgumentParser parser(PROG_TITLE,"A program to simulate Puma and Hare populations across a grid.");
-  args::HelpFlag help(parser, "help", "Display this help prompt.", {'h', "help"});
-  args::ValueFlag<string> configFile(parser, "filename", "JSON-format configuration file for the simulation.",{'c', "config"});
-  args::ValueFlag<string> inputFile(parser,"filename","Landscape input file to perform the simulation on.",{'i',"input"});
-  args::ValueFlag<string> outputPrefix(parser,"prefix","Prefix for each generated output file.",{'p',"prefix"});
-  try
-  {
-    parser.ParseCLI(argc,argv);
-  }
-  catch (args::Help)
-  {
-    cout << parser;
-    return 0;
-  }
-  catch (args::ParseError e)
-  {
-    cerr << e.what() << endl;
-    return -1;
-  }
-  catch (args::ValidationError e)
-  {
-    cerr << e.what() << endl;
-    return -1;
-  }
-
+    
     try
     {
-        ConfigurationParser parser("./config.json");
+        CmdParser cmdLineParser(argc,argv);
+        ConfigurationParser parser(cmdLineParser.GetConfigFilePath());
         Landscape landscape;
 
         landscape.SetR(parser.GetR());
@@ -73,9 +36,8 @@ int main(int argc, char** argv) {
         landscape.SetT(100);
         landscape.SetRepetions(500);
 
-        string landscapeInputFile = "./data/landscapes/crete3.dat";
-        Landscape* landscapeRef = &landscape;
-        LandscapeParser landscapeParser(landscapeRef,landscapeInputFile);
+        string landscapeInputFile = cmdLineParser.GetInputFilePath();
+        LandscapeParser landscapeParser(&landscape,landscapeInputFile);
 
         landscapeParser.ReadLandscapeFromFile();
         landscape.AssignRandomPumaAndHares();

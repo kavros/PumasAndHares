@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/* 
- * File:   Landscape.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 8:49 PM
- */
 #ifndef LANDSCAPE_HPP
 #define LANDSCAPE_HPP
 #define MAX_WIDTH 2000
@@ -17,10 +6,10 @@
 #include <string>
 #include "LandscapeSquare.hpp"
 using namespace std;
-class Landscape {
+class Landscape 
+{
 public:
-    
-    
+            
     Landscape();
     virtual ~Landscape();
     

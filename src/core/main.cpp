@@ -35,8 +35,8 @@ int main(int argc, char** argv) {
         landscape.SetM(configParser.GetM());
         landscape.SetK(configParser.GetK());
         landscape.SetL(configParser.GetL());
-        landscape.SetDt(configParser.GetN());
-        landscape.SetT(100);
+        landscape.SetDt(configParser.GetDt());
+        landscape.SetT(configParser.GetN());
         landscape.SetRepetions(500);
         
         //initialize land and water based on input file.

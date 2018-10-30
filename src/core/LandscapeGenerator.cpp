@@ -18,7 +18,10 @@ LandscapeGenerator::LandscapeGenerator(int width,int height, float landPercentag
 */
 LandscapeGenerator::LandscapeGenerator()
 {
-
+    totalColumns = 0;
+    totalRows =0;
+    landPercentage =0;
+    outputFileName ="";
 }
 
 
@@ -36,9 +39,12 @@ int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
     {
         parser.ParseCLI(ac, av);
         
-        if(tColumns.Get() > 2000 || tRows.Get() > 2000)
+        if(tColumns.Get() > 2000 || tRows.Get() > 2000     ||
+             tRows.Get() <= 0 || tColumns.Get() <=0        ||
+             filename.Get().empty() || landPerc.Get() <=0 
+         )
         {
-            throw invalid_argument("total columns and rows must be under 2000");
+            throw invalid_argument("Cmd line values are not valid");
         }
         
         SetTotalColumns( tColumns.Get());
@@ -90,6 +96,11 @@ int LandscapeGenerator::SetLandPercentage(float landPercentage)
 
 int LandscapeGenerator::GetRandomLandDistribution2()
 {
+    if(totalColumns ==0 || totalRows == 0 || landPercentage ==0 || outputFileName.empty())
+    {
+        return -1;
+    }
+    
     int totalLandPoints = landPercentage*totalColumns*totalRows;
     
     //initialize landscape with water

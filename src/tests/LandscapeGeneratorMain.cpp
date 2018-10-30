@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "../../include/LandscapeGenerator.hpp"
-#include "include/Landscape.hpp"
+#include "../../include/Landscape.hpp"
 using namespace std;
 
 int main(int argc, char** argv)

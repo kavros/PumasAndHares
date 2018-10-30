@@ -67,12 +67,13 @@ int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
     }
-    
+    return 0;
 }
 
 int LandscapeGenerator::SetOutputFileName(string fileName)
 {
     this->outputFileName = fileName;
+    return 0;
 }
 
 int LandscapeGenerator::SetTotalRows(int totalRows)
@@ -130,7 +131,7 @@ int LandscapeGenerator::GetRandomLandDistribution2()
     }
     
     WriteLandscapeToFile();
- 
+    return 0;
 }
 
 
@@ -202,14 +203,14 @@ int LandscapeGenerator::GetRandomLandDistribution()
             landMatrix[i][j] = 0;
         }
     }    
-  /* *****************************************************************************************************************/
-  /* SECTION 1:
-  /* Here we create the landscape. At first we create a set of coordinates (x,y) in the range x:(2 - height-1) 
-  /* y:(2 - width-1) and then throw land in and around of that point. For every new point we create,
-  /*  we increase the number count by one and check that we don't exceed the total points wanted.
-  /* HOW RANDOM NUMBERS ARE CREATED:
-  /* The numbers are created randomly in a range [a,b] using the formula randomNumber = a + (rand()%((b-1)-a + 1));
-  /******************************************************************************************************************/    
+  /******************************************************************************************************************
+  * SECTION 1:
+  * Here we create the landscape. At first we create a set of coordinates (x,y) in the range x:(2 - height-1) 
+  * y:(2 - width-1) and then throw land in and around of that point. For every new point we create,
+  *  we increase the number count by one and check that we don't exceed the total points wanted.
+  * HOW RANDOM NUMBERS ARE CREATED:
+  * The numbers are created randomly in a range [a,b] using the formula randomNumber = a + (rand()%((b-1)-a + 1));
+  ******************************************************************************************************************/    
     while(count < landPoints)
     {
         x = 2 + (rand() % ((totalRows-1) - 2 + 1)); 
@@ -233,12 +234,12 @@ int LandscapeGenerator::GetRandomLandDistribution()
         }
     }
 
-   /***************************************************************************************************************/
-   /* SECTION 2:
-   /* Here the loops go through all the points that have been created and finds the points of land
+   /***************************************************************************************************************
+   * SECTION 2:
+   * Here the loops go through all the points that have been created and finds the points of land
     * which have no neighbours. So if a point doesn't have, then a land point is created next to it in a way that
-   /* it doesn't affect the boundaries.                                                            
-   /***************************************************************************************************************/              
+   * it doesn't affect the boundaries.                                                            
+   ***************************************************************************************************************/              
     int countNeighbours; 
     int extraLand = 0; /* In this value is recorded the number of extra land that was added  */
     for (i = 1; i <= totalRows; i++){
@@ -283,12 +284,12 @@ int LandscapeGenerator::GetRandomLandDistribution()
             }
         }
     }
- /*********************************************************************************************************************************************/  
- /* SECTION 3:
- /* Subtrace extra land to reach again the wanted percentage of land in landscape.
- /* Because extra land was added in section 2 (if is added), the algorithm need to find a way to replace that land with water somewhere else.
- /* It finds a land point that has more than two neighbours and make one of them water. 
- /*********************************************************************************************************************************************/
+ /*********************************************************************************************************************************************
+  * * SECTION 3:
+ * Subtrace extra land to reach again the wanted percentage of land in landscape.
+ * Because extra land was added in section 2 (if is added), the algorithm need to find a way to replace that land with water somewhere else.
+ * It finds a land point that has more than two neighbours and make one of them water. 
+ *********************************************************************************************************************************************/
     int neighboursCoordX[4]; /* This two arrays hold the coordinates of the neighbours. */ 
     int neighboursCoordY[4];
     int randNeighbour;
@@ -356,7 +357,7 @@ subtrace_more:
 
 write_file:        
  
-    /* Landscape has been created. Write data into the file "Data.dat" */ 
+    /*Landscape has been created. Write data into the file "Data.dat" */ 
     myfile << totalRows << " " << totalColumns << endl; 
     for (i = 1; i <= totalRows; i++){
         for (j=1; j <= totalColumns; j++){
@@ -371,6 +372,5 @@ write_file:
     cout << "The landscape has been created and is stored in the Data.dat file without water in the boundaries " << endl;
     cout << "--------------------------------------------------------------------------------------------------" << endl;
 
-end_the_program:
     return 0;
 }

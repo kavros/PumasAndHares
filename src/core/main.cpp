@@ -11,7 +11,7 @@
 #include "../../include/LandscapeSimulation.hpp"
 #include "../../include/Landscape.hpp"
 #include "../../include/ConfigurationParser.hpp"
-#include "include/CmdParser.hpp"
+#include "../../include/CmdParser.hpp"
 
 using namespace std;
 void PrintPumasAndHares(Landscape landscape);
@@ -21,32 +21,40 @@ int main(int argc, char** argv) {
     
     try
     {
+        //parse command line arguments
         CmdParser cmdLineParser(argc,argv);
-        ConfigurationParser parser(cmdLineParser.GetConfigFilePath());
+        
+        //parse configuration
+        ConfigurationParser configParser(cmdLineParser.GetConfigFilePath());
+        
+        //add values from configuration to landscape.
         Landscape landscape;
-
-        landscape.SetR(parser.GetR());
-        landscape.SetA(parser.GetA());
-        landscape.SetB(parser.GetB());
-        landscape.SetM(parser.GetM());
-        landscape.SetK(parser.GetK());
-        landscape.SetL(parser.GetL());
-        landscape.SetDt(parser.GetN());
-
-        landscape.SetT(100);
+        landscape.SetR(configParser.GetR());
+        landscape.SetA(configParser.GetA());
+        landscape.SetB(configParser.GetB());
+        landscape.SetM(configParser.GetM());
+        landscape.SetK(configParser.GetK());
+        landscape.SetL(configParser.GetL());
+        landscape.SetDt(configParser.GetDt());
+        landscape.SetT(configParser.GetN());
         landscape.SetRepetions(500);
-
-        string landscapeInputFile = cmdLineParser.GetInputFilePath();
-        LandscapeParser landscapeParser(&landscape,landscapeInputFile);
-
+        
+        //initialize land and water based on input file.
+        LandscapeParser landscapeParser(&landscape,cmdLineParser.GetInputFilePath());
         landscapeParser.ReadLandscapeFromFile();
+        
+        //assign random puma and hares inside landscape
         landscape.AssignRandomPumaAndHares();
         landscape.SetOutputPrefix(cmdLineParser.GetOutputFilePrefix());
-        //PrintLandscape(landscape);
-        //PrintPumasAndHares(landscape);
-
+        
+        clock_t tStart = clock();
+        //run simulation 
         LandscapeSimulation simulation(landscape);
         simulation.Run();
+        clock_t tEnd = clock();
+        double totalTime=(double)(tEnd - tStart)/CLOCKS_PER_SEC;
+        cout<< "-total time for the simulation is: "+std::to_string(totalTime)<<" secs"<<endl;
+        
 
     }
     catch(std::exception& e )
@@ -58,6 +66,7 @@ int main(int argc, char** argv) {
 
 }
 
+//Debug Functions
 void PrintLandscape(Landscape landscape)
 {
 

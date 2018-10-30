@@ -11,7 +11,7 @@
 #include "../../include/LandscapeSimulation.hpp"
 #include "../../include/Landscape.hpp"
 #include "../../include/ConfigurationParser.hpp"
-#include "include/CmdParser.hpp"
+#include "../../include/CmdParser.hpp"
 
 using namespace std;
 void PrintPumasAndHares(Landscape landscape);

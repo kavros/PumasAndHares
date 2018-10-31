@@ -20,6 +20,8 @@ implement the model, write tests and write user and developer documentation.
 
 ## Build and install cppunit 
 ```
+ wget http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz
+ tar -xvzf cppunit-1.13.2.tar.gz
  cd cppunit-1.13.2
  ./configure --prefix=$HOME
  make

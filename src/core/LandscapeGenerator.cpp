@@ -46,13 +46,13 @@ int LandscapeGenerator::GetRandomLandDistribution()
         }
     }    
   /* *****************************************************************************************************************/
-  /* SECTION 1:
-  /* Here we create the landscape. At first we create a set of coordinates (x,y) in the range x:(2 - height-1) 
-  /* y:(2 - width-1) and then throw land in and around of that point. For every new point we create,
-  /*  we increase the number count by one and check that we don't exceed the total points wanted.
-  /* HOW RANDOM NUMBERS ARE CREATED:
-  /* The numbers are created randomly in a range [a,b] using the formula randomNumber = a + (rand()%((b-1)-a + 1));
-  /******************************************************************************************************************/    
+  /* SECTION 1:                                                                                                      */
+  /* Here we create the landscape. At first we create a set of coordinates (x,y) in the range x:(2 - height-1)       */
+  /* y:(2 - width-1) and then throw land in and around of that point. For every new point we create,                 */
+  /*  we increase the number count by one and check that we don't exceed the total points wanted.                    */
+  /* HOW RANDOM NUMBERS ARE CREATED:                                                                                 */
+  /* The numbers are created randomly in a range [a,b] using the formula randomNumber = a + (rand()%((b-1)-a + 1));  */
+  /*******************************************************************************************************************/    
 more_land:
         x = 2 + (rand() % ((height-1) - 2 + 1)); 
         y = 2 + (rand() % ((width-1) - 2 + 1));
@@ -75,7 +75,7 @@ endloop:
    /***************************************************************************************************************/
    /* SECTION 2:
    /* Here the loops go through all the points that have been created and finds the points of land
-    * which have no neighbours. So if a point doesn't have, then a land point is created next to it in a way that
+    * which have no neighbors. So if a point doesn't have, then a land point is created next to it in a way that
    /* it doesn't affect the boundaries.                                                            
    /***************************************************************************************************************/              
     int countNeighbours; 
@@ -87,7 +87,7 @@ endloop:
                 
             if (landMatrix[i][j] == 1)
             {
-                    /*At first count how many neighbours exist*/
+                    /*At first count how many neighbors exist*/
                     if (landMatrix[i+1][j] == 1){
                     countNeighbours += 1;
                     }
@@ -120,9 +120,9 @@ endloop:
  /* SECTION 3:
  /* Subtrace extra land to reach again the wanted percentage of land in landscape.
  /* Because extra land was added in section 2 (if is added), the algorithm need to find a way to replace that land with water somewhere else.
- /* It finds a land point that has more than two neighbours and make one of them water. 
+ /* It finds a land point that has more than two neighbors and make one of them water. 
  /*********************************************************************************************************************************************/
-    int neighboursCoordX[4]; /* This two arrays hold the coordinates of the neighbours. */ 
+    int neighboursCoordX[4]; /* This two arrays hold the coordinates of the neighbors. */ 
     int neighboursCoordY[4];
     int randNeighbour;
     
@@ -141,9 +141,9 @@ subtrace_more:
     x = 1 + (rand() % ((height) - 1 + 1)); 
     y = 1 + (rand() % ((width) - 1 + 1));
     
-    if (landMatrix[x][y] == 1){  /* We are searching for a land with more than two neighbours to make it water. */
+    if (landMatrix[x][y] == 1){  /* We are searching for a land with more than two neighbors to make it water. */
         
-        /* Count how many nearest neighbours exist and record their x and y coordinates in the two vectors
+        /* Count how many nearest neighbors exist and record their x and y coordinates in the two vectors
          * neighboursCoordX & Y.
          */
             if (landMatrix[x+1][y] == 1){
@@ -167,7 +167,7 @@ subtrace_more:
             neighboursCoordY[countNeighbours] = y-1;
             }
             
-            if (countNeighbours >= 2){    /* If it has more than two neighbours then take one of them "randomly" and make it water */
+            if (countNeighbours >= 2){    /* If it has more than two neighbors then take one of them "randomly" and make it water */
                 
                 randNeighbour = 1 + (rand() % ((countNeighbours) - 1 + 1));  
                 
@@ -198,5 +198,5 @@ write_file:
     cout << "The landscape has been created and is stored in the Data.dat file without water in the boundaries " << endl;
     cout << "--------------------------------------------------------------------------------------------------" << endl;
 
-end_the_program:
+
 }

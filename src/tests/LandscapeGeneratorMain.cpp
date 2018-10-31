@@ -8,7 +8,7 @@ int main()
 {
     int srand(time(NULL));
 	
-	LandscapeGenerator landscape(13, 18, 0.47);
+	LandscapeGenerator landscape(13, 65, 0.41);
         
         landscape.GetRandomLandDistribution();   
 }

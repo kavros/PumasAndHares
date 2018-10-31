@@ -17,17 +17,23 @@ public:
         int SetLandPercentage(float landPercentage);
         int SetOutputFileName(string fileName);
         void WriteLandscapeToFile();
-        
+        void GetRandomLandDistribution();
+
 
 private:
         int totalColumns;
         int totalRows;
-        int landMatrix[2000][2000];
+        int landMatrix[2002][2002];
         float landPercentage;
         string outputFileName;
         int GetRandomInRange(int lowerBound,int upperBound);
+        void InitLandscapeWithWater();
+        void GenerateRandomLand();
+        int NormalizeLandscape();
+        void RemoveExtraLand(int countExtraLand);
+        void SaveLandscape();
+        int CountNeighbours(int i,int j);
 
-        
 };  
 
 #endif

@@ -9,7 +9,6 @@ class LandscapeGenerator
 public:           
         //LandscapeGenerator(int width,int height, float land_percentage); 
         LandscapeGenerator(); 
-        int GetRandomLandDistribution();
         int GetRandomLandDistribution2();
         int ParseCmdLine(int ac, char *av[]);
         int SetTotalRows(int totalRows);

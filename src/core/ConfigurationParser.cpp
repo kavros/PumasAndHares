@@ -146,7 +146,7 @@ int ConfigurationParser::CheckSign(double var, std::string varname)
   }
   else
   {
-    std::cout << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
+    std::cout << std::endl << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
     return -1;
   }
 };
@@ -159,7 +159,7 @@ int ConfigurationParser::CheckSign(int var, std::string varname)
   }
   else
   {
-    std::cout << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
+    std::cout << std::endl << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
     return -1;
   }
 };

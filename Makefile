@@ -29,7 +29,7 @@ clean:
 	@$(RM) -r $(BUILD_PATH)
 	@$(RM) -r $(BIN_PATH)
 	@echo "Deleting outputs"
-	@$(RM) $(OUTPUTS)
+	#@$(RM) $(OUTPUTS)
 
 .PHONY: dirs
 dirs:

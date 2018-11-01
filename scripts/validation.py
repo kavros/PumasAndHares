@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 #print "This is the name of the script: ", sys.argv[0]
 #print "Number of arguments: ", len(sys.argv)
@@ -68,21 +69,25 @@ def main():
 	#print "totalBlackPixels:",totalBlackPixels
 	#print "totalGreenPixels",totalGreenPixels
 
-	avgNumOfHares=float(averageFileContent[1].split(":")[1].strip())
-	avgNumOfPumas=float(averageFileContent[2].split(":")[1].strip())
+
+	##avgNumOfHares=float(averageFileContent[1].split(":")[1].strip())
+	##avgNumOfPumas=float(averageFileContent[2].split(":")[1].strip())
+
+	##print avgNumOfPumas
+	##print avgNumOfHares
 
 	#second validation
-	if(avgNumOfPumas > avgNumOfHares):
-		assert(totalRedPixels > totalGreenPixels)
-	elif(avgNumOfPumas < avgNumOfHares):
-		assert(totalRedPixels < totalGreenPixels)
+	#if(avgNumOfPumas > avgNumOfHares):
+	#	assert(totalRedPixels > totalGreenPixels)
+	#elif(avgNumOfPumas < avgNumOfHares):
+	#	assert(totalRedPixels < totalGreenPixels)
 
 
-	#third validation
-	totalWaterSquares = 0
-	totalLandSquares  =0
+	#parse data from landscape input file
+	totalWaterSquares=0
+	totalLandSquares=0
 
-	currLineNumber =0
+	currLineNumber=0
 	for line in landscapeFileLines:
 		if currLineNumber ==0:
 			currLineNumber=currLineNumber+1
@@ -95,6 +100,7 @@ def main():
 				totalWaterSquares = totalWaterSquares+1
 	
 
+	#third validation
 	assert(totalWaterSquares == totalBluePixels)
 	assert(totalLandSquares == (totalGreenPixels+totalRedPixels+totalBlackPixels))
 

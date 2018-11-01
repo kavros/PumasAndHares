@@ -5,6 +5,7 @@ implement the model, write tests and write user and developer documentation.
 ## Build
 * Follow the instructions below to install cppunit
 * Build project using ```make```
+* Build unit tests using  ```make test```
 
 ## Run
 * Run project using ```make run```

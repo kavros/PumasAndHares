@@ -74,7 +74,7 @@ def main():
 	#second validation
 	if(avgNumOfPumas > avgNumOfHares):
 		assert(totalRedPixels > totalGreenPixels)
-	elif(avgNumOfPumas < avgNumOfPumas):
+	elif(avgNumOfPumas < avgNumOfHares):
 		assert(totalRedPixels < totalGreenPixels)
 
 
@@ -100,13 +100,6 @@ def main():
 
 	totalPixels =  totalGreenPixels+totalBlackPixels+totalBluePixels+totalRedPixels
 	assert(totalPixels == totalWaterSquares+totalLandSquares)
-
-
-
-	#for line in averageFileContent:
-	#	if(":" in line):
-	#		print line.split(":")
-	
 
 
 

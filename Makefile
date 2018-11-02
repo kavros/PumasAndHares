@@ -22,6 +22,9 @@ INCLUDES= -I include/ -I /usr/local/include
 .PHONY: default_target
 default_target: release
 
+.PHONY:docs
+docs:
+	doxygen Doxyfile
 
 .PHONY: clean
 clean:

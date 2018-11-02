@@ -5,7 +5,7 @@
 class CmdParser {
 public:
     CmdParser(int argc, char** argv);
-
+    CmdParser();
     void SetInputFilePath(std::string inputFile);
     void SetConfigFilePath(std::string configFilePath);
     void SetOutputFilePrefix(std::string outputFilePrefix);

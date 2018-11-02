@@ -6,6 +6,12 @@
 #include <cstdlib>
 #include "../../include/Args.hpp"
 using namespace std;
+
+CmdParser::CmdParser()
+{
+    
+}
+
 CmdParser::CmdParser(int argc, char** argv) 
 {
 

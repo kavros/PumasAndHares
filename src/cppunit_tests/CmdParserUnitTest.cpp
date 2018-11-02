@@ -7,7 +7,8 @@ using namespace std;
 class CmdParserUnitTest:public CppUnit::TestFixture 
 {
     CPPUNIT_TEST_SUITE(CmdParserUnitTest);
-    CPPUNIT_TEST(testOutput);
+    CPPUNIT_TEST(TestSetInputFilePath);
+    CPPUNIT_TEST(TestSetConfigFilePath);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -21,12 +22,33 @@ public:
     {
       // No-op.
     }
-
-    /* Test output. */
-    void testOutput() 
+    
+    void TestSetInputFilePath()
     {
-      
-      
+        CmdParser parser;
+        try
+        {
+            parser.SetInputFilePath("");
+            CPPUNIT_ASSERT(0==1);
+        }
+         catch(std::exception& e )
+        {
+             CPPUNIT_ASSERT(1==1);
+        }
+    }
+    
+    void TestSetConfigFilePath()
+    {
+        CmdParser parser;
+        try
+        {
+            parser.SetConfigFilePath("test.jsoin");
+            CPPUNIT_ASSERT(0==1);
+        }
+         catch(std::exception& e )
+        {
+             CPPUNIT_ASSERT(1==1);
+        }
     }
 
 };

@@ -15,7 +15,9 @@
 #include "../../include/Args.hpp"
 #include "../../include/Json.hpp"
 #include <iostream>
+#include <string>
 #include <fstream>
+#include <stdexcept>
 
 
 
@@ -68,18 +70,10 @@ std::string ConfigurationGenerator::GetFileName()
   return this->fileName;
 }
 
-int ConfigurationGenerator::SetFileName(std::string fileNameStr)
+void ConfigurationGenerator::SetFileName(std::string fileNameStr)
 {
-  try
-  {
+
     this->fileName = fileNameStr;
-    return 0;
-  }
-  catch(const std::exception& e)
-  {
-    std::cerr << e.what() << std::endl;
-    return -1;
-  }
 }
 
 std::string ConfigurationGenerator::GetJsonString()
@@ -87,18 +81,10 @@ std::string ConfigurationGenerator::GetJsonString()
   return this->jsonString;
 };
 
-int ConfigurationGenerator::SetJsonString(std::string jsonStr)
+void ConfigurationGenerator::SetJsonString(std::string jsonStr)
 {
-  try
-  {
     this->jsonString = jsonStr;
-    return 0;
-  }
-  catch(const std::exception& e)
-  {
-    std::cerr << e.what() << std::endl;
-    return -1;
-  }
+  
 };
 
 double ConfigurationGenerator::GetR()
@@ -106,10 +92,10 @@ double ConfigurationGenerator::GetR()
   return this->r;
 };
 
-int ConfigurationGenerator::SetR(double r)
+void ConfigurationGenerator::SetR(double r)
 {
-  this->r = r;
-  return CheckSign(this->r, "r");
+    CheckSign(r,"r") ;
+    this->r = r;
 };
 
 
@@ -119,10 +105,10 @@ double ConfigurationGenerator::GetA()
 {
   return this->a;
 };
-int ConfigurationGenerator::SetA(double a)
+void ConfigurationGenerator::SetA(double a)
 {
-  this->a = a;
-  return CheckSign(this->a, "a");
+    CheckSign(a,"a");
+    this->a = a;
 };
 
 
@@ -132,10 +118,11 @@ double ConfigurationGenerator::GetB()
 {
   return this->b;
 };
-int ConfigurationGenerator::SetB(double b)
+void ConfigurationGenerator::SetB(double b)
 {
-  this->b = b;
-  return CheckSign(this->b,"b");
+    
+    CheckSign(b,"b");
+    this->b = b;
 };
 
 
@@ -145,10 +132,10 @@ double ConfigurationGenerator::GetM()
 {
   return this->m;
 };
-int ConfigurationGenerator::SetM(double m)
+void ConfigurationGenerator::SetM(double m)
 {
-  this->m = m;
-  return CheckSign(this->m,"m");
+    CheckSign(m,"m");
+    this->m = m;
 };
 
 
@@ -159,10 +146,10 @@ double ConfigurationGenerator::GetK()
 {
   return this->k;
 };
-int ConfigurationGenerator::SetK(double k)
+void ConfigurationGenerator::SetK(double k)
 {
-  this->k = k;
-  return CheckSign(this->k, "k");
+  CheckSign(k,"k");
+    this->k = k;
 };
 
 
@@ -173,10 +160,10 @@ double ConfigurationGenerator::GetL()
 {
   return this->l;
 };
-int ConfigurationGenerator::SetL(double l)
+void ConfigurationGenerator::SetL(double l)
 {
-  this->l = l;
-  return CheckSign(this->l,"l");
+    CheckSign(l,"l");
+    this->l = l;
 };
 
 
@@ -185,12 +172,12 @@ int ConfigurationGenerator::SetL(double l)
 
 double ConfigurationGenerator::GetDt()
 {
-  return this->d;
+    return this->d;
 };
-int ConfigurationGenerator::SetDt(double d)
+void ConfigurationGenerator::SetDt(double d)
 {
-  this->d = d;
-  return CheckSign(this->d, "d");
+    CheckSign(d,"d");
+    this->d = d;
 };
 
 
@@ -200,39 +187,37 @@ int ConfigurationGenerator::GetN()
 {
   return this->n;
 };
-int ConfigurationGenerator::SetN(int n)
+void ConfigurationGenerator::SetN(int n)
 {
-  this->n = n;
-  return CheckSign(this->n, "n");
+    CheckSign(n,"N");
+    
+    this->n = n;
 };
 
 
 
 
-int ConfigurationGenerator::CheckSign(double var, std::string varname)
+void ConfigurationGenerator::CheckSign(double var, std::string varname)
 {
-  if(var > 0.0)
-  {
-    return 0;
-  }
-  else
-  {
-    std::cout << std::endl << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
-    return -1;
-  }
+    if(var < 0) 
+    {
+        std::string msg = std::string("Configuration error: variables cannot be negative -> ");
+        std::string var=std::string(varname);   
+        throw std::invalid_argument(msg+var);
+    }
 };
 
-int ConfigurationGenerator::CheckSign(int var, std::string varname)
+void ConfigurationGenerator::CheckSign(int var, std::string varname)
 {
-  if(var > 0)
-  {
-    return 0;
-  }
-  else
-  {
-    std::cout << std::endl << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
-    return -1;
-  }
+    if(var < 0)
+
+    {
+        std::string msg = std::string("Configuration error: variables cannot be negative -> ");
+        std::string var=std::string(varname);   
+        throw std::invalid_argument(msg+var);
+    }
+    
+ 
 };
 
 

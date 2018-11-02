@@ -27,38 +27,38 @@ public:
     int WriteToFile(std::string fileName);
 
     double GetR();
-    int SetR(double r);
+    void SetR(double r);
 
     double GetA();
-    int SetA(double a);
+    void SetA(double a);
 
     double GetB();
-    int SetB(double b);
+    void SetB(double b);
 
     double GetM();
-    int SetM(double m);
+    void SetM(double m);
 
     double GetK();
-    int SetK(double k);
+    void SetK(double k);
 
     double GetL();
-    int SetL(double l);
+    void SetL(double l);
 
     double GetDt();
-    int SetDt(double d);
+    void SetDt(double d);
 
     int GetN();
-    int SetN(int n);
+    void SetN(int n);
 
     std::string GetFileName();
-    int SetFileName(std::string fileNameStr);
+    void SetFileName(std::string fileNameStr);
 
     std::string GetJsonString();
-    int SetJsonString(std::string jsonStr);
+    void SetJsonString(std::string jsonStr);
 
 private:
-  int CheckSign(double var, std::string varname);
-  int CheckSign(int var, std::string varname);
+  void CheckSign(double var, std::string varname);
+  void CheckSign(int var, std::string varname);
   json j;
   double r; // Hare birth rate.
   double a; // Predation rate.

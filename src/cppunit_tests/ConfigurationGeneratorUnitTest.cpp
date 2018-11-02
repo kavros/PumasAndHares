@@ -11,8 +11,6 @@ using namespace std;
 class ConfigurationGeneratorUnitTest:public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE(ConfigurationGeneratorUnitTest);
-    CPPUNIT_TEST(TestWriteConfigurationToFile);
-    CPPUNIT_TEST(TestSetJsonString);
     CPPUNIT_TEST(TestSetA);
     CPPUNIT_TEST(TestSetB);
     CPPUNIT_TEST(TestSetDt);
@@ -53,89 +51,146 @@ public:
       // No-op.
     }
 
-    /* Test output. */
-    void TestWriteConfigurationToFile()
-    {
-      ConfigurationGenerator configGeneratorTestWrite(18,av);
-      try
-      {
-        configGeneratorTestWrite.WriteToFile("./data/configs/config8.json");
-        CPPUNIT_ASSERT(1==1);
-      }
-      catch(exception& e)
-      {
-        cout << e.what() << endl;
-        CPPUNIT_ASSERT(1==0);
-      }
 
-    }
-
-    void TestSetJsonString()
-    {
-      ConfigurationGenerator configGenerator(18,av);
-      std::string jsonStr = "{\"a\": 0.04,\"b\": 0.02,\"d\": 0.4,\"k\": 0.2,\"l\": 0.2,\"m\": 0.06,\"n\": 100,\"r\": 0.08}";
-      CPPUNIT_ASSERT(configGenerator.SetJsonString(jsonStr) == 0);
-    }
 
     void TestSetA()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      double value = -1.1;
-      CPPUNIT_ASSERT(configGenerator.SetA(value) == -1);
-    }
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetA(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
 
+        }
+    }
+    
+    
     void TestSetB()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      double value = -1.1;
-      CPPUNIT_ASSERT(configGenerator.SetB(value) == -1);
- 
-    }
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetB(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
 
+        }
+    }
+    
     void TestSetDt()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      double value = -1.1;
-      CPPUNIT_ASSERT(configGenerator.SetDt(value) == -1);
- 
-    }
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetDt(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
 
+        }
+    }
+    
+    
+    
     void TestSetK()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      double value = -1.1;
-      CPPUNIT_ASSERT(configGenerator.SetK(value) == -1);
- 
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetK(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+
+        }
     }
+    
+    
+    
     void TestSetL()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      double value = -1.1;
-      CPPUNIT_ASSERT(configGenerator.SetL(value) == -1);
- 
-    }
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetL(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
 
+        }
+    }
+    
+    
+    
+    
     void TestSetM()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      double value = -1.1;
-      CPPUNIT_ASSERT(configGenerator.SetM(value) == -1);
- 
-    }
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetM(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
 
+        }
+    }
+    
+    
     void TestSetN()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      int value = -1;
-      CPPUNIT_ASSERT(configGenerator.SetN(value) == -1);
- 
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetN(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+
+        }
     }
+    
+    
     void TestSetR()
     {
-      ConfigurationGenerator configGenerator(18,av);
-      double value = -1.1;
-      CPPUNIT_ASSERT(configGenerator.SetR(value) == -1);
- 
-    } 
+        ConfigurationGenerator configGenerator(18,av);
+        double value = -1.1;
+        try
+        {
+            configGenerator.SetR(value);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+
+        }
+    }
+    
+    
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(ConfigurationGeneratorUnitTest);

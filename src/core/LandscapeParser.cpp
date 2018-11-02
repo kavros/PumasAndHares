@@ -35,6 +35,10 @@ LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
                 std::vector<int> dimensions=GetDimensions(line);
                 totalRows=dimensions.at(0);
                 totalColumns=dimensions.at(1);
+                if(totalColumns <=0  || totalRows <=0 )
+                {
+                    throw invalid_argument("total rows or columns cannot be zero or negative");
+                }
                 grid = AllocateSpaceForGrid(totalRows,totalColumns);
                 
                 landscape->SetGrid(grid);
@@ -50,7 +54,11 @@ LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
             currRow++;
             
         }
-        
+        if(currRow != landscape->GetTotalRows() )
+        {
+            throw invalid_argument("landscape rows are not valid");
+        }
+                
         landscapeFile.close();
     }
     else
@@ -134,6 +142,10 @@ void LandscapeParser::ParseRow(LandscapeSquare** grid, string line, int currRow)
 
         }
 
+    }
+    if(currCol != landscape->GetTotalColumns())
+    {
+        throw std::invalid_argument("Landscape columns are not valid.");
     }
 }
 

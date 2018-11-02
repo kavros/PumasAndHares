@@ -21,7 +21,8 @@
 
 
 
-ConfigurationGenerator::ConfigurationGenerator(int ac, char *av[]) {
+ConfigurationGenerator::ConfigurationGenerator(int ac, char *av[])
+{
     args::ArgumentParser parser("Pumas And Hares Configuration File Generator.","");
     args::HelpFlag help(parser, "help", "Display this help message", {'h',"help"});
     args::ValueFlag<double> r(parser,"r", "The birth rate of hares.", {'r'});
@@ -37,19 +38,22 @@ ConfigurationGenerator::ConfigurationGenerator(int ac, char *av[]) {
     {
         parser.ParseCLI(ac, av);
     }
-
-    catch(args::Help){
+    catch(args::Help)
+    {
         std::cout << parser;
+        exit(0);
     }
-
-    catch(args::ParseError e){
+    catch(args::ParseError e)
+    {
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
+        exit(0);
     }
     catch (args::ValidationError e)
     {
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
+        exit(0);
     }
     
     this->options["r"] = args::get(r);

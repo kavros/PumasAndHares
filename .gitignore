@@ -3,3 +3,4 @@ nbproject
 generate_landscape
 data/outputs
 TestResults.xml
+cppunit-1.13.2/*

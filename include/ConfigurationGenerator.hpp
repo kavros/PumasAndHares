@@ -24,7 +24,7 @@ class ConfigurationGenerator {
 public:
 
     ConfigurationGenerator(int ac, char *av[]);
-    bool WriteToFile(std::string fileName);
+    int WriteToFile(std::string fileName);
 
     double GetR();
     int SetR(double r);
@@ -55,7 +55,7 @@ public:
 
     std::string GetJsonString();
     int SetJsonString(std::string jsonStr);
-    
+
 private:
   int CheckSign(double var, std::string varname);
   int CheckSign(int var, std::string varname);

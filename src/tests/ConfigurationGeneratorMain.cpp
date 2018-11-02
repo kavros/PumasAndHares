@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   ConfigurationGeneratorMain.cpp
  * Author: alex
  *
@@ -17,7 +17,6 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     ConfigurationGenerator generator(argc, argv);
-    generator.WriteToFile(generator.fileName);
+    generator.WriteToFile(generator.GetFileName());
     return 0;
 }
-

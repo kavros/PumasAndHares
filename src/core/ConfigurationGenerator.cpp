@@ -233,10 +233,10 @@ int ConfigurationGenerator::CheckSign(int var, std::string varname)
     std::cout << std::endl << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
     return -1;
   }
+};
 
 
-
-bool ConfigurationGenerator::WriteToFile(std::string fileName){
+int ConfigurationGenerator::WriteToFile(std::string fileName){
     try
     {
         std::ofstream out(fileName);
@@ -245,8 +245,8 @@ bool ConfigurationGenerator::WriteToFile(std::string fileName){
     }
     catch(const std::exception& e){
         std::cerr << e.what() << std::endl;
-        return false;
+        return -1;
     }
-    return true;
+    return 0;
 
 };

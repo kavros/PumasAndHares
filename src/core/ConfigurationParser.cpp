@@ -17,6 +17,10 @@
 #include <fstream>
 #include <iostream>
 
+ConfigurationParser::ConfigurationParser()
+{
+    
+}
 
 ConfigurationParser::ConfigurationParser(std::string configurationFileName)
 {
@@ -34,13 +38,14 @@ ConfigurationParser::ConfigurationParser(std::string configurationFileName)
 
 double ConfigurationParser::GetR()
 {
-  return this->r;
+    assert(r>=0);
+    return this->r;
 };
 
-int ConfigurationParser::SetR(double r)
+void ConfigurationParser::SetR(double r)
 {
-  this->r = r;
-  return CheckSign(this->r, "r");
+    CheckSign(r,"r");
+    this->r = r;
 };
 
 
@@ -48,12 +53,13 @@ int ConfigurationParser::SetR(double r)
 
 double ConfigurationParser::GetA()
 {
-  return this->a;
+    assert(a>=0);
+    return this->a;
 };
-int ConfigurationParser::SetA(double a)
+void ConfigurationParser::SetA(double a)
 {
-  this->a = a;
-  return CheckSign(this->a, "a");
+    CheckSign(a,"a");
+    this->a = a;
 };
 
 
@@ -61,12 +67,14 @@ int ConfigurationParser::SetA(double a)
 
 double ConfigurationParser::GetB()
 {
-  return this->b;
+    assert(b>=0);
+    return this->b;
 };
-int ConfigurationParser::SetB(double b)
+void ConfigurationParser::SetB(double b)
 {
-  this->b = b;
-  return CheckSign(this->b,"b");
+    CheckSign(b,"b");
+    this->b = b;
+
 };
 
 
@@ -74,12 +82,14 @@ int ConfigurationParser::SetB(double b)
 
 double ConfigurationParser::GetM()
 {
-  return this->m;
+    assert(m>=0);
+    return this->m;
 };
-int ConfigurationParser::SetM(double m)
+void ConfigurationParser::SetM(double m)
 {
-  this->m = m;
-  return CheckSign(this->m,"m");
+    CheckSign(m,"m");
+    this->m = m;
+  
 };
 
 
@@ -88,12 +98,14 @@ int ConfigurationParser::SetM(double m)
 
 double ConfigurationParser::GetK()
 {
-  return this->k;
+    assert(k >=0);
+    return this->k;
 };
-int ConfigurationParser::SetK(double k)
+void ConfigurationParser::SetK(double k)
 {
-  this->k = k;
-  return CheckSign(this->k, "k");
+    CheckSign(k,"k");
+    this->k = k;
+ 
 };
 
 
@@ -102,12 +114,14 @@ int ConfigurationParser::SetK(double k)
 
 double ConfigurationParser::GetL()
 {
-  return this->l;
+    assert(l>=0);
+    return this->l;
 };
-int ConfigurationParser::SetL(double l)
+void ConfigurationParser::SetL(double l)
 {
-  this->l = l;
-  return CheckSign(this->l,"l");
+    CheckSign(l,"l");
+    this->l = l;
+ 
 };
 
 
@@ -116,12 +130,14 @@ int ConfigurationParser::SetL(double l)
 
 double ConfigurationParser::GetDt()
 {
-  return this->d;
+    assert(d>=0);
+    return this->d;
 };
-int ConfigurationParser::SetDt(double d)
+void ConfigurationParser::SetDt(double d)
 {
-  this->d = d;
-  return CheckSign(this->d, "d");
+    CheckSign(d,"d");
+    this->d = d;
+ 
 };
 
 
@@ -129,37 +145,33 @@ int ConfigurationParser::SetDt(double d)
 
 int ConfigurationParser::GetN()
 {
-  return this->n;
+    assert(n>=0);
+    return this->n;
 };
-int ConfigurationParser::SetN(int n)
+void ConfigurationParser::SetN(int n)
 {
-  this->n = n;
-  return CheckSign(this->n, "n");
-};
-
-
-int ConfigurationParser::CheckSign(double var, std::string varname)
-{
-  if(var > 0.0)
-  {
-    return 0;
-  }
-  else
-  {
-    std::cout << std::endl << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
-    return -1;
-  }
+    CheckSign(n,"n");
+    this->n = n;
+ 
 };
 
-int ConfigurationParser::CheckSign(int var, std::string varname)
+
+void ConfigurationParser::CheckSign(double var, std::string varname)
 {
-  if(var > 0)
-  {
-    return 0;
-  }
-  else
-  {
-    std::cout << std::endl << "Configuration error: variable '" << varname << "' has the wrong sign." << std::endl;
-    return -1;
-  }
+    if(var < 0) 
+    {
+        std::string msg = std::string("Configuration error: variables cannot be negative -> ");
+        std::string var=std::string(varname);   
+        throw std::invalid_argument(msg+var);
+    }
+};
+
+void ConfigurationParser::CheckSign(int var, std::string varname)
+{
+    if(var < 0) 
+    {
+        std::string msg = std::string("Configuration error: variables cannot be negative -> ");
+        std::string var=std::string(varname);   
+        throw std::invalid_argument(msg+var);
+    }
 };

@@ -46,59 +46,115 @@ public:
 
     void TestSetA()
     {
-      ConfigurationParser configParser("./data/configs/config2.json");
-      double value = -1.1;
-      CPPUNIT_ASSERT(configParser.SetA(value) == -1);
+      ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetA(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
 
     void TestSetB()
     {
-      ConfigurationParser configParser("./data/configs/config.json");
-      double value = -1.1;
-      CPPUNIT_ASSERT(configParser.SetB(value) == -1);
+        ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetB(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
     void TestSetDt()
     {
-      ConfigurationParser configParser("./data/configs/config.json");
-      double value = -1.1;
-      CPPUNIT_ASSERT(configParser.SetDt(value) == -1);
+        ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetDt(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
     void TestSetK()
     {
-      ConfigurationParser configParser("./data/configs/config.json");
-      double value = -1.1;
-      CPPUNIT_ASSERT(configParser.SetK(value) == -1);
+        ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetK(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
     void TestSetL()
     {
-      ConfigurationParser configParser("./data/configs/config.json");
-      double value = -1.1;
-      CPPUNIT_ASSERT(configParser.SetL(value) == -1);
+        ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetL(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
     void TestSetM()
     {
-      ConfigurationParser configParser("./data/configs/config.json");
-      double value = -1.1;
-      CPPUNIT_ASSERT(configParser.SetM(value) == -1);
+        ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetM(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
     void TestSetN()
     {
-      ConfigurationParser configParser("./data/configs/config.json");
-      int value = -1;
-      CPPUNIT_ASSERT(configParser.SetN(value) == -1);
+        ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetN(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
     void TestSetR()
     {
-      ConfigurationParser configParser("./data/configs/config.json");
-      double value = -1.1;
-      CPPUNIT_ASSERT(configParser.SetR(value) == -1);
+        ConfigurationParser configParserTestRead;
+        try
+        {
+            configParserTestRead.SetR(-10);
+            CPPUNIT_ASSERT(1==0);
+        }
+        catch(exception& e)
+        {
+            CPPUNIT_ASSERT(1==1);
+        }
     }
 
 };

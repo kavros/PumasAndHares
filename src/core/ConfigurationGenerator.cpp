@@ -197,8 +197,11 @@ int ConfigurationGenerator::GetN()
 };
 void ConfigurationGenerator::SetN(int n)
 {
-    CheckSign(n,"N");
-    
+    CheckSign(n,"n");
+    if(n >= 500)
+    {
+        throw std::invalid_argument("Time steps per output must be below 500.");
+    }
     this->n = n;
 };
 

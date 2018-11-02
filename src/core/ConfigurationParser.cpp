@@ -151,6 +151,10 @@ int ConfigurationParser::GetN()
 void ConfigurationParser::SetN(int n)
 {
     CheckSign(n,"n");
+    if(n >= 500)
+    {
+        throw std::invalid_argument("Time steps per output must be below 500.");
+    }
     this->n = n;
  
 };

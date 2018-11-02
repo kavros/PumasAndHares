@@ -312,3 +312,7 @@ double Landscape::GetRandomInRange(double lowerBound,double upperBound)
     return dis(gen);
     
 }
+LandscapeSquare** Landscape::GetGrid()
+{
+    return grid;
+}

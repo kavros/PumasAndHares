@@ -25,7 +25,6 @@ private:
     void IsValid(char& c);
     std::vector<int> GetDimensions(std::string firstLine);
     LandscapeSquare** AllocateSpaceForGrid(int totalRows,int totalColumns);
-    void DealocateGrid();
     void ParseRow(LandscapeSquare**  grid,string line,int currRow);
     
     Landscape* landscape;

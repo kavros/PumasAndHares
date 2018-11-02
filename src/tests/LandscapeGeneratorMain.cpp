@@ -13,6 +13,6 @@ int main(int argc, char** argv)
     LandscapeGenerator landscapeGenerator;
     landscapeGenerator.ParseCmdLine(argc,argv);
     
-    landscapeGenerator.GetRandomLandDistribution2();   
+    landscapeGenerator.GetRandomLandDistribution();   
 }
 

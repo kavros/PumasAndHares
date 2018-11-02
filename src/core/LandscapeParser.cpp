@@ -12,7 +12,7 @@ LandscapeParser::LandscapeParser(Landscape* landscape,std::string filePath)
 
 LandscapeParser::~LandscapeParser() 
 {
-    DealocateGrid();
+
 }
 
 LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
@@ -135,15 +135,7 @@ void LandscapeParser::ParseRow(LandscapeSquare** grid, string line, int currRow)
     }
 }
 
-void LandscapeParser::DealocateGrid()
-{
-    //deallocate array
-    for(int i=0; i < landscape->GetTotalRows(); i++)
-    {
-        delete[] grid[i];
-    }
-    delete grid;
-}
+
 
 
 LandscapeSquare** LandscapeParser::GetGrid()

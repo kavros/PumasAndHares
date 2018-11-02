@@ -40,8 +40,8 @@ public:
     double GetL();
     int SetL(double l);
 
-    double GetD();
-    int SetD(double d);
+    double GetDt();
+    int SetDt(double d);
 
     int GetN();
     int SetN(int n);

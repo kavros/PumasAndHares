@@ -29,7 +29,7 @@ clean:
 	@$(RM) -r $(BUILD_PATH)
 	@$(RM) -r $(BIN_PATH)
 	@echo "Deleting outputs"
-	@$(RM) $(OUTPUTS)
+	#@$(RM) $(OUTPUTS)
 
 .PHONY: dirs
 dirs:
@@ -48,16 +48,7 @@ release: dirs
 all:	$(BIN_PATH)/$(BIN_NAME) \
 	$(BIN_PATH)/landscapeGeneratorMain\
 	$(BIN_PATH)/configurationGeneratorMain\
-	$(BIN_PATH)/cmdParserTest\
-	$(BIN_PATH)/configurationGeneratorMain\
-	$(BIN_PATH)/configurationParserTest\
-	$(BIN_PATH)/landscapeSimulationTest\
-	$(BIN_PATH)/landscapeValidatorTest\
-	$(BIN_PATH)/outpoutGeneratorTest\
-	$(BIN_PATH)/landscapeParserTest\
 	
-
-
 $(BUILD_PATH)/%.o: src/cppunit_tests/%.cpp\
 					$(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) -c $< $(CPPUNITLDFLAGS) $(INCLUDES) -o $@
@@ -98,45 +89,19 @@ run_unit_tests:
 
 .PHONY: run
 run:
-	./$(BIN_PATH)/pumasAndHares
+	./$(BIN_PATH)/pumasAndHares -i data/landscapes/crete3.dat -c data/configs/config.json -p output
 	
 $(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
-$(BIN_PATH)/cmdParserTest: src/tests/CmdParserTest.cpp \
-			    $(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS)  $^ -o $@
-
 $(BIN_PATH)/configurationGeneratorMain: src/tests/ConfigurationGeneratorMain.cpp \
 			    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
-
-$(BIN_PATH)/configurationParserTest: src/tests/ConfigurationParserTest.cpp \
-			    $(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS) $^ -o $@
-
-
-$(BIN_PATH)/landscapeParserTest: src/tests/LandscapeParserTest.cpp \
-			    $(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
-	
-
-$(BIN_PATH)/landscapeSimulationTest: src/tests/LandscapeSimulationTest.cpp \
-			    $(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS) $^  -o $@
-
-
 $(BIN_PATH)/landscapeValidatorTest: src/tests/LandscapeValidatorTest.cpp \
 			    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
-
-
-$(BIN_PATH)/outpoutGeneratorTest: src/tests/OutputGeneratorTest.cpp \
-			    $(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS) $^ -o $@
-
 
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS) src/core/main.cpp
 	$(CXX) $(COMPILE_FLAGS) $^  -o $@

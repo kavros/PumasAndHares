@@ -20,10 +20,6 @@
 #include <random>
 #include "../../include/ErrorValues.hpp"
 
-Landscape::Landscape(string configurationFileName,string landscapeFileName)
-{
-    
-}
 
 Landscape::Landscape() 
 {
@@ -34,6 +30,15 @@ Landscape::Landscape()
 Landscape::~Landscape() 
 {
 
+}
+void Landscape::SetOutputPrefix(string outputPrefix)
+{
+    this->outputPrefix =outputPrefix;
+}
+
+string Landscape::GetOutputPrefix()
+{
+    return outputPrefix;
 }
 
 //setters
@@ -113,7 +118,6 @@ void Landscape::SetIsWater( int i, int j,bool value)
 void Landscape::SetPumas( int i,  int j, double value) 
 {
     AreArrayIndexesValid(i,j);
-    CheckPumasAndHaresValue(value);
     this->grid[i][j].SetPumas(value);
     
 }
@@ -121,7 +125,6 @@ void Landscape::SetPumas( int i,  int j, double value)
 void Landscape::SetHares( int i,  int j, double value)
 {
     AreArrayIndexesValid(i,j); 
-    CheckPumasAndHaresValue(value);
     this->grid[i][j].SetHares(value);   
 }
 
@@ -259,11 +262,6 @@ void Landscape::AreArrayIndexesValid(int row,int col)
      {
          throw out_of_range("program try to access i,j that are out of range");
      }
-}
-
-void Landscape::CheckPumasAndHaresValue(double value)
-{
-    //assert(value>=0);
 }
 
 bool Landscape::IsHaloSquare(int row,int col)

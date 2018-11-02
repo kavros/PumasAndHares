@@ -1,26 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   CmdParser.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 6:48 PM
- */
-
 #ifndef CMDPARSER_HPP
 #define CMDPARSER_HPP
+#include <string>
 
 class CmdParser {
 public:
-    CmdParser();
+    CmdParser(int argc, char** argv);
 
+    void SetInputFilePath(std::string inputFile);
+    void SetConfigFilePath(std::string configFilePath);
+    void SetOutputFilePrefix(std::string outputFilePrefix);
+    
+    std::string GetInputFilePath();
+    std::string GetConfigFilePath();
+    std::string GetOutputFilePrefix();
+    
+    
     virtual ~CmdParser();
 private:
-
+    std::string landscapeFilePath;
+    std::string outputFilePrefix;
+    std::string configFilePath;
 };
 
 #endif /* CMDPARSER_HPP */

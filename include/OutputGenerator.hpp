@@ -19,7 +19,7 @@ public:
      * with name averages.txt.
      * @param landscape
      */
-    int SaveAverages(double avgsPuma[],double avgsHares[],int totalElements);
+    int SaveAverages(double avgsPuma[],double avgsHares[],int totalElements,string prefix);
     
     
 private:

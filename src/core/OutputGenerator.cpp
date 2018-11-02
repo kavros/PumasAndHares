@@ -22,7 +22,7 @@ int OutputGenerator::CreatePPMFile(Landscape landscape)
     int width = landscape.GetTotalColumns();
     int height = landscape.GetTotalRows();
     
-    string filename="output"+std::to_string(nextOutputNumber)+".ppm";
+    string filename=landscape.GetOutputPrefix()+std::to_string(nextOutputNumber)+".ppm";
     string folder="./data/outputs/";
     ofstream imgFile;
     
@@ -71,9 +71,9 @@ string OutputGenerator::GetSquarePixel(Landscape landscape,int i,int j)
     {
         //make pixel white
         pixel+=" ";
-        pixel +="255 ";//red
-        pixel +="255 ";//blue
-        pixel +="255 ";//green
+        pixel +="0 ";//red
+        pixel +="41 ";//green
+        pixel +="158 ";//blue
         pixel +=" ";
     }
     else 
@@ -81,26 +81,33 @@ string OutputGenerator::GetSquarePixel(Landscape landscape,int i,int j)
         double hares = landscape.GetHares(i,j);
         double pumas = landscape.GetPumas(i,j);
         
-        double pumaPercentage =0; 
-        //puma and hares need to be positive numbers 
-        //in order to calculate puma percentage
-        if( hares > 0 && pumas > 0)
+        
+        if(pumas  >  hares)
         {
-            pumaPercentage =(pumas/(hares+pumas));
+            pixel +=" ";
+            pixel +="198 ";
+            pixel +="43 ";  
+            pixel +="0 ";  
+            pixel +=" ";
         }
-                
-        assert(pumaPercentage<=1 && pumaPercentage >=0);        
-        int colorHue =pumaPercentage *255;
-        assert(colorHue>=0 && colorHue<=255);
+        else if(pumas < hares)
+        {
+            pixel +=" ";
+            pixel +="0 ";
+            pixel +="150 ";
+            pixel +="0 ";
+            pixel +=" ";
+        }
+        else
+        {
+            pixel +=" ";
+            pixel +="0 ";
+            pixel +="0 ";
+            pixel +="0 ";
+            pixel +=" ";
+        }
         
         
-        string red = std::to_string(colorHue);
-        pixel +=" ";
-        pixel +=red+" ";//red
-        pixel +="0 ";   //blue
-        pixel +="0 ";   //green
-        pixel +=" ";
-     
     } 
     
   
@@ -108,13 +115,13 @@ string OutputGenerator::GetSquarePixel(Landscape landscape,int i,int j)
     return pixel;
 }
 
-int OutputGenerator::SaveAverages(double avgsPuma[],double avgsHares[],int totalElements)
+int OutputGenerator::SaveAverages(double avgsPuma[],double avgsHares[],int totalElements,string outputPrefix)
 {
     if(avgsPuma  == NULL ||avgsHares == NULL || totalElements < 0 )
     {
         return FAILED;
     }
-    string filename="averages.txt";
+    string filename=outputPrefix+"_averages.txt";
     string folder="./data/outputs/";
     ofstream txtFile;
     txtFile.open (folder+filename);

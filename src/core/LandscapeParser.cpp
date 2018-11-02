@@ -14,7 +14,7 @@ LandscapeParser::LandscapeParser(Landscape* landscape,std::string filePath)
 
 LandscapeParser::~LandscapeParser() 
 {
-    DealocateGrid();
+
 }
 
 LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
@@ -66,6 +66,7 @@ int LandscapeParser::GetGridValue(char& c)
     return atoi(&c);   
 }
 
+
 void LandscapeParser::IsValid(char& c)
 {
     if (isdigit(c))
@@ -81,6 +82,7 @@ void LandscapeParser::IsValid(char& c)
             throw std::invalid_argument("Landscape file is not valid.");
         }
     }
+
 }
 
 std::vector<int> LandscapeParser::GetDimensions(std::string firstLine)
@@ -134,21 +136,6 @@ void LandscapeParser::ParseRow(LandscapeSquare** grid, string line, int currRow)
 
     }
 }
-
-void LandscapeParser::DealocateGrid()
-{
-    if(grid == NULL)
-    {
-        return;
-    }
-    //deallocate array
-    for(int i=0; i < landscape->GetTotalRows(); i++)
-    {
-        delete[] grid[i];
-    }
-    delete grid;
-}
-
 
 LandscapeSquare** LandscapeParser::GetGrid()
 {

@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/* 
- * File:   Landscape.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 8:49 PM
- */
 #ifndef LANDSCAPE_HPP
 #define LANDSCAPE_HPP
 #define MAX_WIDTH 2000
@@ -17,17 +6,10 @@
 #include <string>
 #include "LandscapeSquare.hpp"
 using namespace std;
-class Landscape {
+class Landscape 
+{
 public:
-    
-    /**
-     * Landscape constructor will use classes LadscapeParser and 
-     * ConfigurationParse in order to initialize landscape array 
-     * and configuration variables
-     * @param configurationFileName
-     * @param landscapeFileName
-     */
-    Landscape(string configurationFileName,string landscapeFileName);
+            
     Landscape();
     virtual ~Landscape();
     
@@ -78,8 +60,11 @@ public:
     void SetTotalRows(int height);
     
     void AssignRandomPumaAndHares();
-    void SetGrid(LandscapeSquare** grid);    
-  
+
+    void SetGrid(LandscapeSquare** grid);   
+    void SetOutputPrefix(string outputPrefix);
+    string GetOutputPrefix();
+
     
 
 private:
@@ -89,10 +74,10 @@ private:
     int T;  //the number of steps between the outputs
     double rep;  //number of times that our simulation is going to run
     LandscapeSquare** grid;//2d array
+    string outputPrefix;
     
     void CheckConfigurationInput(double confValue);
     void AreArrayIndexesValid(int i,int j);
-    void CheckPumasAndHaresValue(double value);
     bool IsHaloSquare(int i,int j);
     bool IsSquareLand( int i,  int j);
     double GetRandomInRange(double lowerBound,double upperBound);

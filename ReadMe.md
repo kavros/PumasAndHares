@@ -3,11 +3,7 @@
 implement the model, write tests and write user and developer documentation.
 
 ## Build
-* Follow the instructions below to install cppunit
-* Build project using ```make```
-* Build unit tests using  ```make test```
-
-## Build and install cppunit 
+* Follow the instructions below to install cppunit:
 ```
  wget http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz
  tar -xvzf cppunit-1.13.2.tar.gz
@@ -18,7 +14,10 @@ implement the model, write tests and write user and developer documentation.
  export CPLUS_INCLUDE_PATH=$HOME/include:$CPLUS_INCLUDE_PATH
  export LIBRARY_PATH=$HOME/lib:$LIBRARY_PATH
  export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+ cd ..
 ```
+* Build project using ```make```
+* Build unit tests using  ```make test```
 
 ## Run 
 * Run pumas and hares using this format: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```

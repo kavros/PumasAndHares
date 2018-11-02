@@ -74,7 +74,6 @@ tests:	$(BIN_PATH)/CmdParserUnitTest \
 	$(BIN_PATH)/LandscapeSimulationUnitTest\
 	$(BIN_PATH)/LandscapeSquareUnitTest\
 	$(BIN_PATH)/LandscapeUnitTest\
-	$(BIN_PATH)/LandscapeValidatorUnitTest\
 	$(BIN_PATH)/OutputGeneratorUnitTest
 
 .PHONY: run_unit_tests
@@ -87,7 +86,6 @@ run_unit_tests:
 	./$(BIN_PATH)/LandscapeSimulationUnitTest
 	./$(BIN_PATH)/LandscapeSquareUnitTest
 	./$(BIN_PATH)/LandscapeUnitTest
-	./$(BIN_PATH)/LandscapeValidatorUnitTest
 	./$(BIN_PATH)/OutputGeneratorUnitTest
 
 .PHONY: run
@@ -102,9 +100,6 @@ $(BIN_PATH)/configurationGeneratorMain: src/tests/ConfigurationGeneratorMain.cpp
 			    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
-$(BIN_PATH)/landscapeValidatorTest: src/tests/LandscapeValidatorTest.cpp \
-			    $(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS) src/core/main.cpp
 	$(CXX) $(COMPILE_FLAGS) $^  -o $@

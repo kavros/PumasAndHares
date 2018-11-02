@@ -8,7 +8,7 @@ cmdLineArgs = str(sys.argv)
 def main():
 	
 	if ( len(sys.argv) != 4 ):
-		print "\n Please run script using the following format: python ./scripts/validation.py averages.txt landscape.txt imageSetPrefix \n"
+		print "\n Please run script using the following format: python ./scripts/validation.py averages.txt landscape.txt image \n"
 		return
 
 	#get files names
@@ -69,19 +69,11 @@ def main():
 	#print "totalBlackPixels:",totalBlackPixels
 	#print "totalGreenPixels",totalGreenPixels
 
-
-	##avgNumOfHares=float(averageFileContent[1].split(":")[1].strip())
-	##avgNumOfPumas=float(averageFileContent[2].split(":")[1].strip())
-
-	##print avgNumOfPumas
-	##print avgNumOfHares
-
 	#second validation
-	#if(avgNumOfPumas > avgNumOfHares):
-	#	assert(totalRedPixels > totalGreenPixels)
-	#elif(avgNumOfPumas < avgNumOfHares):
-	#	assert(totalRedPixels < totalGreenPixels)
-
+	for line in averageFileContent:
+		if ":" in line:
+			avgValue=float(line.split(":")[1].strip());
+			assert(avgValue > 0)
 
 	#parse data from landscape input file
 	totalWaterSquares=0

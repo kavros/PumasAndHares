@@ -7,18 +7,6 @@ implement the model, write tests and write user and developer documentation.
 * Build project using ```make```
 * Build unit tests using  ```make test```
 
-## Run 
-* Run pumas and hares using this format: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
-* Run an example of pumas and hares using: ```make run```
-* Run unit tests using: ```make run_unit_tests```
-
-## Run generators
-* Run landscape generator using the following command:
- ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
-* Run configuration generator using the following command:
-  ```./build/bin/configurationGeneratorMain "fileName.json" -r "decimal" -a "decimal" -b "decimal" -m "decimal" -k "decimal" -l "decimal" -d "decimal"  -n "integer"```
-
-
 ## Build and install cppunit 
 ```
  wget http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz
@@ -31,6 +19,17 @@ implement the model, write tests and write user and developer documentation.
  export LIBRARY_PATH=$HOME/lib:$LIBRARY_PATH
  export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
 ```
+
+## Run 
+* Run pumas and hares using this format: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
+* Run an example of pumas and hares using: ```make run```
+* Run unit tests using: ```make run_unit_tests```
+
+## Run generators
+* Run landscape generator using the following command:
+ ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
+* Run configuration generator using the following command:
+  ```./build/bin/configurationGeneratorMain "fileName.json" -r "decimal" -a "decimal" -b "decimal" -m "decimal" -k "decimal" -l "decimal" -d "decimal"  -n "integer"```
 
 ## Documentation
 * Generate our documentation using ```make docs```

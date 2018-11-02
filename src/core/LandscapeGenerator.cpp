@@ -94,7 +94,7 @@ void LandscapeGenerator::SetTotalColumns(int totalColumns)
 
 void LandscapeGenerator::SetLandPercentage(float landPercentage)
 {
-    if(landPercentage >= 0 && landPercentage <=1) 
+    if( (landPercentage <= 0.0) || (landPercentage >1.0)) 
     {
         throw std::invalid_argument("Land percentage must be between 0 and 1.");
     }

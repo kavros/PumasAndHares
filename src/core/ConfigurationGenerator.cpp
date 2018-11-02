@@ -51,17 +51,25 @@ ConfigurationGenerator::ConfigurationGenerator(int ac, char *av[]) {
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
     }
-
-
+    
+    this->options["r"] = args::get(r);
+    this->options["a"] = args::get(a);
+    this->options["b"] = args::get(b);
+    this->options["m"] = args::get(m);
+    this->options["k"] = args::get(k);
+    this->options["l"] = args::get(l);
+    this->options["d"] = args::get(d);
+    this->options["n"] = args::get(n);
+    
     this->SetFileName(args::get(filename));
-    this->SetR(args::get(r));
-    this->SetA(args::get(a));
-    this->SetB(args::get(b));
-    this->SetM(args::get(m));
-    this->SetK(args::get(k));
-    this->SetL(args::get(l));
-    this->SetDt(args::get(d));
-    this->SetN(args::get(n));
+    this->SetR(r.Get());
+    this->SetA(a.Get());
+    this->SetB(b.Get());
+    this->SetM(m.Get());
+    this->SetK(k.Get());
+    this->SetL(l.Get());
+    this->SetDt(d.Get());
+    this->SetN(n.Get());
     this->SetJsonString(this->options.dump(4));
 }
 

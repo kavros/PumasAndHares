@@ -88,11 +88,11 @@ run_unit_tests:
 run:
 	./$(BIN_PATH)/pumasAndHares -i data/landscapes/crete3.dat -c data/configs/config.json -p output
 	
-$(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
+$(BIN_PATH)/landscapeGeneratorMain: src/generators/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
-$(BIN_PATH)/configurationGeneratorMain: src/tests/ConfigurationGeneratorMain.cpp \
+$(BIN_PATH)/configurationGeneratorMain: src/generators/ConfigurationGeneratorMain.cpp \
 			    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	

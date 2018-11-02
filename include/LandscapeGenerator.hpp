@@ -11,10 +11,10 @@ public:
         LandscapeGenerator(); 
         int GetRandomLandDistribution2();
         int ParseCmdLine(int ac, char *av[]);
-        int SetTotalRows(int totalRows);
-        int SetTotalColumns(int totalColumns);
-        int SetLandPercentage(float landPercentage);
-        int SetOutputFileName(string fileName);
+        void SetTotalRows(int totalRows);
+        void SetTotalColumns(int totalColumns);
+        void SetLandPercentage(float landPercentage);
+        void SetOutputFileName(string fileName);
         void WriteLandscapeToFile();
         void GetRandomLandDistribution();
 

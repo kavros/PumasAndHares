@@ -39,14 +39,6 @@ int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
     {
         parser.ParseCLI(ac, av);
         
-        if(tColumns.Get() > 2000 || tRows.Get() > 2000     ||
-             tRows.Get() <= 0 || tColumns.Get() <=0        ||
-             filename.Get().empty() || landPerc.Get() <=0 
-         )
-        {
-            throw invalid_argument("Cmd line values are not valid");
-        }
-        
         SetTotalColumns( tColumns.Get());
         SetTotalRows(tRows.Get());
         SetLandPercentage(landPerc.Get());
@@ -70,29 +62,47 @@ int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
     return 0;
 }
 
-int LandscapeGenerator::SetOutputFileName(string fileName)
+void LandscapeGenerator::SetOutputFileName(string fileName)
 {
+    if(fileName.empty() ) 
+    {
+        throw std::invalid_argument("File name cannot be empty.");
+    }
     this->outputFileName = fileName;
-    return 0;
+
 }
 
-int LandscapeGenerator::SetTotalRows(int totalRows)
+void LandscapeGenerator::SetTotalRows(int totalRows)
 {
+    if(totalRows <= 0 || totalRows > 2000) 
+    {
+        throw std::invalid_argument("Total number of rows can be between 0 and 2000.");
+    }
     this->totalRows = totalRows;
-    return 0;
+
 }
 
-int LandscapeGenerator::SetTotalColumns(int totalColumns)
+void LandscapeGenerator::SetTotalColumns(int totalColumns)
 {
+    if(totalColumns <= 0 || totalColumns > 2000) 
+    {
+        throw std::invalid_argument("Total number of columns can be between 0 and 2000.");
+    }
     this->totalColumns = totalColumns;
-    return 0;
+
 }
 
-int LandscapeGenerator::SetLandPercentage(float landPercentage)
+void LandscapeGenerator::SetLandPercentage(float landPercentage)
 {
+    if(landPercentage >= 0 && landPercentage <=1) 
+    {
+        throw std::invalid_argument("Land percentage must be between 0 and 1.");
+    }
     this->landPercentage = landPercentage;
-    return 0;
+
 }
+
+
 
 
 int LandscapeGenerator::GetRandomLandDistribution2()

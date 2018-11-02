@@ -280,7 +280,7 @@ void LandscapeGenerator::RemoveExtraLand(int extraLand)
     while(true)
     {
 
-        for (int i=1; i<=4; i++){
+        for (int i=0; i<4; i++){
             neighboursCoordX[i] = 0;
             neighboursCoordY[i] = 0;
         }    

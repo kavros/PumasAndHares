@@ -3,7 +3,19 @@
 implement the model, write tests and write user and developer documentation.
 
 ## Build
-* Follow the instructions below to install cppunit
+* Follow the instructions below to install cppunit:
+```
+ wget http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz
+ tar -xvzf cppunit-1.13.2.tar.gz
+ cd cppunit-1.13.2
+ ./configure --prefix=$HOME
+ make
+ make install 
+ export CPLUS_INCLUDE_PATH=$HOME/include:$CPLUS_INCLUDE_PATH
+ export LIBRARY_PATH=$HOME/lib:$LIBRARY_PATH
+ export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+ cd ..
+```
 * Build project using ```make```
 * Build unit tests using  ```make test```
 
@@ -17,20 +29,6 @@ implement the model, write tests and write user and developer documentation.
  ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
 * Run configuration generator using the following command:
   ```./build/bin/configurationGeneratorMain "fileName.json" -r "decimal" -a "decimal" -b "decimal" -m "decimal" -k "decimal" -l "decimal" -d "decimal"  -n "integer"```
-
-
-## Build and install cppunit 
-```
- wget http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz
- tar -xvzf cppunit-1.13.2.tar.gz
- cd cppunit-1.13.2
- ./configure --prefix=$HOME
- make
- make install 
- export CPLUS_INCLUDE_PATH=$HOME/include:$CPLUS_INCLUDE_PATH
- export LIBRARY_PATH=$HOME/lib:$LIBRARY_PATH
- export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
-```
 
 ## Documentation
 * Generate our documentation using ```make docs```

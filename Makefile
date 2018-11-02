@@ -71,8 +71,6 @@ tests:	$(BIN_PATH)/CmdParserUnitTest \
 	$(BIN_PATH)/ConfigurationParserUnitTest\
 	$(BIN_PATH)/LandscapeGeneratorUnitTest\
 	$(BIN_PATH)/LandscapeParserUnitTest\
-	$(BIN_PATH)/LandscapeSimulationUnitTest\
-	$(BIN_PATH)/LandscapeSquareUnitTest\
 	$(BIN_PATH)/LandscapeUnitTest\
 	$(BIN_PATH)/OutputGeneratorUnitTest
 
@@ -83,8 +81,6 @@ run_unit_tests:
 	./$(BIN_PATH)/ConfigurationParserUnitTest
 	./$(BIN_PATH)/LandscapeGeneratorUnitTest
 	./$(BIN_PATH)/LandscapeParserUnitTest
-	./$(BIN_PATH)/LandscapeSimulationUnitTest
-	./$(BIN_PATH)/LandscapeSquareUnitTest
 	./$(BIN_PATH)/LandscapeUnitTest
 	./$(BIN_PATH)/OutputGeneratorUnitTest
 

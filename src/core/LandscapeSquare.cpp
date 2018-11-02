@@ -1,18 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   LandscapeSquare.cpp
- * Author: alex
- * 
- * Created on October 9, 2018, 8:54 PM
- */
-
 #include "LandscapeSquare.hpp"
 #include <iostream>
+#include <assert.h>
 using namespace std;
 LandscapeSquare::LandscapeSquare() 
 {
@@ -24,16 +12,20 @@ LandscapeSquare::~LandscapeSquare()
 
 void LandscapeSquare::SetIsWater(bool value)
 {
+    bool val =( (value == 0) || (value ==1));
+    assert(val);
     this->isWater = value;
 }
 
 void LandscapeSquare::SetPumas(double pumas)
 {
+    assert(pumas >= 0);
     this->pumas=pumas;
 }
 
 void LandscapeSquare::SetHares(double hares)
 {
+    assert(hares>=0);
     this->hares=hares;
 }
 

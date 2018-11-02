@@ -33,7 +33,7 @@ private:
     double pumas;
     double hares;
     
-    void CheckInput(double value);
+  
 };
 
 #endif /* LANDSCAPESQUARE_HPP */

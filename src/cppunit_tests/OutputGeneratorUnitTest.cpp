@@ -30,11 +30,11 @@ public:
     {
         OutputGenerator output;
         int totalAvgs = 10;
-        CPPUNIT_ASSERT (output.SaveAverages(NULL,NULL,totalAvgs)==FAILED);
+        CPPUNIT_ASSERT (output.SaveAverages(NULL,NULL,totalAvgs,"prefix")==FAILED);
         double a[2] = {1.2,1.3};
         double b[2] = {1.2,1.3};
         totalAvgs =-10;
-        CPPUNIT_ASSERT (output.SaveAverages(a,b,totalAvgs)==FAILED);
+        CPPUNIT_ASSERT (output.SaveAverages(a,b,totalAvgs,"prefix")==FAILED);
     }
     
     void TestCreatePPMFile()

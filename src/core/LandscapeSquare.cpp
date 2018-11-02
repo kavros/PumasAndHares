@@ -22,15 +22,6 @@ LandscapeSquare::~LandscapeSquare()
 {
 }
 
-
-
-void LandscapeSquare::CheckInput(double value)
-{
-    // densities could be negative or zero so no check
-}
-
-
-
 void LandscapeSquare::SetIsWater(bool value)
 {
     this->isWater = value;
@@ -38,13 +29,11 @@ void LandscapeSquare::SetIsWater(bool value)
 
 void LandscapeSquare::SetPumas(double pumas)
 {
-    CheckInput(pumas);
     this->pumas=pumas;
 }
 
 void LandscapeSquare::SetHares(double hares)
 {
-    CheckInput(hares);
     this->hares=hares;
 }
 

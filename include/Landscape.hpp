@@ -29,7 +29,7 @@ public:
     unsigned int GetN( int i, int j);
     double GetPumas( int i, int j);
     double GetHares( int i, int j);
-    LandscapeSquare** GetLandscape();
+    LandscapeSquare** GetGrid();
     double GetR();
     double GetM(); 
     double GetK();

@@ -33,6 +33,13 @@ LandscapeSimulation::LandscapeSimulation()
 
 LandscapeSimulation::~LandscapeSimulation()
 {
+    LandscapeSquare** grid = landscape.GetGrid();
+    //deallocate array
+    for(int i=0; i < landscape.GetTotalRows(); i++)
+    {
+        delete[] grid[i];
+    }
+    delete grid;
     
 }
 void LandscapeSimulation::Run()
@@ -108,7 +115,16 @@ void LandscapeSimulation::Run()
                                                 landscape.GetN(row,col)*landscape.GetHares(row,col) 
                                             )
                         );
-
+                
+                if(haresNew < 0)
+                {
+                    haresNew = 0;
+                }
+                if(pumasNew < 0)
+                {
+                    pumasNew = 0;
+                }
+                
                 landscape.SetPumas(row,col,pumasNew);
                 landscape.SetHares(row,col,haresNew);
             }

@@ -33,6 +33,8 @@ implement the model, write tests and write user and developer documentation.
 ```
 
 ## Documentation
+* Generate our documentation using ```make docs```
+* Open the following page doxygen_docs/html/index.html to read our code documentation.
 * Using the following link you can edit our documentation [link](https://www.overleaf.com/8949884345ypnhgyfsphmr)
 
 ## References

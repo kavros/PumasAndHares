@@ -22,6 +22,7 @@ implement the model, write tests and write user and developer documentation.
 
 ## Run 
 * Run an example of pumas and hares using: ```make run```
+* Display output image using: ```make display```
 * Run unit tests using: ```make run_unit_tests```
 * Run pumas and hares executable using this command: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
 

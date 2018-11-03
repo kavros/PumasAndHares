@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 import sys
-#print "This is the name of the script: ", sys.argv[0]
-#print "Number of arguments: ", len(sys.argv)
-#print "The arguments are: " , str(sys.argv)
 cmdLineArgs = str(sys.argv)
 
 def main():
@@ -64,11 +61,7 @@ def main():
 			elif (pixel == blackPixelFormat):
 				totalBlackPixels = totalBlackPixels+1
 	
-	#print "totalRedPixels:",totalRedPixels
-	#print "totalBluePixels:",totalBluePixels
-	#print "totalBlackPixels:",totalBlackPixels
-	#print "totalGreenPixels",totalGreenPixels
-
+	
 	#second validation
 	for line in averageFileContent:
 		if ":" in line:

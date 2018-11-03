@@ -107,8 +107,8 @@ FILE_PATTERNS          = *.hpp \
                          *.cpp \
                          *.md
 RECURSIVE              = YES
-EXCLUDE                = src/logos.cpp \
-                         src/lodepng.cpp
+EXCLUDE                = include/Args.hpp \
+                         include/Json.hpp
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =

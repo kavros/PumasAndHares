@@ -25,7 +25,10 @@ public:
     {
       // No-op.
     }
-
+    /**
+     * This test verifies that if arrays with averages are null then 
+     * the function saveAverages returns FAILED(-1).
+     */
     void TestSaveAverages() 
     {
         OutputGenerator output;
@@ -37,6 +40,10 @@ public:
         CPPUNIT_ASSERT (output.SaveAverages(a,b,totalAvgs,"prefix")==FAILED);
     }
     
+    /**
+     * This test verifies that if grid is null then function 
+     * CreatePPMFile returns FAILED.
+     */
     void TestCreatePPMFile()
     {
         OutputGenerator output;

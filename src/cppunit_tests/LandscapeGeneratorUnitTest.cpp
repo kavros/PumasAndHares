@@ -24,7 +24,10 @@ public:
     {
       // No-op.
     }
-
+    /**
+     * This test verifies that if output file name is empty 
+     * then our program it will raise an exception.
+     */
     void TestSetOutputFileName()
     {
         try
@@ -38,7 +41,10 @@ public:
             CPPUNIT_ASSERT(1==1);
         }
     }
-    
+    /**
+     * This test verifies that if total rows are negative then our program it will raise an 
+     * exception.
+     */
     void TestSetTotalRows()
     {
         try
@@ -53,6 +59,10 @@ public:
         }
     }
     
+    /**
+     * This test verifies that if total columns are negative then
+     * our program it will raise an exception.
+     */
     void TestSetTotalColumns()
     {
         try
@@ -67,6 +77,10 @@ public:
         }
     }
     
+    /**
+     * This test verifies that if land percentage is higher than 1 
+     * then our program it will raise an exception.
+     */
     void TestSetLandPercentage()
     {
         try

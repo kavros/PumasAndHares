@@ -29,7 +29,10 @@ public:
     void tearDown()
     {
     }
-
+    /**
+     * This test verifies that if the configuration file does not exist then our
+     * program it will raise an exception.
+     */
     void TestReadConfigurationFromFile()
     {
       try
@@ -43,7 +46,10 @@ public:
       }
     }
 
-
+    /**
+     * This test verifies that if a is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetA()
     {
       ConfigurationParser configParserTestRead;
@@ -58,7 +64,10 @@ public:
         }
     }
 
-
+    /**
+     * This test verifies that if b is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetB()
     {
         ConfigurationParser configParserTestRead;
@@ -73,6 +82,10 @@ public:
         }
     }
 
+    /**
+     * This test verifies that if dt is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetDt()
     {
         ConfigurationParser configParserTestRead;
@@ -87,6 +100,10 @@ public:
         }
     }
 
+    /**
+     * This test verifies that if k is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetK()
     {
         ConfigurationParser configParserTestRead;
@@ -101,6 +118,10 @@ public:
         }
     }
 
+    /**
+     * This test verifies that if l is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetL()
     {
         ConfigurationParser configParserTestRead;
@@ -115,6 +136,10 @@ public:
         }
     }
 
+    /**
+     * This test verifies that if m is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetM()
     {
         ConfigurationParser configParserTestRead;
@@ -129,6 +154,10 @@ public:
         }
     }
 
+    /**
+     * This test verifies that if n is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetN()
     {
         ConfigurationParser configParserTestRead;
@@ -142,7 +171,11 @@ public:
             CPPUNIT_ASSERT(1==1);
         }
     }
-
+    
+    /**
+     * This test verifies that if r is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetR()
     {
         ConfigurationParser configParserTestRead;

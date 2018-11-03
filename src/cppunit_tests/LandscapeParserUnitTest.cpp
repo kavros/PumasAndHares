@@ -25,7 +25,10 @@ public:
     {
       // No-op.
     }
-
+     /**
+     * This test verifies that if output file not exist
+     * then our program it will raise an exception.
+     */
     void TestReadLandscapeFromFile()
     {
         Landscape landscape;
@@ -40,7 +43,10 @@ public:
              CPPUNIT_ASSERT(1==1);
         }
     }
-    
+     /**
+     * This test verifies that if landscape is null
+     * then our program it will raise an exception.
+     */
     void TestSetLandscape()
     {
         Landscape landscape;
@@ -56,6 +62,10 @@ public:
         }
     }
     
+     /**
+     * This test verifies that if file path is empty 
+     * then our program it will raise an exception.
+     */
     void TestSetFilePath()
     {
          Landscape landscape;

@@ -23,6 +23,10 @@ public:
       // No-op.
     }
     
+    /**
+     * This test verifies that if the file path for the landscape is empty then
+     * our program it will raise an exception. 
+     */
     void TestSetInputFilePath()
     {
         CmdParser parser;
@@ -37,6 +41,10 @@ public:
         }
     }
     
+    /**
+     * This test verifies that if the file path for the configuration is not type .json
+     * then our program it will raise an exception. 
+     */
     void TestSetConfigFilePath()
     {
         CmdParser parser;

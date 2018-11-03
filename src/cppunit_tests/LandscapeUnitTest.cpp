@@ -34,6 +34,10 @@ public:
       // No-op.
     }
 
+    /**
+     * This test verifies that if r is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetR() 
     {
         Landscape landscape;
@@ -47,7 +51,10 @@ public:
              CPPUNIT_ASSERT(1==1);
         }
     }
-    
+        /**
+     * This test verifies that if k is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetK() 
     {
         Landscape landscape;
@@ -61,7 +68,10 @@ public:
              CPPUNIT_ASSERT(1==1);
         }
     }
-    
+    /**
+     * This test verifies that if m is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetM() 
     {
         Landscape landscape;
@@ -76,7 +86,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if l is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetL() 
     {
         Landscape landscape;
@@ -91,6 +104,10 @@ public:
         }
     }
     
+    /**
+     * This test verifies that if dt is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetDt() 
     {
         Landscape landscape;
@@ -104,7 +121,10 @@ public:
              CPPUNIT_ASSERT(1==1);
         }
     }
-    
+    /**
+     * This test verifies that if t is negative then our program it will raise an 
+     * exception.
+     */    
     void TestSetT() 
     {
         Landscape landscape;
@@ -119,6 +139,10 @@ public:
         }
     }
     
+    /**
+     * This test verifies that if a is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetA() 
     {
         Landscape landscape;
@@ -133,7 +157,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if b is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetB() 
     {
         Landscape landscape;
@@ -148,7 +175,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if repetitions are zero then our program it will raise an 
+     * exception.
+     */
     void TestSetRepetions() 
     {
         Landscape landscape;
@@ -163,7 +193,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if (i,j) is out of range then our program it will raise an 
+     * exception.
+     */
     void TestSetPumas()
     {
         Landscape landscape;
@@ -180,7 +213,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if  (i,j) is out of range  then our program it will raise an 
+     * exception.
+     */
     void TestSetHares()
     {
         Landscape landscape;
@@ -197,6 +233,10 @@ public:
         }
     }
     
+    /**
+     * This test verifies that if  (i,j) is out of range  then our program it will raise an 
+     * exception.
+     */
     void TestSetIsWater()
     {
         Landscape landscape;

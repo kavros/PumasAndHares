@@ -1,3 +1,4 @@
+
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/ConfigurationGenerator.hpp"
 #include <cstddef>
@@ -7,7 +8,9 @@
 char* av[18];
 
 using namespace std;
-
+/**
+ * A class that test functions of ConfigurationGenerator class.
+ */
 class ConfigurationGeneratorUnitTest:public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE(ConfigurationGeneratorUnitTest);
@@ -52,7 +55,10 @@ public:
     }
 
 
-
+    /**
+     * This test verifies that if a is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetA()
     {
         ConfigurationGenerator configGenerator(18,av);
@@ -69,7 +75,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if b is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetB()
     {
         ConfigurationGenerator configGenerator(18,av);
@@ -86,6 +95,10 @@ public:
         }
     }
     
+    /**
+     * This test verifies that if dt is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetDt()
     {
         ConfigurationGenerator configGenerator(18,av);
@@ -103,7 +116,10 @@ public:
     }
     
     
-    
+    /**
+     * This test verifies that if k is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetK()
     {
         ConfigurationGenerator configGenerator(18,av);
@@ -121,7 +137,10 @@ public:
     }
     
     
-    
+    /**
+     * This test verifies that if l is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetL()
     {
         ConfigurationGenerator configGenerator(18,av);
@@ -140,7 +159,10 @@ public:
     
     
     
-    
+    /**
+     * This test verifies that if m is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetM()
     {
         ConfigurationGenerator configGenerator(18,av);
@@ -157,7 +179,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if n is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetN()
     {
         ConfigurationGenerator configGenerator(18,av);
@@ -174,7 +199,10 @@ public:
         }
     }
     
-    
+    /**
+     * This test verifies that if r is negative then our program it will raise an 
+     * exception.
+     */
     void TestSetR()
     {
         ConfigurationGenerator configGenerator(18,av);

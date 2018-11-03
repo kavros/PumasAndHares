@@ -38,9 +38,10 @@ int main(int argc, char** argv) {
         landscape.SetDt(configParser.GetDt());
         landscape.SetT(configParser.GetN());
         landscape.SetRepetions(500);
-        
+       
         //initialize land and water based on input file.
         LandscapeParser landscapeParser(&landscape,cmdLineParser.GetInputFilePath());
+
         landscapeParser.ReadLandscapeFromFile();
         
         //assign random puma and hares inside landscape

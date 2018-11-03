@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * File:   ConfigurationGenerator.cpp
- * Author: alex
- *
- * Created on October 9, 2018, 6:43 PM
- */
-
 #include "../../include/ConfigurationGenerator.hpp"
 #include "../../include/Args.hpp"
 #include "../../include/Json.hpp"
@@ -21,7 +8,8 @@
 
 
 
-ConfigurationGenerator::ConfigurationGenerator(int ac, char *av[]) {
+ConfigurationGenerator::ConfigurationGenerator(int ac, char *av[])
+{
     args::ArgumentParser parser("Pumas And Hares Configuration File Generator.","");
     args::HelpFlag help(parser, "help", "Display this help message", {'h',"help"});
     args::ValueFlag<double> r(parser,"r", "The birth rate of hares.", {'r'});
@@ -37,31 +25,42 @@ ConfigurationGenerator::ConfigurationGenerator(int ac, char *av[]) {
     {
         parser.ParseCLI(ac, av);
     }
-
-    catch(args::Help){
+    catch(args::Help)
+    {
         std::cout << parser;
+        exit(0);
     }
-
-    catch(args::ParseError e){
+    catch(args::ParseError e)
+    {
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
+        exit(0);
     }
     catch (args::ValidationError e)
     {
         std::cerr << e.what() << std::endl;
         std::cerr << parser;
+        exit(0);
     }
-
-
+    
+    this->options["r"] = args::get(r);
+    this->options["a"] = args::get(a);
+    this->options["b"] = args::get(b);
+    this->options["m"] = args::get(m);
+    this->options["k"] = args::get(k);
+    this->options["l"] = args::get(l);
+    this->options["d"] = args::get(d);
+    this->options["n"] = args::get(n);
+    
     this->SetFileName(args::get(filename));
-    this->SetR(args::get(r));
-    this->SetA(args::get(a));
-    this->SetB(args::get(b));
-    this->SetM(args::get(m));
-    this->SetK(args::get(k));
-    this->SetL(args::get(l));
-    this->SetDt(args::get(d));
-    this->SetN(args::get(n));
+    this->SetR(r.Get());
+    this->SetA(a.Get());
+    this->SetB(b.Get());
+    this->SetM(m.Get());
+    this->SetK(k.Get());
+    this->SetL(l.Get());
+    this->SetDt(d.Get());
+    this->SetN(n.Get());
     this->SetJsonString(this->options.dump(4));
 }
 
@@ -189,8 +188,11 @@ int ConfigurationGenerator::GetN()
 };
 void ConfigurationGenerator::SetN(int n)
 {
-    CheckSign(n,"N");
-    
+    CheckSign(n,"n");
+    if(n >= 500)
+    {
+        throw std::invalid_argument("Time steps per output must be below 500.");
+    }
     this->n = n;
 };
 

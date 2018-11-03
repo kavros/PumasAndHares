@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   LandscapeSimulation.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 6:39 PM
+/**
+ * A class that contains the function that run the simulation
+ * using the provided input landscape,configuration landscape and equations.
  */
 
 #ifndef LANDSCAPESIMULATION_HPP
@@ -18,18 +10,35 @@
 
 class LandscapeSimulation {
 public:
-    LandscapeSimulation(Landscape landscape);
-    LandscapeSimulation();
-    virtual ~LandscapeSimulation();
     
-    Landscape GetLandscape();
-    Landscape SetLandscape();
+    /**
+     * Constructor  for the landscape simulation 
+     * assigns landscape as a member variable.
+     * @param landscape
+     */
+    LandscapeSimulation(Landscape landscape);
+    /**
+     * Deallocate the 2d array with LandscapeSquares after the simulation finish.
+     */
+    virtual ~LandscapeSimulation();
+
+    /**
+     * Run the simulation using the equations.
+     */
     void Run();
     
 private:
     Landscape landscape;
     OutputGenerator outputGenerator;
+    /**
+     * Return the average number of hares using every position of the landscape.
+     * @return 
+     */
     double GetAverageHares();
+    /**
+     * Return the average number of puma using every position of the landscape.
+     * @return 
+     */
     double GetAveragePumas();
     
 };

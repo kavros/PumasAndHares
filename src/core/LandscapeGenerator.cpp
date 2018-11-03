@@ -7,15 +7,7 @@
 #include "../../include/Args.hpp"
 
 using namespace std;
-/*
-LandscapeGenerator::LandscapeGenerator(int width,int height, float landPercentage)
-{
 
-	this->totalRows=height;  
-    
-        this->landPercentage=landPercentage; 
-}
-*/
 LandscapeGenerator::LandscapeGenerator()
 {
     totalColumns = 0;
@@ -38,14 +30,6 @@ int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
      try
     {
         parser.ParseCLI(ac, av);
-        
-        if(tColumns.Get() > 2000 || tRows.Get() > 2000     ||
-             tRows.Get() <= 0 || tColumns.Get() <=0        ||
-             filename.Get().empty() || landPerc.Get() <=0 
-         )
-        {
-            throw invalid_argument("Cmd line values are not valid");
-        }
         
         SetTotalColumns( tColumns.Get());
         SetTotalRows(tRows.Get());
@@ -70,29 +54,47 @@ int LandscapeGenerator::ParseCmdLine(int ac, char *av[])
     return 0;
 }
 
-int LandscapeGenerator::SetOutputFileName(string fileName)
+void LandscapeGenerator::SetOutputFileName(string fileName)
 {
+    if(fileName.empty() ) 
+    {
+        throw std::invalid_argument("File name cannot be empty.");
+    }
     this->outputFileName = fileName;
-    return 0;
+
 }
 
-int LandscapeGenerator::SetTotalRows(int totalRows)
+void LandscapeGenerator::SetTotalRows(int totalRows)
 {
+    if(totalRows <= 0 || totalRows > 2000) 
+    {
+        throw std::invalid_argument("Total number of rows can be between 0 and 2000.");
+    }
     this->totalRows = totalRows;
-    return 0;
+
 }
 
-int LandscapeGenerator::SetTotalColumns(int totalColumns)
+void LandscapeGenerator::SetTotalColumns(int totalColumns)
 {
+    if(totalColumns <= 0 || totalColumns > 2000) 
+    {
+        throw std::invalid_argument("Total number of columns can be between 0 and 2000.");
+    }
     this->totalColumns = totalColumns;
-    return 0;
+
 }
 
-int LandscapeGenerator::SetLandPercentage(float landPercentage)
+void LandscapeGenerator::SetLandPercentage(float landPercentage)
 {
+    if( (landPercentage <= 0.0) || (landPercentage >1.0)) 
+    {
+        throw std::invalid_argument("Land percentage must be between 0 and 1.");
+    }
     this->landPercentage = landPercentage;
-    return 0;
+
 }
+
+
 
 
 int LandscapeGenerator::GetRandomLandDistribution2()
@@ -191,12 +193,7 @@ void LandscapeGenerator::GenerateRandomLand()
     int x,y;
     int landPoints = landPercentage*totalRows*totalColumns; 
     int count=0;
- /* *****************************************************************************************************************
-  * SECTION 1:                                                                                                      
-  * Here we create the landscape. At first we create a set of coordinates (x,y) in the range x:(2 - totalRows-1)      
-  * y:(2 - totalColumns-1) and then throw land in and around of that point. For every new point we create,                 
-  *  we increase the number count by one and check that we don't exceed the total points wanted.                    
-  *******************************************************************************************************************/    
+    
     
     while(true)
     {
@@ -225,12 +222,7 @@ void LandscapeGenerator::GenerateRandomLand()
 
 int LandscapeGenerator::NormalizeLandscape()
 {
-    /***************************************************************************************************************
-    * SECTION 2:
-    * Here the loops go through all the points that have been created and finds the points of land
-    * which have no neighbors. So if a point doesn't have, then a land point is created next to it in a way that
-    * it doesn't affect the boundaries.                                                            
-    ***************************************************************************************************************/              
+                
     int countNeighbours; 
     int extraLand = 0; /* In this value is recorded the number of extra land that was added  */
     for (int i = 1; i <= totalRows; i++)
@@ -266,12 +258,6 @@ int LandscapeGenerator::NormalizeLandscape()
 
 void LandscapeGenerator::RemoveExtraLand(int extraLand)
 {
-  /*********************************************************************************************************************************************
-  * SECTION 3:
-  * Subtrace extra land to reach again the wanted percentage of land in landscape.
-  * Because extra land was added in section 2 (if is added), the algorithm need to find a way to replace that land with water somewhere else.
-  * It finds a land point that has more than two neighbors and make one of them water. 
-  *********************************************************************************************************************************************/
     int neighboursCoordX[4]; /* This two arrays hold the coordinates of the neighbors. */ 
     int neighboursCoordY[4];
     int randNeighbour;
@@ -280,7 +266,7 @@ void LandscapeGenerator::RemoveExtraLand(int extraLand)
     while(true)
     {
 
-        for (int i=1; i<=4; i++){
+        for (int i=0; i<4; i++){
             neighboursCoordX[i] = 0;
             neighboursCoordY[i] = 0;
         }    

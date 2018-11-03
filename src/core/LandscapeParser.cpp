@@ -4,8 +4,10 @@
 #include <stdexcept>
 #include <fstream>      
 #include <sstream>      // std::istringstream
+#include "../../include/ErrorValues.hpp"
 LandscapeParser::LandscapeParser(Landscape* landscape,std::string filePath)
 {
+    grid=NULL;
     SetLandscape(landscape);
     SetFilePath(filePath);
 }
@@ -33,6 +35,10 @@ LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
                 std::vector<int> dimensions=GetDimensions(line);
                 totalRows=dimensions.at(0);
                 totalColumns=dimensions.at(1);
+                if(totalColumns <=0  || totalRows <=0 )
+                {
+                    throw invalid_argument("total rows or columns cannot be zero or negative");
+                }
                 grid = AllocateSpaceForGrid(totalRows,totalColumns);
                 
                 landscape->SetGrid(grid);
@@ -48,12 +54,16 @@ LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
             currRow++;
             
         }
-        
+        if(currRow != landscape->GetTotalRows() )
+        {
+            throw invalid_argument("landscape rows are not valid");
+        }
+                
         landscapeFile.close();
     }
     else
     {
-        throw std::invalid_argument("Unable to open the file.");
+        throw std::invalid_argument("Unable to open landscape input file.");
     }
     return grid;
 }
@@ -133,10 +143,11 @@ void LandscapeParser::ParseRow(LandscapeSquare** grid, string line, int currRow)
         }
 
     }
+    if(currCol != landscape->GetTotalColumns())
+    {
+        throw std::invalid_argument("Landscape columns are not valid.");
+    }
 }
-
-
-
 
 LandscapeSquare** LandscapeParser::GetGrid()
 {
@@ -148,16 +159,19 @@ string LandscapeParser::GetFilePath()
     return filePath;
 }
 
-int LandscapeParser::SetFilePath(string filePath)
+void LandscapeParser::SetFilePath(string filePath)
 {
+    if(filePath.empty())
+    {
+        throw std::invalid_argument("Landscape file path cannot be empty.");
+    }
     this->filePath = filePath;
-    return 0;
+
 
 }
 
-int LandscapeParser::SetLandscape(Landscape* landscape)
+void LandscapeParser::SetLandscape(Landscape* landscape)
 {
     this->landscape = landscape;
-    return 0;
 
 }

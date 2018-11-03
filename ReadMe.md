@@ -3,23 +3,7 @@
 implement the model, write tests and write user and developer documentation.
 
 ## Build
-* Follow the instructions below to install cppunit
-* Build project using ```make```
-* Build unit tests using  ```make test```
-
-## Run 
-* Run pumas and hares using this format: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
-* Run an example of pumas and hares using: ```make run```
-* Run unit tests using: ```make run_unit_tests```
-
-## Run generators
-* Run landscape generator using the following command:
- ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
-* Run configuration generator using the following command:
-  ```./build/bin/configurationGeneratorMain "fileName.json" -r "decimal" -a "decimal" -b "decimal" -m "decimal" -k "decimal" -l "decimal" -d "decimal"  -n "integer"```
-
-
-## Build and install cppunit 
+* Follow the instructions below to install cppunit:
 ```
  wget http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz
  tar -xvzf cppunit-1.13.2.tar.gz
@@ -30,9 +14,29 @@ implement the model, write tests and write user and developer documentation.
  export CPLUS_INCLUDE_PATH=$HOME/include:$CPLUS_INCLUDE_PATH
  export LIBRARY_PATH=$HOME/lib:$LIBRARY_PATH
  export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+ cd ..
 ```
+* Build project using ```make```
+* Build unit tests using  ```make test```
+* Generate our documentation using ```make docs```
+
+## Run 
+* Run an example of pumas and hares using: ```make run```
+* Display output image using: ```make display```
+* Run unit tests using: ```make run_unit_tests```
+* Run pumas and hares executable using this command: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
+
+## Run generators
+* Run a script that generate 9 different configurations using the following command: ``` .scripts/generateConfigurations.sh ```
+* Run a script that generate 16 different landscape of various sizes using the following command: ``` ./scripts/generateLandscapes.sh ```
+* Run landscape generator using the following command:
+ ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
+* Run configuration generator using the following command:
+  ```./build/bin/configurationGeneratorMain "fileName.json" -r "decimal" -a "decimal" -b "decimal" -m "decimal" -k "decimal" -l "decimal" -d "decimal"  -n "integer"```
 
 ## Documentation
+* Generate our documentation using ```make docs```
+* Open the following page doxygen_docs/html/index.html to read our code documentation.
 * Using the following link you can edit our documentation [link](https://www.overleaf.com/8949884345ypnhgyfsphmr)
 
 # Project Guidelines

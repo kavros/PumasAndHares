@@ -1,39 +1,61 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   LandscapeSquare.hpp
- * Author: alex
- *
- * Created on October 9, 2018, 8:54 PM
+/**
+ * A class that represent a square inside the landscape grid.
+ * We use this class in order to create our 2d array.
+ * Every position of our landscape has a instance of this class.
  */
 
 #ifndef LANDSCAPESQUARE_HPP
 #define LANDSCAPESQUARE_HPP
 
 #include <string>
-class LandscapeSquare {
+class LandscapeSquare 
+{
 public:
+    /**
+     * Constructor  of LandscapeSquare.
+     */
     LandscapeSquare();
+    /**
+     * Set value of water true or false.
+     * @param value
+     */
     void SetIsWater(bool value);
+    /**
+     * Set number of pumas.
+     * @param pumas
+     */
     void SetPumas(double pumas);
+    /**
+     * Sets number of hares.
+     * @param hares
+     */
     void SetHares(double hares);
     
+    /**
+     * Return the number of pumas.
+     * @return 
+     */
     double GetPumas();
+    /**
+     * Return the number of hares.
+     * @return 
+     */
     double GetHares();
+    /**
+     * Return true if square is water else return false.
+     * @return 
+     */
     bool GetIsWater();
-    
+    /**
+     * Destructor of LandscapeSquare.
+     */
     virtual ~LandscapeSquare();
 private:
     bool   isWater;
     double pumas;
     double hares;
     
-    void CheckInput(bool value);
-    void PrintWrongInputMsgAndExit(std::string msg);
+  
 };
 
 #endif /* LANDSCAPESQUARE_HPP */

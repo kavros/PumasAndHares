@@ -15,13 +15,16 @@ SOURCES=$(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' -not -name main.cpp | sort
 OBJECTS=$(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
 	
 # flags #
-COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g -std=c++0x
+COMPILE_FLAGS=-std=c++11 -Wall -Wextra -g -std=c++0x -O3
 
 INCLUDES= -I include/ -I /usr/local/include
 
 .PHONY: default_target
 default_target: release
 
+.PHONY:docs
+docs:
+	doxygen Doxyfile
 
 .PHONY: clean
 clean:
@@ -68,10 +71,7 @@ tests:	$(BIN_PATH)/CmdParserUnitTest \
 	$(BIN_PATH)/ConfigurationParserUnitTest\
 	$(BIN_PATH)/LandscapeGeneratorUnitTest\
 	$(BIN_PATH)/LandscapeParserUnitTest\
-	$(BIN_PATH)/LandscapeSimulationUnitTest\
-	$(BIN_PATH)/LandscapeSquareUnitTest\
 	$(BIN_PATH)/LandscapeUnitTest\
-	$(BIN_PATH)/LandscapeValidatorUnitTest\
 	$(BIN_PATH)/OutputGeneratorUnitTest
 
 .PHONY: run_unit_tests
@@ -81,27 +81,24 @@ run_unit_tests:
 	./$(BIN_PATH)/ConfigurationParserUnitTest
 	./$(BIN_PATH)/LandscapeGeneratorUnitTest
 	./$(BIN_PATH)/LandscapeParserUnitTest
-	./$(BIN_PATH)/LandscapeSimulationUnitTest
-	./$(BIN_PATH)/LandscapeSquareUnitTest
 	./$(BIN_PATH)/LandscapeUnitTest
-	./$(BIN_PATH)/LandscapeValidatorUnitTest
 	./$(BIN_PATH)/OutputGeneratorUnitTest
+.PHONY:display
+display:
+	display data/outputs/output0.ppm	
 
 .PHONY: run
 run:
 	./$(BIN_PATH)/pumasAndHares -i data/landscapes/crete3.dat -c data/configs/config.json -p output
 	
-$(BIN_PATH)/landscapeGeneratorMain: src/tests/LandscapeGeneratorMain.cpp \
+$(BIN_PATH)/landscapeGeneratorMain: src/generators/LandscapeGeneratorMain.cpp \
 				    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
-$(BIN_PATH)/configurationGeneratorMain: src/tests/ConfigurationGeneratorMain.cpp \
+$(BIN_PATH)/configurationGeneratorMain: src/generators/ConfigurationGeneratorMain.cpp \
 			    $(OBJECTS)
 	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 	
-$(BIN_PATH)/landscapeValidatorTest: src/tests/LandscapeValidatorTest.cpp \
-			    $(OBJECTS)
-	$(CXX) $(COMPILE_FLAGS) $^ -o $@
 
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS) src/core/main.cpp
 	$(CXX) $(COMPILE_FLAGS) $^  -o $@

@@ -7,15 +7,7 @@
 #include "../../include/Args.hpp"
 
 using namespace std;
-/*
-LandscapeGenerator::LandscapeGenerator(int width,int height, float landPercentage)
-{
 
-	this->totalRows=height;  
-    
-        this->landPercentage=landPercentage; 
-}
-*/
 LandscapeGenerator::LandscapeGenerator()
 {
     totalColumns = 0;
@@ -201,12 +193,7 @@ void LandscapeGenerator::GenerateRandomLand()
     int x,y;
     int landPoints = landPercentage*totalRows*totalColumns; 
     int count=0;
- /* *****************************************************************************************************************
-  * SECTION 1:                                                                                                      
-  * Here we create the landscape. At first we create a set of coordinates (x,y) in the range x:(2 - totalRows-1)      
-  * y:(2 - totalColumns-1) and then throw land in and around of that point. For every new point we create,                 
-  *  we increase the number count by one and check that we don't exceed the total points wanted.                    
-  *******************************************************************************************************************/    
+    
     
     while(true)
     {
@@ -235,12 +222,7 @@ void LandscapeGenerator::GenerateRandomLand()
 
 int LandscapeGenerator::NormalizeLandscape()
 {
-    /***************************************************************************************************************
-    * SECTION 2:
-    * Here the loops go through all the points that have been created and finds the points of land
-    * which have no neighbors. So if a point doesn't have, then a land point is created next to it in a way that
-    * it doesn't affect the boundaries.                                                            
-    ***************************************************************************************************************/              
+                
     int countNeighbours; 
     int extraLand = 0; /* In this value is recorded the number of extra land that was added  */
     for (int i = 1; i <= totalRows; i++)
@@ -276,12 +258,6 @@ int LandscapeGenerator::NormalizeLandscape()
 
 void LandscapeGenerator::RemoveExtraLand(int extraLand)
 {
-  /*********************************************************************************************************************************************
-  * SECTION 3:
-  * Subtrace extra land to reach again the wanted percentage of land in landscape.
-  * Because extra land was added in section 2 (if is added), the algorithm need to find a way to replace that land with water somewhere else.
-  * It finds a land point that has more than two neighbors and make one of them water. 
-  *********************************************************************************************************************************************/
     int neighboursCoordX[4]; /* This two arrays hold the coordinates of the neighbors. */ 
     int neighboursCoordY[4];
     int randNeighbour;

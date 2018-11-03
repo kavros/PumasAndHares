@@ -159,24 +159,19 @@ string LandscapeParser::GetFilePath()
     return filePath;
 }
 
-int LandscapeParser::SetFilePath(string filePath)
+void LandscapeParser::SetFilePath(string filePath)
 {
     if(filePath.empty())
     {
-        return FAILED;
+        throw std::invalid_argument("Landscape file path cannot be empty.");
     }
     this->filePath = filePath;
-    return 0;
+
 
 }
 
-int LandscapeParser::SetLandscape(Landscape* landscape)
+void LandscapeParser::SetLandscape(Landscape* landscape)
 {
-    if(landscape == NULL)
-    {
-        return FAILED;
-    }
     this->landscape = landscape;
-    return 0;
 
 }

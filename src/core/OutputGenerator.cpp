@@ -1,3 +1,4 @@
+
 #include "../../include/OutputGenerator.hpp"
 #include <string>
 #include <iostream>

@@ -18,11 +18,12 @@ implement the model, write tests and write user and developer documentation.
 ```
 * Build project using ```make```
 * Build unit tests using  ```make test```
+* Generate our documentation using ```make docs```
 
 ## Run 
-* Run pumas and hares using this format: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
 * Run an example of pumas and hares using: ```make run```
 * Run unit tests using: ```make run_unit_tests```
+* Run pumas and hares executable using this command: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
 
 ## Run generators
 * Run landscape generator using the following command:

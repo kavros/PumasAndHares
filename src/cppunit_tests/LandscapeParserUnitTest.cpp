@@ -1,3 +1,6 @@
+/**
+ * A class that test functions of LandscapeParser class.
+ */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/LandscapeParser.hpp"
 #include "../../include/ErrorValues.hpp"

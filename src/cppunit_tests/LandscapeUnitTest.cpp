@@ -1,3 +1,6 @@
+/**
+ * A class that test functions of Landscape class.
+ */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/Landscape.hpp"
 #include "../../include/ErrorValues.hpp"

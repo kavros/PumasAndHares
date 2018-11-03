@@ -1,3 +1,6 @@
+/**
+ * A class that test functions of LandscapeGenerator class.
+ */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/LandscapeGenerator.hpp"
 #include <cstddef>

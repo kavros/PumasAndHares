@@ -1,3 +1,6 @@
+/**
+ * A class that test functions of OutputGenerator class.
+ */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/OutputGenerator.hpp"
 #include <cstddef>

@@ -1,3 +1,6 @@
+/**
+ * A class that test functions of CmdParser class.
+ */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/CmdParser.hpp"
 #include <cstddef>

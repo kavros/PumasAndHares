@@ -1,3 +1,7 @@
+/**
+ * A class that test functions of ConfigurationGenerator class.
+ */
+
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/ConfigurationGenerator.hpp"
 #include <cstddef>

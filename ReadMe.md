@@ -27,6 +27,8 @@ implement the model, write tests and write user and developer documentation.
 * Run pumas and hares executable using this command: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
 
 ## Run generators
+* Run a script that generate 9 different configurations using the following command: ``` .scripts/generateConfigurations.sh ```
+* Run a script that generate 16 different landscape of various sizes using the following command: ``` ./scripts/generateLandscapes.sh ```
 * Run landscape generator using the following command:
  ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
 * Run configuration generator using the following command:

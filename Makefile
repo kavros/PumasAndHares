@@ -83,7 +83,7 @@ run_unit_tests:
 	./$(BIN_PATH)/LandscapeParserUnitTest
 	./$(BIN_PATH)/LandscapeUnitTest
 	./$(BIN_PATH)/OutputGeneratorUnitTest
-.PHONY:
+.PHONY:display
 display:
 	display data/outputs/output0.ppm	
 

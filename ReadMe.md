@@ -18,13 +18,17 @@ implement the model, write tests and write user and developer documentation.
 ```
 * Build project using ```make```
 * Build unit tests using  ```make test```
+* Generate our documentation using ```make docs```
 
 ## Run 
-* Run pumas and hares using this format: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
 * Run an example of pumas and hares using: ```make run```
+* Display output image using: ```make display```
 * Run unit tests using: ```make run_unit_tests```
+* Run pumas and hares executable using this command: ```./build/bin/pumasAndHares -i "landscape.dat" -c "config.json" -p "output prefix"```
 
 ## Run generators
+* Run a script that generate 9 different configurations using the following command: ``` .scripts/generateConfigurations.sh ```
+* Run a script that generate 16 different landscape of various sizes using the following command: ``` ./scripts/generateLandscapes.sh ```
 * Run landscape generator using the following command:
  ```./build/bin/landscapeGeneratorMain "file name.dat" -l "percentage of land" -r "total rows" -c "total columns" ```
 * Run configuration generator using the following command:
@@ -34,9 +38,6 @@ implement the model, write tests and write user and developer documentation.
 * Generate our documentation using ```make docs```
 * Open the following page doxygen_docs/html/index.html to read our code documentation.
 * Using the following link you can edit our documentation [link](https://www.overleaf.com/8949884345ypnhgyfsphmr)
-
-## References
-* [Makefile](https://gist.github.com/mauriciopoppe/de8907f67923091982c8c8136a063ea6)
 
 # Project Guidelines
 ## Format code to make readability easier

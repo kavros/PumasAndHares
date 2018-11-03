@@ -1,8 +1,3 @@
-/**
- * A class that generates json configurations.
- * This class uses an external library called Json for modern c++ v3.3
- * and we use command line input to pass the parameters to the class.
- */
 #ifndef CONFIGURATIONGENERATOR_HPP
 #define CONFIGURATIONGENERATOR_HPP
 
@@ -11,6 +6,11 @@
 #include <map>
 
 using json = nlohmann::json;
+/**
+ * A class that generates json configurations.
+ * This class uses an external library called Json for modern c++ v3.3
+ * and we use command line input to pass the parameters to the class.
+ */
 
 class ConfigurationGenerator {
 public:

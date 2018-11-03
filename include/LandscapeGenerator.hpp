@@ -2,7 +2,9 @@
 #define LANDSCAPEGENERATOR_HPP
 #include <string>
 using namespace std;
-
+/**
+ * A class that we use in order to geneate Landscapes.
+ */
 class LandscapeGenerator
 {
         

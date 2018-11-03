@@ -1,6 +1,3 @@
-/**
- * A class that test functions of LandscapeParser class.
- */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/LandscapeParser.hpp"
 #include "../../include/ErrorValues.hpp"
@@ -8,7 +5,9 @@
 #include <cstddef>
 #include <iostream>
 using namespace std;
-
+/**
+ * A class that test functions of LandscapeParser class.
+ */
 class LandscapeParserUnitTest:public CppUnit::TestFixture 
 {
     CPPUNIT_TEST_SUITE(LandscapeParserUnitTest);

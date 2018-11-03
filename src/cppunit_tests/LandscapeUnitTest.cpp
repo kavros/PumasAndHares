@@ -1,13 +1,12 @@
-/**
- * A class that test functions of Landscape class.
- */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/Landscape.hpp"
 #include "../../include/ErrorValues.hpp"
 #include <cstddef>
 #include <iostream>
 using namespace std;
-
+/**
+ * A class that test functions of Landscape class.
+ */
 class LandscapeUnitTest:public CppUnit::TestFixture 
 {
     CPPUNIT_TEST_SUITE(LandscapeUnitTest);

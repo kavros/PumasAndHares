@@ -1,6 +1,3 @@
-/**
- * A class that test functions of ConfigurationGenerator class.
- */
 
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/ConfigurationGenerator.hpp"
@@ -11,7 +8,9 @@
 char* av[18];
 
 using namespace std;
-
+/**
+ * A class that test functions of ConfigurationGenerator class.
+ */
 class ConfigurationGeneratorUnitTest:public CppUnit::TestFixture
 {
     CPPUNIT_TEST_SUITE(ConfigurationGeneratorUnitTest);

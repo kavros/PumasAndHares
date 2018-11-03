@@ -1,6 +1,3 @@
-/**
- * A class that test functions of ConfigurationParser class.
- */
 #include <cppunit/extensions/HelperMacros.h>
 #include "ConfigurationParser.hpp"
 #include <cstddef>
@@ -8,6 +5,9 @@
 #include <map>
 
 using namespace std;
+/**
+ * A class that test functions of ConfigurationParser class.
+ */
 
 class ConfigurationParserUnitTest:public CppUnit::TestFixture
 {

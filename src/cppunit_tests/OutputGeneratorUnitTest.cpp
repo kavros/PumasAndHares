@@ -1,6 +1,3 @@
-/**
- * A class that test functions of OutputGenerator class.
- */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/OutputGenerator.hpp"
 #include <cstddef>
@@ -8,7 +5,7 @@
 #include "../../include/ErrorValues.hpp"
 using namespace std;
 /**
- * Test class for OutputGenerator
+ * A class that test functions of OutputGenerator class.
  */
 class OutputGeneratorUnitTest:public CppUnit::TestFixture 
 {

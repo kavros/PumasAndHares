@@ -1,12 +1,11 @@
-/**
- * A class that test functions of LandscapeGenerator class.
- */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/LandscapeGenerator.hpp"
 #include <cstddef>
 #include <iostream>
 using namespace std;
-
+/**
+ * A class that test functions of LandscapeGenerator class.
+ */
 class LandscapeGeneratorUnitTest:public CppUnit::TestFixture 
 {
     CPPUNIT_TEST_SUITE(LandscapeGeneratorUnitTest);

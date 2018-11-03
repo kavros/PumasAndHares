@@ -1,12 +1,11 @@
-/**
- * A class that test functions of CmdParser class.
- */
 #include <cppunit/extensions/HelperMacros.h>
 #include "../../include/CmdParser.hpp"
 #include <cstddef>
 #include <iostream>
 using namespace std;
-
+/**
+ * A class that test functions of CmdParser class.
+ */
 class CmdParserUnitTest:public CppUnit::TestFixture 
 {
     CPPUNIT_TEST_SUITE(CmdParserUnitTest);

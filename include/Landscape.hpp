@@ -1,9 +1,3 @@
-/**
- * A class that holds the data structure of landscape.
- * We use a 2d array/grid which every position is a LandscapeSquare object.
- * A LandscapeSquare object holds: the density of hares, the density of pumas
- * and a boolean variable isWater.
- */
 #ifndef LANDSCAPE_HPP
 #define LANDSCAPE_HPP
 #define MAX_WIDTH 2000
@@ -11,6 +5,12 @@
 #include <string>
 #include "LandscapeSquare.hpp"
 using namespace std;
+/**
+ * A class that holds the data structure of landscape.
+ * We use a 2d array/grid which every position is a LandscapeSquare object.
+ * A LandscapeSquare object holds: the density of hares, the density of pumas
+ * and a boolean variable isWater.
+ */
 class Landscape 
 {
 public:

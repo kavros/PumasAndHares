@@ -1,14 +1,12 @@
-/**
- * A class that reads a json configuration and provide it to the landscape. 
- */
-
-
 #ifndef CONFIGURATIONPARSER_HPP
 #define CONFIGURATIONPARSER_HPP
 #include "Json.hpp"
 #include <string>
 
 using json = nlohmann::json;
+/**
+ * A class that reads a json configuration and provide it to the landscape. 
+ */
 
 class ConfigurationParser
 {

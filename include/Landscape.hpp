@@ -15,11 +15,11 @@ class Landscape
 {
 public:
     /**
-     * Contractor of the landscape.
+     * Constructor of landscape.
      */        
     Landscape();
     /**
-     * Destractor of landscape.
+     * Destructor of landscape.
      */
     virtual ~Landscape();
     

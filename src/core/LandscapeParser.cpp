@@ -39,6 +39,10 @@ LandscapeSquare** LandscapeParser::ReadLandscapeFromFile()
                 {
                     throw invalid_argument("total rows or columns cannot be zero or negative");
                 }
+                if(totalColumns >2000  || totalRows >2000 )
+                {
+                    throw invalid_argument("total rows or columns must be under 2000");
+                }
                 grid = AllocateSpaceForGrid(totalRows,totalColumns);
                 
                 landscape->SetGrid(grid);

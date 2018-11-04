@@ -5,7 +5,7 @@
 
 using json = nlohmann::json;
 /**
- * A class that reads a json configuration and provide it to the landscape. 
+ * A class that reads a json configuration file and provide it to the landscape. 
  */
 
 class ConfigurationParser

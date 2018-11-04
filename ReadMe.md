@@ -34,8 +34,8 @@ implement the model, write tests and write user and developer documentation.
 * Run configuration generator using the following command:
   ```./build/bin/configurationGeneratorMain "fileName.json" -r "decimal" -a "decimal" -b "decimal" -m "decimal" -k "decimal" -l "decimal" -d "decimal"  -n "integer"```
 
-## Run scripts (optional)
-* Using the following commands we run and validated 144 simulations. Be aware of that the running time of script runSimulations.sh could last for many hours. Please run scripts from folder PumasAndHares.
+## Run multiple simulations  (optional)
+* Using the following scripts we run and validated 144 simulations. Be aware of that the running time of script runSimulations.sh could last for many hours. Please run scripts from folder PumasAndHares.
 ```
 ./scripts/generateLandscapes.sh
 ./scripts/generateConfigurations.sh 

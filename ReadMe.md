@@ -1,4 +1,4 @@
-# Overview
+# Overview [![Build Status](https://travis-ci.com/kavros/PumasAndHares.svg?token=FpiEbZxSSgCpKyAubrTW&branch=master)](https://travis-ci.com/kavros/PumasAndHares)
 * The coursework is a group exercise where you will collaborate with your fellow students in small groups to
 implement the model, write tests and write user and developer documentation.
 
